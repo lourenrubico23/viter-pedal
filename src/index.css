@@ -1,0 +1,71 @@
+@font-face {
+  font-family: "montserrat";
+  src: url(/font/Montserrat-Regular.ttf) format("truetype");
+  font-display: fallback;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Reference color 
+    primary: #FFFFFF  
+    secondary: #FFFFE7
+    accent: #C7AC27
+    dark: #000000*/
+
+  :root {
+    --primary-color: 255 255 255;
+    --secondary-color: 255 255 231;
+    --accent-color: 199 172 39;
+    --dark-color: 0 0 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+  h2{
+    @apply text-4xl font-bold
+  }
+  p{
+    @apply text-sm 
+  }
+  body {
+    @apply leading-relaxed font-[montserrat] text-xs min-h-full text-dark;
+  }
+  pre {
+    @apply font-[poppinsRegular];
+  }
+  nav {
+    @apply bg-primary;
+  }
+}
+
+@layer components {
+  .wrapper {
+    @apply py-0 px-4 lg:max-w-[90rem] lg:px-6 lg:py-0 p-6 mx-auto;
+  }
+  .navigation {
+    @apply w-[178px] fixed left-0 top-0 mt-[4rem] h-full z-50 transition ease-linear duration-150;
+  }
+  .toggle-menu {
+    @apply lg:hidden duration-200 cursor-pointer hover:bg-dark/5 left-0.5 h-fit p-3 absolute top-0.5 text-xl z-50 !bg-white;
+  }
+  .banner {
+    @apply bg-homeBanner bg-cover h-[70vh] md:h-[100vh];
+  }
+  .btn-primary{
+    @apply bg-accent rounded-md text-white px-8 py-2 font-bold hover:bg-white hover:text-accent
+  }
+  .btn-light{
+    @apply text-accent px-8 py-2 font-bold
+  }
+  .cards {
+    @apply w-[450px]
+  }
+}
