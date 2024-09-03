@@ -6,7 +6,7 @@ export const setError = (val) => {
 };
 export const setIsShow = (val) => {
   return {
-    type: "SHOW",
+    type: "IS_SHOW",
     payload: val,
   };
 };

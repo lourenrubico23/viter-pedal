@@ -9,9 +9,7 @@ export default {
         accent: "rgb(var(--accent-color) / <alpha-value>)",
         dark: "rgb(var(--dark-color) / <alpha-value>)",
       },
-      backgroundImage: {
-        homeBanner: "url(public/img/Rectangle.png)"
-      },
+      
     },
   },
   plugins: [],

@@ -36,7 +36,7 @@
     @apply text-sm 
   }
   body {
-    @apply leading-relaxed font-[montserrat] text-xs min-h-full text-dark;
+    @apply leading-relaxed font-[montserrat] text-xs min-h-full text-dark ;
   }
   pre {
     @apply font-[poppinsRegular];
@@ -47,7 +47,7 @@
 }
 
 @layer components {
-  .wrapper {
+  .container {
     @apply py-0 px-4 lg:max-w-[90rem] lg:px-6 lg:py-0 p-6 mx-auto;
   }
   .navigation {
@@ -57,15 +57,32 @@
     @apply lg:hidden duration-200 cursor-pointer hover:bg-dark/5 left-0.5 h-fit p-3 absolute top-0.5 text-xl z-50 !bg-white;
   }
   .banner {
-    @apply bg-homeBanner bg-cover h-[70vh] md:h-[100vh];
+    @apply relative md:h-[100vh];
   }
   .btn-primary{
-    @apply bg-accent rounded-md text-white px-8 py-2 font-bold hover:bg-white hover:text-accent
+    @apply bg-accent rounded-md text-white px-5 lg:px-8 py-2 font-bold hover:bg-white hover:text-accent lg:text-lg
   }
   .btn-light{
     @apply text-accent px-8 py-2 font-bold
   }
   .cards {
     @apply w-[450px]
+  }
+  .toggle span{
+    @apply w-8 h-[.3rem] block bg-dark rounded-full 
+  }
+  .nav{
+    @apply bg-primary absolute text-dark flex flex-col text-[16px] h-[100vh] p-4 text-right gap-4 font-bold left-[100rem] lg:relative lg:left-0 lg:top-0 lg:h-full lg:text-left lg:flex-row
+  }
+  .show.nav{
+    @apply left-0 w-full top-[3.5rem] z-50 lg:relative lg:left-0 lg:top-0 lg:h-full lg:text-left lg:flex-row
+  }
+  
+}
+
+.shadow_image {
+  @media screen and (max-width: 767px) {
+    box-shadow: inset 0 10px 4px black;
+    
   }
 }
