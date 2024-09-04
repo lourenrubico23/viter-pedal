@@ -1,6 +1,7 @@
 import { devNavUrl } from "../components/helpers/functions-general";
-import Home from "../components/pages/home-page/Home";
-import Header from "../components/partials/Header";
+import Home from "../components/pages/developer/home-page/Home";
+
+
 
 export const routesDeveloper = [
     {
