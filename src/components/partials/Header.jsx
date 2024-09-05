@@ -17,8 +17,8 @@ const Header = () => {
       <div className="wrapper container relative">
         <div className="flex justify-between items-center">
           <div className="flex gap-2 items-center py-3">
-            <FaAngleDoubleUp className="text-accent size-4 lg:size-5" />
-            <h1 className="text-sm lg:text-[25px] font-[comfortaa]">Pedal</h1>
+            <FaAngleDoubleUp className="text-accent size-4 lg:size-5 lg:ml-0" />
+            <h1 className="text-sm lg:text-[25px] font-[comfortaa-semiBold] ">Pedal</h1>
           </div>
 
           <nav>
@@ -28,10 +28,10 @@ const Header = () => {
               <span></span>
             </div>
             <ul className={store.isShow ? "show nav" : "nav"}>
-              <li className="hover:text-accent">Home</li>
-              <li className="hover:text-accent">Products</li>
-              <li className="hover:text-accent">Community</li>
-              <li className="hover:text-accent">Support</li>
+              <li className="hover:text-accent cursor-pointer">Home</li>
+              <li className="hover:text-accent cursor-pointer">Products</li>
+              <li className="hover:text-accent cursor-pointer">Community</li>
+              <li className="hover:text-accent cursor-pointer">Support</li>
             </ul>
           </nav>
         </div>
