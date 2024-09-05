@@ -3,9 +3,6 @@ export default {
   content: ["./src/**/*.{html,js,jsx,tsx,ts}"],
   theme: {
     extend: {
-      backgroundImage: {
-        bannerImg: "url(/img/Rectangle.png)"
-      },
       colors: {
         primary: "rgb(var(--primary-color) / <alpha-value>)",
         secondary: "rgb(var(--secondary-color) / <alpha-value>)",

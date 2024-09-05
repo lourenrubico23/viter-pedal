@@ -95,7 +95,7 @@
     @apply lg:hidden duration-200 cursor-pointer hover:bg-dark/5 left-0.5 h-fit p-3 absolute top-0.5 text-xl z-50 !bg-white;
   }
   .banner {
-    @apply relative md:h-[120vh] lg:bg-bannerImg md:bg-bannerImg bg-no-repeat bg-cover bg-center 3xl:max-w-[100rem] 3xl:mx-auto 3xl:h-[900px] 3xl:top-4 x-sm:bg-none;
+    @apply relative md:h-[120vh] md:bg-no-repeat md:bg-cover md:bg-center 3xl:max-w-[100rem] 3xl:mx-auto 3xl:h-[900px] 3xl:top-4 x-sm:bg-none ;
   }
   .btn-primary {
     @apply bg-accent rounded-md text-white px-5 md:px-14 py-2 md:py-3 font-bold hover:bg-buttonHover font-[montserrat-light] transition-all text-[clamp(.8rem,3vw,1rem)];
@@ -125,6 +125,14 @@
     box-shadow: 0 10px 8px secondary;
   }
 }
+
+.banner_image {
+  @media screen and (min-width: 768px) {
+    background-image: var(--bg-image);
+  }
+}
+
+
 
 @layer utilities {
   ::-webkit-scrollbar {

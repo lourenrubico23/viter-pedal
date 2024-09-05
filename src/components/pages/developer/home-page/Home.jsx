@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div className="banner">
+      <div className="banner md:bg-[url('/img/Rectangle.png')]">
         <div className="container flex h-full shadow_image">
           <div className="banner_wrapper w-full flex flex-col items-center md:items-start md:justify-center h-full md:w-[27%] md:gap-7 md:h-[815px]">
             <h1 className="text-center md:text-left w-[13rem] md:w-full lg:w-[130%] text-[clamp(1.5rem,5vw,3.5rem)] md:leading-[50px] lg:leading-[80px] py-6 font-[montserrat-extralight]">
@@ -134,7 +134,7 @@ const Home = () => {
                   </p>
                   <div className="md:my-5">
                     <div className="discover-content lg:mt-5">
-                      <div className="flex flex-row gap-2 lg:items-center">
+                      <div className="flex flex-row gap-2 md:items-center">
                         <FaAngleDoubleRight className="text-accent text-[clamp(1rem,6vw,2.5rem)]" />
                         <h3 className="text-accent text-[clamp(.5rem,4vw,1rem)] lg:hidden">
                           Improved Health:
@@ -152,7 +152,7 @@ const Home = () => {
                       </p>
                     </div>
                     <div className="discover-content">
-                      <div className="flex flex-row gap-2 lg:items-center">
+                      <div className="flex flex-row gap-2 md:items-center">
                         <FaAngleDoubleRight className="text-accent text-[clamp(1rem,6vw,2.5rem)]" />
                         <h3 className="text-accent text-[clamp(.5rem,4vw,1rem)] lg:hidden">
                           Cost-Effective Transportation:
@@ -169,7 +169,7 @@ const Home = () => {
                       </p>
                     </div>
                     <div className="discover-content">
-                      <div className="flex flex-row gap-2 lg:items-center">
+                      <div className="flex flex-row gap-2 md:items-center">
                         <FaAngleDoubleRight className="text-accent text-[clamp(1rem,6vw,2.5rem)]" />
                         <h3 className="text-accent text-[clamp(.5rem,4vw,1rem)] lg:hidden">
                           Environmental Benefits:
@@ -342,10 +342,10 @@ const Home = () => {
           <div className="lg:flex lg:justify-between lg:items-center">
             <div className="footer-nav text-center">
               <ul className="text-[clamp(.6rem,4vw,1rem)] font-[montserrat-extrabold] flex flex-col gap-2 lg:flex lg:flex-row lg:gap-24">
-                <li className="hover:text-accent transition-all">Home</li>
-                <li className="hover:text-accent transition-all">Products</li>
-                <li className="hover:text-accent transition-all">Community</li>
-                <li className="hover:text-accent transition-all">Support</li>
+                <li className="hover:text-accent transition-all cursor-pointer">Home</li>
+                <li className="hover:text-accent transition-all cursor-pointer">Products</li>
+                <li className="hover:text-accent transition-all cursor-pointer">Community</li>
+                <li className="hover:text-accent transition-all cursor-pointer">Support</li>
               </ul>
             </div>
             <div className="logo flex items-center gap-2 justify-center py-10 lg:order-first">

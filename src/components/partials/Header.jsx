@@ -9,6 +9,7 @@ const Header = () => {
 
   const handleShow = () => {
     dispatch(setIsShow(!store.isShow));
+    document.body.classList.toggle('overflow-hidden');
     console.log(store.isShow);
   };
 
