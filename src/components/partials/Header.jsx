@@ -15,11 +15,11 @@ const Header = () => {
 
   return (
     <header className={store.isShow ? "" : "overflow-hidden"}>
-      <div className="wrapper container relative">
+      <div className="container relative">
         <div className="flex justify-between items-center">
-          <div className="flex gap-2 items-center py-3">
+          <div className="flex gap-2 items-center py-1">
             <FaAngleDoubleUp className="text-accent size-4 lg:size-5 lg:ml-0" />
-            <h1 className="text-sm lg:text-[25px] font-[comfortaa-semiBold] ">Pedal</h1>
+            <h1 className="text-[clamp(20px,4vw,29px)] font-[comfortaa-semiBold] ">Pedal</h1>
           </div>
 
           <nav>

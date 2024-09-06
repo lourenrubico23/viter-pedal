@@ -9,6 +9,9 @@ export default {
         accent: "rgb(var(--accent-color) / <alpha-value>)",
         buttonHover: "rgb(var(--buttonHover-color) / <alpha-value>)",
         dark: "rgb(var(--dark-color) / <alpha-value>)",
+        dashPrimary: "rgb(var(--dashPrimary-color) / <alpha-value>)",
+        dashSecondary: "rgb(var(--dashSecondary-color) / <alpha-value>)",
+        dashAccent: "rgb(var(--dashAccent-color) / <alpha-value>)",
       },
       screens: {
         'x-sm': '375px', // for small mobile

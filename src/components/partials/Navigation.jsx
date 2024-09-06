@@ -1,86 +1,83 @@
 import React from "react";
-import { StoreContext } from "../../store/StoreContext";
-import { setIsShow } from "../../store/StoreAction";
-import { FaIndent } from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
-  const { store, dispatch } = React.useContext(StoreContext);
-  const isMobileOrTablet = window.matchMedia("(max-width:1027px)").matches;
-
-  const handleShow = () => {
-    dispatch(setIsShow(!store.isShow));
-  };
-
-  const handleShowNavigation = () => {
-    isMobileOrTablet
-      ? setTimeout(() => {
-          dispatch(setIsShow(!store.isShow));
-        }, 10)
-      : setTimeout(() => {
-          dispatch(setIsShow(true));
-        }, 10);
-  };
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        dispatch(setIsShow(false));
-      } else {
-        dispatch(setIsShow(true));
-      }
-    };
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, [dispatch]);
-
-  React.useEffect(() => {
-    if (!isMobileOrTablet) {
-      dispatch(setIsShow(true));
-    }
-  }, [isMobileOrTablet]);
   return (
     <>
-      <div
-        className= "navigation"
-      >
-        <div className="navigation-wrapper bg-primary pt-3 h-full">
-          <div className="navigation-content text-dark cursor-pointer text-[14px] font-bold">
-            <nav>
-              <ul className="flex gap-4">
-                <li>Home</li>
-                <li>Products</li>
-                <li>Community</li>
-                <li>Support</li>
+      <div className="navigation flex flex-col justify-between">
+        <div className="navigation-wrapper">
+          <div className="navigation-content">
+            <div className="mb-[133px]">
+              <h3 className="font-[inter24-bold] text-[16px]">
+                Pedal's Website
+              </h3>
+            </div>
+            <nav className="navigation-list ">
+              <ul>
+                <li>
+                  <Link to="#">
+                    <div className="navDashboard">
+                      <span className="text-[inter24-semiBold] underline underline-offset-4">Header</span>
+                    </div>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <div className="navDashboard">
+                      <span className="text-[inter24-semiBold] text-dashAccent">Services</span>
+                    </div>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <div className="navDashboard">
+                      <span className="text-[inter24-semiBold] text-dashAccent">About</span>
+                    </div>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <div className="navDashboard">
+                      <span className="text-[inter24-semiBold] text-dashAccent">
+                        Contact Banner
+                      </span>
+                    </div>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <div className="navDashboard">
+                      <span className="text-[inter24-semiBold] text-dashAccent">
+                        Testimonials
+                      </span>
+                    </div>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <div className="navDashboard">
+                      <span className="text-[inter24-semiBold] text-dashAccent">Footer</span>
+                    </div>
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
         </div>
-        <div
-          className={`toggle-menu ${
-            store.isShow ? "translate-x-44" : "translate-x-48"
-          }`}
-          onClick={handleShow}
-        >
-          <GiHamburgerMenu
-            className={` text-sm hover:text-secondary ${
-              store.isShow && "rotate-180"
-            }`}
-          />
+        <div>
+          <div className="py-[51px]">
+            <span className="w-[40px] h-[40px]">
+              <img src="/img/user.webp" alt="" />
+            </span>
+          </div>
+          <div className="border-t-[2px] border-dashAccent flex flex-col gap-2">
+            <h5 className="mt-[23px]">Powered by:</h5>
+            <div className="w-[180px] h-[44px]">
+              <img src="/img/logo-fbs.png" alt="" className="object-cover" />
+            </div>
+          </div>
         </div>
       </div>
-      {store.isShow && (
-        <span
-          className={`fixed z-30 w-full h-full bg-dark/50 ${
-            isMobileOrTablet ? "" : "lg:hidden"
-          }`}
-          onClick={handleShowNavigation}
-          onTouchMove={handleShowNavigation}
-        />
-      )}
     </>
   );
 };

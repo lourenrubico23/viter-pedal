@@ -39,18 +39,51 @@
   font-display: fallback;
 }
 
+@font-face {
+  font-family: "inter24-regular";
+  src: url(/font/Inter_24pt-Regular.ttf) format("truetype");
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: "inter18-regular";
+  src: url(/font/Inter_18pt-Regular.ttf) format("truetype");
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: "inter24-bold";
+  src: url(/font/Inter_24pt-Bold.ttf) format("truetype");
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: "inter24-bold";
+  src: url(/font/Inter_24pt-Bold.ttf) format("truetype");
+  font-display: fallback;
+}
+@font-face {
+  font-family: "inter24-semiBold";
+  src: url(/font/Inter_24pt-SemiBold.ttf) format("truetype");
+  font-display: fallback;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  /* Reference color 
+  /* Reference color for website
     primary: #FFFFFF  
     secondary: #FFFFE7
     accent: #C7AC27
     buttonHover: #bba01a
     dark: #000000*/
+
+  /* Reference color for dashboard
+    dashPrimary: #F5F5F3
+    dashSecondary: #ECECEC
+    dashAccent: #CCCCCC  */
 
   :root {
     --primary-color: 255 255 255;
@@ -58,6 +91,9 @@
     --accent-color: 199 172 39;
     --buttonHover-color: 187 160 26;
     --dark-color: 0 0 0;
+    --dashPrimary-color: 245 245 243;
+    --dashSecondary-color: 236 236 236;
+    --dashAccent-color: 204 204 204;
   }
   h1,
   h2,
@@ -85,20 +121,32 @@
 }
 
 @layer components {
-  .container {
-    @apply py-0 px-4 lg:max-w-[90rem] lg:px-6 lg:py-0 p-6 mx-auto;
+  .wrapper {
+    @apply relative min-h-[100dvh] print:pt-0 pt-[23px] lg:ml-48  transition-all duration-150 ease-linear bg-dashPrimary;
   }
   .navigation {
-    @apply w-[178px] fixed left-0 top-0 mt-[4rem] h-full z-50 transition ease-linear duration-150;
+    @apply w-[211px] fixed left-0 top-0 h-full z-50 transition ease-linear duration-150 bg-dashPrimary p-5 pt-[40px];
+  }
+  .navDashboard {
+    @apply font-[inter24-semiBold];
+  }
+  .navigation-list ul {
+    @apply font-[inter24-semiBold] bg-dashPrimary flex flex-col gap-[17px] -mt-10;
+  }
+  .navigation-list span {
+    @apply font-[inter24-semiBold] text-[16px];
+  }
+  .container {
+    @apply py-0 px-3 max-w-[90rem] md:max-w-[90rem] md:px-6 md:py-0 p-6 mx-auto;
   }
   .toggle-menu {
     @apply lg:hidden duration-200 cursor-pointer hover:bg-dark/5 left-0.5 h-fit p-3 absolute top-0.5 text-xl z-50 !bg-white;
   }
   .banner {
-    @apply relative md:h-[120vh] md:bg-no-repeat md:bg-cover md:bg-center 3xl:max-w-[100rem] 3xl:mx-auto 3xl:h-[900px] 3xl:top-4 x-sm:bg-none ;
+    @apply relative md:h-[120vh] md:bg-no-repeat md:bg-cover md:bg-center 3xl:max-w-[100rem] 3xl:mx-auto 3xl:h-[900px] 3xl:top-4 x-sm:bg-none;
   }
   .btn-primary {
-    @apply bg-accent rounded-md text-white px-5 md:px-14 py-2 md:py-3 font-bold hover:bg-buttonHover font-[montserrat-light] transition-all text-[clamp(.8rem,3vw,1rem)];
+    @apply bg-accent rounded-md text-white px-5 md:px-14 py-2 md:py-3 font-bold hover:bg-buttonHover font-[montserrat-light] transition-all text-[clamp(.8rem,3vw,18px)];
   }
   .btn-light {
     @apply text-accent font-[montserrat-extrabold] text-[clamp(.8rem,3vw,1.1rem)] transition-all;
@@ -110,7 +158,7 @@
     @apply w-6 h-[.2rem] block bg-dark rounded-full;
   }
   .nav {
-    @apply bg-primary absolute text-dark flex flex-col text-[16px] h-[100vh] p-4 text-right gap-8 font-[montserrat-medium] font-bold left-[100rem] lg:relative lg:left-0 lg:top-0 lg:h-full lg:text-left lg:flex-row transition-all;
+    @apply bg-primary absolute text-dark flex flex-col text-[16px] h-[100vh] p-4 text-center justify-center gap-8 font-[montserrat-medium] font-bold left-[100rem] lg:relative lg:left-0 lg:top-0 lg:h-full lg:text-left lg:flex-row transition-all;
   }
   .show.nav {
     @apply left-0 w-full fixed top-[2rem] z-50 lg:relative lg:left-0 lg:top-0 lg:h-full lg:text-left lg:flex-row transition-all duration-300 font-[montserrat-medium];
@@ -120,9 +168,9 @@
   }
 }
 
-.shadow_image {
-  @media screen and (max-width: 767px) {
-    box-shadow: 0 10px 8px secondary;
+.shadow_wrapper {
+  @media screen and (max-width: 1700px) {
+box-shadow: 0px 0px 9px 3px rgb(207, 208, 212, 0.85);
   }
 }
 
@@ -131,8 +179,6 @@
     background-image: var(--bg-image);
   }
 }
-
-
 
 @layer utilities {
   ::-webkit-scrollbar {
