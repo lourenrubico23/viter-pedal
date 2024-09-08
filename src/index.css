@@ -121,8 +121,11 @@
 }
 
 @layer components {
+  .main-wrapper {
+    @apply relative min-h-[100dvh] print:pt-0 lg:ml-48  transition-all duration-150 ease-linear bg-dashPrimary overflow-hidden;
+  }
   .wrapper {
-    @apply relative min-h-[100dvh] print:pt-0 pt-[23px] lg:ml-48  transition-all duration-150 ease-linear bg-dashPrimary;
+    @apply relative min-h-[100dvh] max-w-[1290px] print:pt-0 lg:ml-6  transition-all duration-150 ease-linear bg-dashPrimary mt-[23px];
   }
   .navigation {
     @apply w-[211px] fixed left-0 top-0 h-full z-50 transition ease-linear duration-150 bg-dashPrimary p-5 pt-[40px];

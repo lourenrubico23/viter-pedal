@@ -1,9 +1,26 @@
 import React from 'react'
+import { FaAngleDoubleUp } from "react-icons/fa";
 
 const DashboardBanner = () => {
   return (
     <>
-   
+    <div className="py-0 px-3 max-w-[80rem] md:max-w-[90rem] md:px-6 md:py-0 p-6 mx-auto relative">
+        <div className="flex justify-between items-center bg-primary">
+          <div className="flex gap-2 items-center py-1">
+            <FaAngleDoubleUp className="text-accent size-4 lg:size-5 lg:ml-0" />
+            <h1 className="text-[clamp(20px,4vw,29px)] font-[comfortaa-semiBold] ">Pedal</h1>
+          </div>
+          <nav>
+            <ul className="nav">
+              <li className="hover:text-accent cursor-pointer">Home</li>
+              <li className="hover:text-accent cursor-pointer">Products</li>
+              <li className="hover:text-accent cursor-pointer">Community</li>
+              <li className="hover:text-accent cursor-pointer">Support</li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
       <div className="banner md:bg-[url('/img/Rectangle.webp')]">
       <div className="container flex h-full ">
         <div className="banner_wrapper flex flex-col items-center md:items-start md:justify-center h-full md:gap-7 md:h-[815px] ">

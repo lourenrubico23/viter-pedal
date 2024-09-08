@@ -9,19 +9,12 @@ import Footer from "../pages/website/home-page/Footer";
 const DashboardHeader = () => {
   return (
     <>
-      <header className="wrapper">
-        <div className="shadow_wrapper fixed w-[87%] bg-dashSecondary z-50 py-3 rounded-t-md">
+    
+        <div className="shadow_wrapper fixed w-[85%] bg-dashSecondary z-50 py-3 rounded-t-md">
           <div className="px-10">
             <h1 className="font-[inter24-regular]">Single Page Website</h1>
           </div>
         </div>
-          <Header />
-          <Banner />
-          <Services />
-          <About />
-          <Testimonial />
-          <Footer />
-      </header>
     </>
   );
 };
