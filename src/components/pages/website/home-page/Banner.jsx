@@ -5,7 +5,7 @@ const Banner = () => {
     <div className="banner md:bg-[url('/img/Rectangle.webp')]">
       <div className="container flex h-full ">
         <div className="banner_wrapper flex flex-col items-center md:items-start md:justify-center h-full md:gap-7 md:h-[815px] ">
-          <h1 className="text-center md:text-left md:max-w-[calc(50% + 90px)] md:w-[50%] text-[clamp(1rem,5vw,3.5rem)] py-6 font-[montserrat-extralight]">
+          <h1 className="text-center md:text-left md:max-w-[calc(50% + 90px)] md:w-[600px] text-[clamp(1rem,5vw,3.5rem)] py-6 font-[montserrat-extralight] md:text-[3.5rem]">
             The largest community of Bike enthusiasts
           </h1>
           <button className="btn-primary">Talk to Us</button>

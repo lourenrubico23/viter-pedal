@@ -10,3 +10,15 @@ export const setIsShow = (val) => {
     payload: val,
   };
 };
+export const setMessage = (val) => {
+  return {
+    type: "MESSAGE",
+    payload: val,
+  };
+};
+export const setSuccess = (val) => {
+  return {
+    type: "SUCCESS",
+    payload: val,
+  };
+};

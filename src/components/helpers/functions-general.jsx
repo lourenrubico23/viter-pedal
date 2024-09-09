@@ -10,7 +10,7 @@ export const devBaseUrl = `${urlPathHrLocal}`;
 export const devBaseImgUrl = `${imgUrlPathHrLocal}`;
 export const devBaseMediaUrl = `${mediaUrlPathHrLocal}`;
 export const devNavUrl = "";
-export const apiVersion = "/v2";
+export const apiVersion = "/v1";
 
 export const UrlDeveloper = "developer";
 

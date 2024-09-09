@@ -5,7 +5,7 @@ import { StoreReducer } from "./StoreReducer";
 
 const initVal = {
   error: false,
-//   success: false,
+  success: false,
   isShow: false,
 //   isSettingsOpen: false,
 //   isFetching: false,

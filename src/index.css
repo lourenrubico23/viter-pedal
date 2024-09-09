@@ -118,17 +118,44 @@
   nav {
     @apply bg-primary;
   }
+  input,
+  select {
+    @apply border border-solid border-gray-300 p-2 rounded-lg w-full h-[34px] truncate bg-transparent outline-none;
+  }
+  textarea {
+    @apply block border border-solid border-gray-300 p-2 rounded-lg w-full min-h-28 resize-y bg-transparent outline-none;
+  }
+  label {
+    @apply text-xs text-primary transform -translate-y-6 -translate-x-1 absolute left-3 top-4 px-1  z-10 isolate capitalize;
+  }
+  label:after {
+    @apply content-[''] w-[97%] h-[2.5px] absolute left-px top-[7.2px] bg-white -z-10;
+  }
+  input:disabled,
+  select:disabled,
+  textarea:disabled,
+  :disabled {
+    @apply bg-gray-100 border-gray-200 cursor-not-allowed hover:bg-gray-100 hover:text-inherit hover:border-gray-200;
+  }
+  input::file-selector-button {
+    @apply mr-5 border-0 bg-primary disabled:bg-gray-200 rounded-md text-white cursor-pointer px-1 py-0;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    @apply border border-solid border-primary outline-0;
+  }
 }
 
 @layer components {
   .main-wrapper {
-    @apply relative min-h-[100dvh] print:pt-0 lg:ml-48  transition-all duration-150 ease-linear bg-dashPrimary overflow-hidden;
+    @apply relative min-h-[100dvh] print:pt-0 lg:ml-44  transition-all duration-150 ease-linear bg-dashPrimary overflow-hidden;
   }
   .wrapper {
-    @apply relative min-h-[100dvh] max-w-[1290px] print:pt-0 lg:ml-6  transition-all duration-150 ease-linear bg-dashPrimary mt-[23px];
+    @apply relative min-h-[100dvh] max-w-[88rem] print:pt-0 lg:ml-6  transition-all duration-150 ease-linear bg-dashPrimary mt-[23px] 3xl:mx-auto;
   }
   .navigation {
-    @apply w-[211px] fixed left-0 top-0 h-full z-50 transition ease-linear duration-150 bg-dashPrimary p-5 pt-[40px];
+    @apply w-[190px] fixed left-0 top-0 h-full z-50 transition ease-linear duration-150 bg-dashPrimary p-5 pt-[40px];
   }
   .navDashboard {
     @apply font-[inter24-semiBold];
@@ -136,11 +163,17 @@
   .navigation-list ul {
     @apply font-[inter24-semiBold] bg-dashPrimary flex flex-col gap-[17px] -mt-10;
   }
+  .navigation-list ul li.active {
+    @apply text-black;
+  }
   .navigation-list span {
     @apply font-[inter24-semiBold] text-[16px];
   }
   .container {
     @apply py-0 px-3 max-w-[90rem] md:max-w-[90rem] md:px-6 md:py-0 p-6 mx-auto;
+  }
+  .container_dashboard {
+    @apply py-0 px-3 max-w-[90rem] md:max-w-[80rem] md:px-6 md:py-0 p-6 mx-auto;
   }
   .toggle-menu {
     @apply lg:hidden duration-200 cursor-pointer hover:bg-dark/5 left-0.5 h-fit p-3 absolute top-0.5 text-xl z-50 !bg-white;
@@ -169,11 +202,57 @@
   .cards_wrapper:last-child {
     @apply justify-center;
   }
+
+  .btn-modal-submit {
+    @apply flex items-center justify-center text-white gap-2 px-3 py-1.5 bg-accent rounded-md border-primary border hover:bg-white hover:text-primary hover:border-gray-300 duration-300 ease-in w-full;
+  }
+  .btn-modal-submit:disabled {
+    @apply opacity-50 hover:bg-buttonHover hover:text-white hover:border-accent;
+  }
+  .btn-modal-cancel {
+    @apply flex items-center justify-center text-dark gap-2 px-3 py-1.5 bg-white rounded-md border-gray-300 border w-full;
+  }
+  .btn-modal-cancel:disabled {
+    @apply opacity-50 hover:bg-white hover:text-dark hover:border-gray-300;
+  }
+  .modal {
+    @apply bg-dark/0 transition-all opacity-0;
+  }
+  .modal > .animate-slideUp {
+    @apply translate-y-3 transition-all;
+  }
+  .modal.show {
+    @apply bg-dark/50 opacity-100;
+  }
+  .modal.show > .animate-slideUp {
+    @apply translate-y-0;
+  }
+  .modal-wrapper {
+    @apply bg-white h-full flex flex-col max-w-[400px] w-full p-5;
+  }
+  .modal-title {
+    @apply flex justify-between items-center text-sm;
+  }
+  .modal-content {
+    @apply overflow-y-auto flex flex-col justify-between h-full;
+  }
+  .modal-form {
+    @apply flex flex-col justify-between h-full;
+  }
+  .input-wrapper {
+    @apply mb-2 my-[20px] relative flex flex-col gap-2;
+  }
+  .form-btn {
+    @apply flex gap-2 pt-4;
+  }
+  .btnImgUpload button {
+    @apply text-2xl text-white bg-dark bg-opacity-50 transition-all opacity-0 group-hover:opacity-100 w-full grid place-items-center h-full absolute top-0 left-0;
+  }
 }
 
 .shadow_wrapper {
   @media screen and (max-width: 1700px) {
-box-shadow: 0px 0px 9px 3px rgb(207, 208, 212, 0.85);
+    box-shadow: 0px 0px 9px 3px rgb(207, 208, 212, 0.85);
   }
 }
 
@@ -201,5 +280,14 @@ box-shadow: 0px 0px 9px 3px rgb(207, 208, 212, 0.85);
   }
   ::-webkit-scrollbar-thumb {
     @apply bg-gray-300 border-8 cursor-pointer;
+  }
+  .tooltip-action-table {
+    @apply p-1 mr-1.5 bg-transparent leading-none;
+  }
+  .tooltip-action-table::after {
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full -top-[5px] bg-dark/80 text-white p-1 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 left-14;
+  }
+  .tooltip-action-table:hover::after {
+    @apply scale-100 opacity-100;
   }
 }
