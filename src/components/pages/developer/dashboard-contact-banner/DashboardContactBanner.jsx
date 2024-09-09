@@ -6,7 +6,8 @@ const DashboardContactBanner = () => {
   return (
     <>
       {/* unleash */}
-      <div className="bg-secondary py-16 md:py-[100px]">
+      <section id="contact-banner">
+        <div className="bg-secondary py-16 md:py-[100px]">
         <div className="container_dashboard relative">
           <div className="md:flex md:items-center lg:gap-[5rem]">
             <a
@@ -24,6 +25,8 @@ const DashboardContactBanner = () => {
           </div>
         </div>
       </div>
+      </section>
+      
     </>
   );
 };

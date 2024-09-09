@@ -6,7 +6,8 @@ const DashboardFooter = () => {
   return (
     <>
     {/* footer */}
-    <div className="bg-secondary py-12 md:py-16">
+    <section id='footer'>
+      <div className="bg-secondary py-12 md:py-16">
         <div className="container_dashboard">
           <div className="lg:flex lg:justify-between lg:items-center">
             <div className="footer-nav text-center relative">
@@ -54,6 +55,8 @@ const DashboardFooter = () => {
           </div>
         </div>
       </div>
+    </section>
+    
     </>
   )
 }

@@ -4,7 +4,7 @@ import { MdFileUpload } from "react-icons/md";
 const DashboardServices = () => {
   return (
     <>
-      <section id="header">
+      <section id="services">
         {/* choose your companion */}
         <div className="card_wrapper py-14 relative">
           <div className="container_dashboard lg:py-20">

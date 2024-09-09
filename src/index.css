@@ -163,8 +163,8 @@
   .navigation-list ul {
     @apply font-[inter24-semiBold] bg-dashPrimary flex flex-col gap-[17px] -mt-10;
   }
-  .navigation-list ul li.active {
-    @apply text-black;
+  .navigation-list li.active .navDashboard span {
+    @apply text-black text-[inter24-semiBold] underline underline-offset-4;
   }
   .navigation-list span {
     @apply font-[inter24-semiBold] text-[16px];

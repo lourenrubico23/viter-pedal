@@ -6,8 +6,9 @@ const DashboardAbout = () => {
   return (
     <>
       {/* discover */}
-      <div>
-        <div className="discover_wrapper">
+   <section id="about">
+    <div>
+      <div className="discover_wrapper">
           <div className="lg:flex lg:flex-row-reverse lg:relative md:w-[100%] ">
             <div className="container_dashboard">
               <div className="lg:grid lg:grid-cols-2">
@@ -111,7 +112,6 @@ const DashboardAbout = () => {
             </div>
           </div>
         </div>
-
         <div className="discover_wrapper lg:flex lg:flex-row-reverse lg:relative md:w-[100%]">
           <div className="lg:absolute lg:right-0 lg:top-0 h-full lg:w-[50%] block relative">
             <a
@@ -165,7 +165,10 @@ const DashboardAbout = () => {
             </div>
           </div>
         </div>
-      </div>
+    </div>
+   </section>
+        
+     
     </>
   );
 };

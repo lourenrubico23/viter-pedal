@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { devNavUrl } from "../helpers/functions-general";
 import { GrSettingsOption } from "react-icons/gr";
+import { ScrollLink } from "react-scroll";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -26,6 +27,62 @@ const Navigation = () => {
   //   });
   // };
 
+  const [activeSection, setActiveSection] = React.useState("#header");
+
+  console.log(activeSection)
+  const sections = useRef([]);
+
+  React.useEffect(() => {
+    // Define the section IDs to track
+    const sectionIds = [
+      "header",
+      "services",
+      "about",
+      "contact-banner",
+      "testimonials",
+      "footer"
+    ];
+
+    // Create an IntersectionObserver to track the active section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 } // Adjust this threshold as needed (60% of the section is in view)
+    );
+
+    // Observe each section on the page
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    // Cleanup observer on component unmount
+    return () => {
+      sectionIds.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
+  }, []);
+
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -56,60 +113,62 @@ const Navigation = () => {
             </div>
             <nav className="navigation-list ">
               <ul>
-                <li className="header">
-                  <Link to={`${devNavUrl}/header`} id="#header">
-                    <div className="navDashboard">
-                      <span className="text-[inter24-semiBold] underline underline-offset-4">
-                        Header
-                      </span>
-                    </div>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#">
-                    <div className="navDashboard">
-                      <span className="text-[inter24-semiBold] text-dashAccent">
-                        Services
-                      </span>
-                    </div>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#">
-                    <div className="navDashboard">
-                      <span className="text-[inter24-semiBold] text-dashAccent">
-                        About
-                      </span>
-                    </div>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#">
-                    <div className="navDashboard">
-                      <span className="text-[inter24-semiBold] text-dashAccent">
-                        Contact Banner
-                      </span>
-                    </div>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#">
-                    <div className="navDashboard">
-                      <span className="text-[inter24-semiBold] text-dashAccent">
-                        Testimonials
-                      </span>
-                    </div>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#">
-                    <div className="navDashboard">
-                      <span className="text-[inter24-semiBold] text-dashAccent">
-                        Footer
-                      </span>
-                    </div>
-                  </Link>
-                </li>
+              <li
+          className={activeSection === "header" ? "active" : ""}
+          onClick={() => scrollToSection("header")}
+        >
+          <div className="navDashboard">
+            <span className="text-[inter24-semiBold] text-dashAccent">
+              Header
+            </span>
+          </div>
+        </li>
+        <li
+          className={activeSection === "services" ? "active" : ""}
+          onClick={() => scrollToSection("services")}
+        >
+          <div className="navDashboard">
+            <span className="text-[inter24-semiBold] text-dashAccent">
+              Services
+            </span>
+          </div>
+        </li>
+        <li
+          className={activeSection === "about" ? "active" : ""}
+          onClick={() => scrollToSection("about")}
+        >
+          <div className="navDashboard">
+            <span className="text-[inter24-semiBold] text-dashAccent">About</span>
+          </div>
+        </li>
+        <li
+          className={activeSection === "contact-banner" ? "active" : ""}
+          onClick={() => scrollToSection("contact-banner")}
+        >
+          <div className="navDashboard">
+            <span className="text-[inter24-semiBold] text-dashAccent">
+              Contact Banner
+            </span>
+          </div>
+        </li>
+        <li
+          className={activeSection === "testimonials" ? "active" : ""}
+          onClick={() => scrollToSection("testimonials")}
+        >
+          <div className="navDashboard">
+            <span className="text-[inter24-semiBold] text-dashAccent">
+              Testimonials
+            </span>
+          </div>
+        </li>
+        <li
+          className={activeSection === "footer" ? "active" : ""}
+          onClick={() => scrollToSection("footer")}
+        >
+          <div className="navDashboard">
+            <span className="text-[inter24-semiBold] text-dashAccent">Footer</span>
+          </div>
+        </li>
               </ul>
             </nav>
           </div>

@@ -5,7 +5,8 @@ const DashboardTestimonial = () => {
   return (
     <>
       {/* feedback */}
-      <div className="feedback_wrapper py-12 md:py-32 md:pb-28">
+      <section id="testimonials">
+        <div className="feedback_wrapper py-12 md:py-32 md:pb-28">
         <div className="container_dashboard">
           <div className="feedback-title flex flex-col items-center pb-5 md:pb-20 relative">
             <a
@@ -105,6 +106,8 @@ const DashboardTestimonial = () => {
           </div>
         </div>
       </div>
+      </section>
+      
     </>
   );
 };
