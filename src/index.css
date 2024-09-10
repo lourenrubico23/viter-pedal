@@ -126,7 +126,7 @@
     @apply block border border-solid border-gray-300 p-2 rounded-lg w-full min-h-28 resize-y bg-transparent outline-none;
   }
   label {
-    @apply text-xs text-primary transform -translate-y-6 -translate-x-1 absolute left-3 top-4 px-1  z-10 isolate capitalize;
+    @apply text-xs text-dark transform -translate-y-6 -translate-x-1 absolute left-3 top-4 px-1 z-10 isolate capitalize;
   }
   label:after {
     @apply content-[''] w-[97%] h-[2.5px] absolute left-px top-[7.2px] bg-white -z-10;
@@ -162,6 +162,9 @@
   }
   .navigation-list ul {
     @apply font-[inter24-semiBold] bg-dashPrimary flex flex-col gap-[17px] -mt-10;
+  }
+  .navigation-list li {
+    @apply cursor-pointer;
   }
   .navigation-list li.active .navDashboard span {
     @apply text-black text-[inter24-semiBold] underline underline-offset-4;
@@ -204,7 +207,7 @@
   }
 
   .btn-modal-submit {
-    @apply flex items-center justify-center text-white gap-2 px-3 py-1.5 bg-accent rounded-md border-primary border hover:bg-white hover:text-primary hover:border-gray-300 duration-300 ease-in w-full;
+    @apply flex items-center justify-center text-white gap-2 px-3 py-1.5 bg-accent rounded-md border-primary border hover:bg-buttonHover hover:text-primary hover:border-gray-300 duration-300 ease-in w-full;
   }
   .btn-modal-submit:disabled {
     @apply opacity-50 hover:bg-buttonHover hover:text-white hover:border-accent;
@@ -246,7 +249,7 @@
     @apply flex gap-2 pt-4;
   }
   .btnImgUpload button {
-    @apply text-2xl text-white bg-dark bg-opacity-50 transition-all opacity-0 group-hover:opacity-100 w-full grid place-items-center h-full absolute top-0 left-0;
+    @apply text-2xl text-white bg-dark bg-opacity-50 transition-all opacity-0 group-hover:opacity-40 w-full grid place-items-center h-full absolute top-0 left-0;
   }
 }
 
@@ -263,6 +266,18 @@
 }
 
 @layer utilities {
+  span.error-show {
+    @apply text-[11px] absolute right-1 -bottom-5 text-red-500 italic z-40;
+  }
+  input.error-show,
+  select.error-show,
+  textarea.error-show {
+    @apply border border-red-500 ;
+  }
+  label.error-show {
+    @apply text-red-500;
+  }
+
   ::-webkit-scrollbar {
     @apply w-2;
   }
@@ -285,9 +300,72 @@
     @apply p-1 mr-1.5 bg-transparent leading-none;
   }
   .tooltip-action-table::after {
-    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full -top-[5px] bg-dark/80 text-white p-1 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 left-14;
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full top-[6px] bg-dark/80 text-white p-1 ml-2 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 left-14;
   }
   .tooltip-action-table:hover::after {
+    @apply scale-100 opacity-100;
+  }
+
+  /* header tool-tip */
+  .tooltip-header {
+    @apply p-1 mr-1.5 bg-transparent leading-none;
+  }
+  .tooltip-header::after {
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full top-[7px] bg-dark/80 text-white p-1 ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 left-16;
+  }
+  .tooltip-header:hover::after {
+    @apply scale-100 opacity-100;
+  }
+
+  /* header-nav tool-tip */
+  .tooltip-header-nav {
+    @apply p-1 mr-1.5 bg-transparent leading-none;
+  }
+  .tooltip-header-nav::after {
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full top-[5px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-4;
+  }
+  .tooltip-header-nav:hover::after {
+    @apply scale-100 opacity-100;
+  }
+
+  /* desktop tool-tip */
+  .tooltip-desktop {
+    @apply bg-transparent leading-none;
+  }
+  .tooltip-desktop::after {
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-[80px];
+  }
+  .tooltip-desktop:hover::after {
+    @apply scale-100 opacity-100;
+  }
+  /* phone tool-tip */
+  .tooltip-phone {
+    @apply bg-transparent leading-none;
+  }
+  .tooltip-phone::after {
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-[55px];
+  }
+  .tooltip-phone:hover::after {
+    @apply scale-100 opacity-100;
+  }
+  /* colors tool-tip */
+  .tooltip-colors {
+    @apply bg-transparent leading-none;
+  }
+  .tooltip-colors::after {
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-[25px];
+  }
+  .tooltip-colors:hover::after {
+    @apply scale-100 opacity-100;
+  }
+  /* website tool-tip */
+  .tooltip-website {
+    @apply bg-transparent leading-none;
+  }
+  .tooltip-website::after {
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 -right-[50px];
+  }
+  .tooltip-website:hover::after {
     @apply scale-100 opacity-100;
   }
 }

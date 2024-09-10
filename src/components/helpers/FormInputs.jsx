@@ -74,7 +74,7 @@ export const InputSelect = ({ label, onChange = null, ...props }) => {
 export const InputTextArea = ({
   label,
   required = true,
-  className = "",
+  className = "focus:border-accent ",
   ...props
 }) => {
   const [field, meta] = useField(props);

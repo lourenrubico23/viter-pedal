@@ -1,8 +1,5 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import { devNavUrl } from "../helpers/functions-general";
-import { GrSettingsOption } from "react-icons/gr";
-import { ScrollLink } from "react-scroll";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -29,8 +26,8 @@ const Navigation = () => {
 
   const [activeSection, setActiveSection] = React.useState("#header");
 
-  console.log(activeSection)
-  const sections = useRef([]);
+  console.log(activeSection);
+  // const sections = useRef([]);
 
   React.useEffect(() => {
     // Define the section IDs to track
@@ -40,7 +37,7 @@ const Navigation = () => {
       "about",
       "contact-banner",
       "testimonials",
-      "footer"
+      "footer",
     ];
 
     // Create an IntersectionObserver to track the active section
@@ -52,7 +49,7 @@ const Navigation = () => {
           }
         });
       },
-      { threshold: 0.6 } // Adjust this threshold as needed (60% of the section is in view)
+      { threshold: 0.5 } // Adjust this threshold as needed (50% of the section is in view)
     );
 
     // Observe each section on the page
@@ -83,6 +80,7 @@ const Navigation = () => {
       });
     }
   };
+
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -103,7 +101,7 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="navigation flex flex-col justify-between">
+      <div className="navigation md:flex md:flex-col md:justify-between hidden">
         <div className="navigation-wrapper">
           <div className="navigation-content">
             <div className="mb-[133px]">
@@ -113,62 +111,66 @@ const Navigation = () => {
             </div>
             <nav className="navigation-list ">
               <ul>
-              <li
-          className={activeSection === "header" ? "active" : ""}
-          onClick={() => scrollToSection("header")}
-        >
-          <div className="navDashboard">
-            <span className="text-[inter24-semiBold] text-dashAccent">
-              Header
-            </span>
-          </div>
-        </li>
-        <li
-          className={activeSection === "services" ? "active" : ""}
-          onClick={() => scrollToSection("services")}
-        >
-          <div className="navDashboard">
-            <span className="text-[inter24-semiBold] text-dashAccent">
-              Services
-            </span>
-          </div>
-        </li>
-        <li
-          className={activeSection === "about" ? "active" : ""}
-          onClick={() => scrollToSection("about")}
-        >
-          <div className="navDashboard">
-            <span className="text-[inter24-semiBold] text-dashAccent">About</span>
-          </div>
-        </li>
-        <li
-          className={activeSection === "contact-banner" ? "active" : ""}
-          onClick={() => scrollToSection("contact-banner")}
-        >
-          <div className="navDashboard">
-            <span className="text-[inter24-semiBold] text-dashAccent">
-              Contact Banner
-            </span>
-          </div>
-        </li>
-        <li
-          className={activeSection === "testimonials" ? "active" : ""}
-          onClick={() => scrollToSection("testimonials")}
-        >
-          <div className="navDashboard">
-            <span className="text-[inter24-semiBold] text-dashAccent">
-              Testimonials
-            </span>
-          </div>
-        </li>
-        <li
-          className={activeSection === "footer" ? "active" : ""}
-          onClick={() => scrollToSection("footer")}
-        >
-          <div className="navDashboard">
-            <span className="text-[inter24-semiBold] text-dashAccent">Footer</span>
-          </div>
-        </li>
+                <li
+                  className={activeSection === "header" ? "active" : ""}
+                  onClick={() => scrollToSection("header")}
+                >
+                  <div className="navDashboard">
+                    <span className="text-[inter24-semiBold] text-dashAccent">
+                      Header
+                    </span>
+                  </div>
+                </li>
+                <li
+                  className={activeSection === "services" ? "active" : ""}
+                  onClick={() => scrollToSection("services")}
+                >
+                  <div className="navDashboard">
+                    <span className="text-[inter24-semiBold] text-dashAccent">
+                      Services
+                    </span>
+                  </div>
+                </li>
+                <li
+                  className={activeSection === "about" ? "active" : ""}
+                  onClick={() => scrollToSection("about")}
+                >
+                  <div className="navDashboard">
+                    <span className="text-[inter24-semiBold] text-dashAccent">
+                      About
+                    </span>
+                  </div>
+                </li>
+                <li
+                  className={activeSection === "contact-banner" ? "active" : ""}
+                  onClick={() => scrollToSection("contact-banner")}
+                >
+                  <div className="navDashboard">
+                    <span className="text-[inter24-semiBold] text-dashAccent">
+                      Contact Banner
+                    </span>
+                  </div>
+                </li>
+                <li
+                  className={activeSection === "testimonials" ? "active" : ""}
+                  onClick={() => scrollToSection("testimonials")}
+                >
+                  <div className="navDashboard">
+                    <span className="text-[inter24-semiBold] text-dashAccent">
+                      Testimonials
+                    </span>
+                  </div>
+                </li>
+                <li
+                  className={activeSection === "footer" ? "active" : ""}
+                  onClick={() => scrollToSection("footer")}
+                >
+                  <div className="navDashboard">
+                    <span className="text-[inter24-semiBold] text-dashAccent">
+                      Footer
+                    </span>
+                  </div>
+                </li>
               </ul>
             </nav>
           </div>
@@ -184,7 +186,6 @@ const Navigation = () => {
             </span>
             {isOpen && (
               <div className="absolute top-16 ml-[45px] bg-[#1E1E1E] shadow-md flex flex-col gap-2 p-3 min-w-[180px]">
-                
                 <h6 className="text-white font-[montserrat-medium] text-[15px]">
                   Louren Rubico
                 </h6>
@@ -196,11 +197,8 @@ const Navigation = () => {
                 </Link>
                 <div className="flex flex-row gap-4 items-center">
                   <Link>
-                    <button className=" text-white">
-                      Users
-                    </button>
+                    <button className=" text-white">Users</button>
                   </Link>
-                  
                 </div>
               </div>
             )}

@@ -1,18 +1,19 @@
-import React from "react";
-import { FaAngleDoubleUp } from "react-icons/fa";
-import { FaPencil } from "react-icons/fa6";
+import { FaPencilAlt, FaRegImages } from "react-icons/fa";
+import { HiPencil } from "react-icons/hi2";
 import { MdFileUpload } from "react-icons/md";
-import ModalAddPedalLogo from "./ModalAddLogo";
 
-const DashboardBanner = () => {
-  const [isAdd, setIsAdd] = React.useState(false);
-  const [itemEdit, setItemEdit] = React.useState(null);
-
-  const handleAdd = () => {
+const DashboardBanner = ({ setIsAdd, setItemEdit, setIsNav, setIsBanner }) => {
+  const handleAddLogo = () => {
     setIsAdd(true);
     setItemEdit(null);
-    // document.body.classList.toggle("overflow-hidden");
-    // console.log(document.body.classList.toggle("overflow-hidden"));
+  };
+  const handleAddNav = () => {
+    setIsNav(true);
+    setItemEdit(null);
+  };
+  const handleAddBanner = () => {
+    setIsBanner(true);
+    setItemEdit(null);
   };
 
   return (
@@ -26,21 +27,21 @@ const DashboardBanner = () => {
             <div className="py-1 w-[115px] h-[37px] relative">
               <img src="/img/pedalLogo.png" alt="" className="object-cover" />
               <a
-                className="absolute z-30 m-10 left-20 -top-8 cursor-pointer tooltip-action-table"
-                data-tooltip="Upload"
-                onClick={handleAdd}
+                className="absolute z-30 m-10 left-20 -top-9 cursor-pointer tooltip-header"
+                data-tooltip="Upload Logo"
+                onClick={handleAddLogo}
               >
-                <MdFileUpload className=" bg-accent rounded-full w-[25px] h-[25px] p-1 " />
+                <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
               </a>
             </div>
 
             <nav>
               <ul className="nav relative">
                 <a
-                  className="absolute z-30 m-10 -left-16 -top-5 cursor-pointer tooltip-action-table"
-                  data-tooltip="Upload"
+                  className="absolute z-30 m-10 -right-5 -top-11 cursor-pointer tooltip-header-nav"
+                  data-tooltip="Edit Text" onClick={handleAddNav}
                 >
-                  <MdFileUpload className=" bg-accent rounded-full w-[25px] h-[25px] p-1 " />
+                  <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
                 </a>
                 <li className="hover:text-accent cursor-pointer">Home</li>
                 <li className="hover:text-accent cursor-pointer">Products</li>
@@ -61,10 +62,10 @@ const DashboardBanner = () => {
             </div>
           </div>
           <a
-            className="absolute z-30 m-10 top-8 cursor-pointer tooltip-action-table"
-            data-tooltip="Upload"
+            className="absolute z-30 m-10 top-8 cursor-pointer tooltip-header"
+            data-tooltip="Edit Content" onClick={handleAddBanner}
           >
-            <MdFileUpload className=" bg-accent rounded-full w-[25px] h-[25px] p-1 " />
+            <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
           </a>
           <div className="md:hidden relative ">
             <div className="bg-gradient-to-b from-white to-transparent absolute h-[2rem] w-full"></div>
@@ -76,8 +77,6 @@ const DashboardBanner = () => {
           </div>
         </div>
       </section>
-
-      
     </>
   );
 };

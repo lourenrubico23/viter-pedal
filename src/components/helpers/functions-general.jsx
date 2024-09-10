@@ -1,14 +1,15 @@
 import React from "react";
 
-export const urlPathHrLocal = "http://localhost/react-vite/viter-local-hr-v2";
-export const imgUrlPathHrLocal =
-  "http://localhost/react-vite/viter-local-hr-v2/public/img";
-export const mediaUrlPathHrLocal = "media";
+export const urlPathSinglePageWebsite =
+  "http://localhost/react-vite/viter-pedal";
+export const imgUrlPathSinglePageWebsite =
+  "http://localhost/react-vite/viter-pedal/public/img";
+export const mediaUrlPathSinglePageWebsite = "media";
 
-export const devApiUrl = `${urlPathHrLocal}/rest`;
-export const devBaseUrl = `${urlPathHrLocal}`;
-export const devBaseImgUrl = `${imgUrlPathHrLocal}`;
-export const devBaseMediaUrl = `${mediaUrlPathHrLocal}`;
+export const devApiUrl = `${urlPathSinglePageWebsite}/rest`;
+export const devBaseUrl = `${urlPathSinglePageWebsite}`;
+export const devBaseImgUrl = `${imgUrlPathSinglePageWebsite}`;
+export const devBaseMediaUrl = `${mediaUrlPathSinglePageWebsite}`;
 export const devNavUrl = "";
 export const apiVersion = "/v1";
 
@@ -35,7 +36,6 @@ export const getUrlParam = (id) => {
   return urlParams;
 };
 
-
 // formatting date and time
 export const setTimeZone = "Asia/Taipei";
 
@@ -49,7 +49,6 @@ export const formatDate = (dateVal, val = "", format = "") => {
   }
   return formatedDate;
 };
-
 
 export const options = (format) => {
   const options =
@@ -197,5 +196,3 @@ export const calculateTenure = (date) => {
 
   return { years, months };
 };
-
-

@@ -1,26 +1,20 @@
-import React from "react";
-import ModalWrapper from "../../../partials/modals/ModalWrapper";
-import { GrFormClose } from "react-icons/gr";
-import { Form, Formik } from "formik";
-import { FaRegImage, FaUpload } from "react-icons/fa";
-import { InputPhotoUpload } from "../../../helpers/FormInputs";
-import useUploadPhoto from "../../../custom-hooks/useUploadPhoto";
-import { StoreContext } from "../../../../store/StoreContext";
-import { IoImageOutline } from "react-icons/io5";
-import { MdOutlineFileUpload } from "react-icons/md";
-import ButtonSpinner from "../../../partials/spinner/ButtonSpinner";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { queryData } from "../../../helpers/queryData";
-import {
-  setError,
-  setMessage,
-  setSuccess,
-} from "../../../../store/StoreAction";
+import useUploadPhoto from '@/components/custom-hooks/useUploadPhoto';
+import { InputPhotoUpload, InputText } from '@/components/helpers/FormInputs';
+import { apiVersion, devBaseImgUrl } from '@/components/helpers/functions-general';
+import { queryData } from '@/components/helpers/queryData';
+import ModalWrapper from '@/components/partials/modals/ModalWrapper';
+import ButtonSpinner from '@/components/partials/spinner/ButtonSpinner';
+import { StoreContext } from '@/store/StoreContext';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Form, Formik } from 'formik';
+import React from 'react'
+import { GrFormClose } from 'react-icons/gr';
+import { IoImageOutline } from 'react-icons/io5';
+import { MdOutlineFileUpload } from 'react-icons/md';
 import * as Yup from "yup";
-import { apiVersion, devBaseImgUrl } from "@/components/helpers/functions-general";
 
-const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
-  const { store, dispatch } = React.useContext(StoreContext);
+const ModalAddContactBanner = ({itemEdit, setIsAdd}) => {
+    const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
   const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
     `${apiVersion}/upload-photo`,
@@ -40,13 +34,13 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `/v1/header/${itemEdit.header_aid}` // update
-          : `/v1/header`, // create
+          ? `/v1/contact/${itemEdit.contact_aid}` // update
+          : `/v1/contact`, // create
         itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["header"] });
+      queryClient.invalidateQueries({ queryKey: ["contact"] });
       if (!data.success) {
         dispatch(setError(true));
         dispatch(setMessage(data.error));
@@ -65,10 +59,11 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
   }, []);
 
   const initVal = {
-    header_img: itemEdit ? itemEdit?.data[0].header_img : "",
+    contact_img: itemEdit ? itemEdit?.data[0].contact_img : "",
   };
 
   const yupSchema = Yup.object({});
+
 
   return (
     <ModalWrapper
@@ -76,7 +71,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
       handleClose={handleClose}
     >
       <div className="modal-title">
-        <h2 className="text-sm">{itemEdit ? "Edit" : "Add"} Logo</h2>
+        <h2 className="text-sm">{itemEdit ? "Edit" : "Add"} Contact Banner</h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />
         </button>
@@ -89,7 +84,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
             // to get all of the data of image
             const data = {
               ...values,
-              header_img: photo?.name || itemEdit.header_img,
+              contact_img: photo?.name || itemEdit.contact_img,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -100,7 +95,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
               <Form className="modal-form">
                 <div className="form-input">
                   <div className="mt-5">
-                    <span className="top-20 px-2 text-dark">Header Logo</span>
+                    <span className="top-20 px-2 text-dark">Contact Banner Image</span>
                     <div className="relative w-fit m-auto group">
                       {itemEdit === null && photo === null ? (
                         <div className="group-hover:opacity-20 bg-dashAccent mb-4 items-center gap-2 h-[180px] w-[350px] border rounded-md p-2 grid place-items-center">
@@ -111,7 +106,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
                             </h1>
                           </div>
                         </div>
-                      ) : (itemEdit?.header_img === "" && photo === null) ||
+                      ) : (itemEdit?.contact_img === "" && photo === null) ||
                         photo === "" ? (
                         <div className="group-hover:opacity-20 mb-4 bg-gray-700 grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
                           <div>
@@ -126,7 +121,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
                           src={
                             photo
                               ? URL.createObjectURl(photo) // preview
-                              : devBaseImgUrl + "/" + itemEdit?.header_img // check db
+                              : devBaseImgUrl + "/" + itemEdit?.contact_img // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"
@@ -143,7 +138,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
                             accept="image/*"
                             title="Upload Logo"
                             onChange={(e) =>
-                              handleChangePhoto(e, initVal.header_img)
+                              handleChangePhoto(e, initVal.contact_img)
                             }
                             className="opacity-0 absolute right-0 top-0 h-full left-0 m-auto cursor-pointer z-[999]"
                           />
@@ -151,6 +146,22 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
                       </div>
                     </div>
                   </div>
+                  <div className="input-wrapper">
+                  <InputText
+                    label="*Title"
+                    type="text"
+                    name="contact_title"
+                    disabled={mutation.isPending}
+                  />
+                </div>
+                  <div className="input-wrapper">
+                  <InputText
+                    label="*Button Text"
+                    type="text"
+                    name="contact_button_text"
+                    disabled={mutation.isPending}
+                  />
+                </div>
                 </div>
                 <div className="form-action">
                   <div className="form-btn">
@@ -161,7 +172,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
                         ((mutation.isPending || !props.dirty) &&
                           photo === null) ||
                         photo === "" ||
-                        initVal.header_img === photo?.name
+                        initVal.contact_img === photo?.name
                       }
                     >
                       {mutation.isPending ? (
@@ -187,7 +198,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
         </Formik>
       </div>
     </ModalWrapper>
-  );
-};
+  )
+}
 
-export default ModalAddLogo;
+export default ModalAddContactBanner

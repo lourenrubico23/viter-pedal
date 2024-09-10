@@ -1,14 +1,16 @@
-import React from "react";
-import Navigation from "../../partials/Navigation";
 import DashboardHeader from "../../partials/DashboardHeader";
-import DashboardBanner from "./dashboard-header/DashboardBanner";
-import Header from "../../partials/Header";
-import Banner from "../website/home-page/Banner";
-import DashboardServices from "./dashboard-services/DashboardServices";
+import Navigation from "../../partials/Navigation";
+import About from "./dashboard-about/About";
 import DashboardAbout from "./dashboard-about/DashboardAbout";
+import ContactBanner from "./dashboard-contact-banner/ContactBanner";
 import DashboardContactBanner from "./dashboard-contact-banner/DashboardContactBanner";
-import DashboardTestimonial from "./dashboard-testimonial/DashboardTestimonial";
 import DashboardFooter from "./dashboard-footer/DashboardFooter";
+import Footer from "./dashboard-footer/Footer";
+import Header from "./dashboard-header/Header";
+import DashboardServices from "./dashboard-services/DashboardServices";
+import Services from "./dashboard-services/Services";
+import DashboardTestimonial from "./dashboard-testimonial/DashboardTestimonial";
+import Testimonials from "./dashboard-testimonial/Testimonials";
 
 const Dashboard = () => {
   return (
@@ -19,12 +21,12 @@ const Dashboard = () => {
         <div className="wrapper shadow_wrapper">
           <DashboardHeader />
           <div className="md:pt-12 3xl:pt-12">
-            <DashboardBanner />
-            <DashboardServices />
-            <DashboardAbout />
-            <DashboardContactBanner />
-            <DashboardTestimonial />
-            <DashboardFooter />
+            <Header />
+            <Services/>
+            <About />
+            <ContactBanner />
+            <Testimonials/>
+            <Footer/>
           </div>
         </div>
       </div>

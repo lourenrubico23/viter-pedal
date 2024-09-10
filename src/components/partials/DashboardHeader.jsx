@@ -1,15 +1,7 @@
-import React from "react";
-import Banner from "../pages/website/home-page/Banner";
-import Header from "./Header";
-import Services from "../pages/website/home-page/Services";
-import About from "../pages/website/home-page/About";
-import Testimonial from "../pages/website/home-page/Testimonial";
-import Footer from "../pages/website/home-page/Footer";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 import { FaDesktop } from "react-icons/fa";
 import { FiSmartphone } from "react-icons/fi";
 import { LuPaintbrush2 } from "react-icons/lu";
-import { HiOutlineArrowTopRightOnSquare } from "react-icons/hi2";
-import { BsBoxArrowUpRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const DashboardHeader = () => {
@@ -19,17 +11,17 @@ const DashboardHeader = () => {
         <div className=" flex items-center justify-between">
           <h1 className="font-[inter24-regular]">Single Page Website</h1>
           <div className="flex items-center gap-4">
-            <Link>
+            <Link className="tooltip-desktop" data-tooltip="Desktop">
               <FaDesktop className="size-4 " />
             </Link>
-            <Link>
-              <FiSmartphone className="size-4 text-dashAccent" />
+            <Link className="tooltip-phone" data-tooltip="Phone">
+              <FiSmartphone className="size-4 text-dashAccent hover:text-dark" />
             </Link>
-            <Link>
-              <LuPaintbrush2 className="size-4 text-dashAccent" />
+            <Link className="tooltip-colors" data-tooltip="Colors">
+              <LuPaintbrush2 className="size-4 text-dashAccent hover:text-dark" />
             </Link>
-            <Link>
-              <BsBoxArrowUpRight className="size-4 text-dashAccent" />
+            <Link className="tooltip-website" data-tooltip="Go to Webpage">
+              <BsBoxArrowUpRight className="size-4 text-dashAccent hover:text-dark" />
             </Link>
           </div>
         </div>

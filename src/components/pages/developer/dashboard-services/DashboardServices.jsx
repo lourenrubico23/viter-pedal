@@ -1,7 +1,25 @@
 import React from "react";
+import { HiPencil } from "react-icons/hi2";
+import { FaRegImages } from "react-icons/fa";
 import { MdFileUpload } from "react-icons/md";
 
-const DashboardServices = () => {
+const DashboardServices = ({setItemEdit, setIsAdd, setIsServices1, setIsServices2, setIsServices3}) => {
+  const handleAddTitle = () => {
+    setIsAdd(true);
+    setItemEdit(null);
+  };
+  const handleAddServices1 = () => {
+    setIsServices1(true);
+    setItemEdit(null);
+  };
+  const handleAddServices2 = () => {
+    setIsServices2(true);
+    setItemEdit(null);
+  };
+  const handleAddServices3 = () => {
+    setIsServices3(true);
+    setItemEdit(null);
+  };
   return (
     <>
       <section id="services">
@@ -16,10 +34,10 @@ const DashboardServices = () => {
                 Escape the Ordinary: Experience the Thrill
               </h3>
               <a
-                className="absolute z-30 m-10 left-[470px] -top-14 cursor-pointer tooltip-action-table"
-                data-tooltip="Upload"
+                className="absolute z-30 m-10 left-[470px] -top-9 cursor-pointer tooltip-header"
+                data-tooltip="Edit Content" onClick={handleAddTitle}
               >
-                <MdFileUpload className=" bg-accent rounded-full w-[25px] h-[25px] p-1 " />
+                <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
               </a>
             </div>
 
@@ -28,10 +46,10 @@ const DashboardServices = () => {
                 <div className="cards">
                   <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative ">
                     <a
-                      className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-action-table"
-                      data-tooltip="Upload"
+                      className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                      data-tooltip="Edit Content" onClick={handleAddServices1}
                     >
-                      <MdFileUpload className=" bg-accent rounded-full w-[25px] h-[25px] p-1 " />
+                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
                     </a>
                     <div className="image_wrapper md:w-[20rem] md:h-[10rem]">
                       <img
@@ -57,10 +75,10 @@ const DashboardServices = () => {
                 <div className="cards">
                   <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
                     <a
-                      className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-action-table"
-                      data-tooltip="Upload"
+                      className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                      data-tooltip="Edit Content" onClick={handleAddServices2}
                     >
-                      <MdFileUpload className=" bg-accent rounded-full w-[25px] h-[25px] p-1 " />
+                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
                     </a>
                     <div className="image_wrapper md:w-[20rem] md:h-[10rem] ">
                       <img
@@ -88,10 +106,10 @@ const DashboardServices = () => {
                 <div className="cards">
                   <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
                     <a
-                      className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-action-table"
-                      data-tooltip="Upload"
+                      className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                      data-tooltip="Edit Content" onClick={handleAddServices3}
                     >
-                      <MdFileUpload className=" bg-accent rounded-full w-[25px] h-[25px] p-1 " />
+                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
                     </a>
                     <div className="image_wrapper md:w-[20rem] md:h-[10rem]">
                       <img

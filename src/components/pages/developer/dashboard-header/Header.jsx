@@ -3,25 +3,27 @@ import DashboardBanner from "./DashboardBanner";
 import ModalAddLogo from "./ModalAddLogo";
 import Navigation from "../../../partials/Navigation";
 import DashboardHeader from "../../../partials/DashboardHeader";
+import { StoreContext } from "@/store/StoreContext";
+import ModalSuccess from "@/components/partials/modals/ModalSuccess";
+import ModalError from "@/components/partials/modals/ModalError";
+import ModalAddNavigation from "./ModalAddNavigation";
+import ModalAddBanner from "./ModalAddBanner";
 
 const Header = () => {
+  const { store, dispatch } = React.useContext(StoreContext);
   const [isAdd, setIsAdd] = React.useState(false);
+  const [isNav, setIsNav] = React.useState(false);
+  const [isBanner, setIsBanner] = React.useState(false);
   const [itemEdit, setItemEdit] = React.useState(null);
 
   return (
     <>
-      <Navigation />
-      <div className="main-wrapper">
-        <div className="fixed bg-dashPrimary py-3 w-[100%] z-50 "></div>
-        <div className="wrapper wrapper_shadow">
-          <DashboardHeader />
-          <div className="md:pt-12 3xl:pt-12">
-            <DashboardBanner setItemEdit={setItemEdit} />
-          </div>
-        </div>
-      </div>
-
+      <DashboardBanner setItemEdit={setItemEdit} setIsAdd={setIsAdd} setIsNav={setIsNav} setIsBanner={setIsBanner}/>
       {isAdd && <ModalAddLogo itemEdit={itemEdit} setIsAdd={setIsAdd} />}
+      {isNav && <ModalAddNavigation itemEdit={itemEdit} setIsNav={setIsNav} />}
+      {isBanner && <ModalAddBanner itemEdit={itemEdit} setIsBanner={setIsBanner} />}
+      {store.success && <ModalSuccess />}
+      {store.error && <ModalError />}
     </>
   );
 };
