@@ -1,9 +1,12 @@
-import React from "react";
 import { HiPencil } from "react-icons/hi2";
-import { FaRegImages } from "react-icons/fa";
-import { MdFileUpload } from "react-icons/md";
 
-const DashboardServices = ({setItemEdit, setIsAdd, setIsServices1, setIsServices2, setIsServices3}) => {
+const DashboardServices = ({
+  setItemEdit,
+  setIsAdd,
+  setIsServices1,
+  setIsServices2,
+  setIsServices3,
+}) => {
   const handleAddTitle = () => {
     setIsAdd(true);
     setItemEdit(null);
@@ -35,9 +38,10 @@ const DashboardServices = ({setItemEdit, setIsAdd, setIsServices1, setIsServices
               </h3>
               <a
                 className="absolute z-30 m-10 left-[470px] -top-9 cursor-pointer tooltip-header"
-                data-tooltip="Edit Content" onClick={handleAddTitle}
+                data-tooltip="Edit Content"
+                onClick={handleAddTitle}
               >
-                <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
+                <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
               </a>
             </div>
 
@@ -47,9 +51,10 @@ const DashboardServices = ({setItemEdit, setIsAdd, setIsServices1, setIsServices
                   <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative ">
                     <a
                       className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
-                      data-tooltip="Edit Content" onClick={handleAddServices1}
+                      data-tooltip="Edit Content"
+                      onClick={handleAddServices1}
                     >
-                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
+                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                     </a>
                     <div className="image_wrapper md:w-[20rem] md:h-[10rem]">
                       <img
@@ -76,9 +81,10 @@ const DashboardServices = ({setItemEdit, setIsAdd, setIsServices1, setIsServices
                   <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
                     <a
                       className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
-                      data-tooltip="Edit Content" onClick={handleAddServices2}
+                      data-tooltip="Edit Content"
+                      onClick={handleAddServices2}
                     >
-                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
+                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                     </a>
                     <div className="image_wrapper md:w-[20rem] md:h-[10rem] ">
                       <img
@@ -107,9 +113,10 @@ const DashboardServices = ({setItemEdit, setIsAdd, setIsServices1, setIsServices
                   <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
                     <a
                       className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
-                      data-tooltip="Edit Content" onClick={handleAddServices3}
+                      data-tooltip="Edit Content"
+                      onClick={handleAddServices3}
                     >
-                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
+                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                     </a>
                     <div className="image_wrapper md:w-[20rem] md:h-[10rem]">
                       <img

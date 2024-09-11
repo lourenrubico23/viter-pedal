@@ -1,6 +1,5 @@
-import { FaPencilAlt, FaRegImages } from "react-icons/fa";
+import { FaRegImages } from "react-icons/fa";
 import { HiPencil } from "react-icons/hi2";
-import { MdFileUpload } from "react-icons/md";
 
 const DashboardBanner = ({ setIsAdd, setItemEdit, setIsNav, setIsBanner }) => {
   const handleAddLogo = () => {
@@ -38,10 +37,11 @@ const DashboardBanner = ({ setIsAdd, setItemEdit, setIsNav, setIsBanner }) => {
             <nav>
               <ul className="nav relative">
                 <a
-                  className="absolute z-30 m-10 -right-5 -top-11 cursor-pointer tooltip-header-nav"
-                  data-tooltip="Edit Text" onClick={handleAddNav}
+                  className="absolute z-30 m-10 right-[400px] -top-6 cursor-pointer tooltip-header-nav"
+                  data-tooltip="Edit Text"
+                  onClick={handleAddNav}
                 >
-                  <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
+                  <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px]" />
                 </a>
                 <li className="hover:text-accent cursor-pointer">Home</li>
                 <li className="hover:text-accent cursor-pointer">Products</li>
@@ -62,10 +62,11 @@ const DashboardBanner = ({ setIsAdd, setItemEdit, setIsNav, setIsBanner }) => {
             </div>
           </div>
           <a
-            className="absolute z-30 m-10 top-8 cursor-pointer tooltip-header"
-            data-tooltip="Edit Content" onClick={handleAddBanner}
+            className="absolute z-30 m-10 left-[360px] top-56 cursor-pointer tooltip-header"
+            data-tooltip="Edit Content"
+            onClick={handleAddBanner}
           >
-            <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
+            <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px]" />
           </a>
           <div className="md:hidden relative ">
             <div className="bg-gradient-to-b from-white to-transparent absolute h-[2rem] w-full"></div>

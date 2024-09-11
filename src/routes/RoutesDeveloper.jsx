@@ -1,3 +1,4 @@
+import MobileView from "@/components/pages/developer/MobileView";
 import { devNavUrl } from "../components/helpers/functions-general";
 import Dashboard from "../components/pages/developer/Dashboard";
 import Header from "../components/pages/developer/dashboard-header/Header";
@@ -12,6 +13,10 @@ export const routesDeveloper = [
   {
     path: `${devNavUrl}/dashboard`,
     element: <Dashboard />,
+  },
+  {
+    path: `${devNavUrl}/mobile-view`,
+    element: <MobileView />,
   },
   {
     path: `${devNavUrl}/dashboard/header`,

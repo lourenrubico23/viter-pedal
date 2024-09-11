@@ -1,6 +1,4 @@
-import React from "react";
 import { HiPencil } from "react-icons/hi2";
-import { MdFileUpload } from "react-icons/md";
 
 const DashboardTestimonial = ({
   setItemEdit,
@@ -37,7 +35,7 @@ const DashboardTestimonial = ({
                 data-tooltip="Edit Content"
                 onClick={handleAddTitle}
               >
-                <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
+                <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
               </a>
               <h2 className="text-[clamp(1rem,5vw,48px)] font-[montserrat-extralight]">
                 You’re in good Shop
@@ -54,7 +52,7 @@ const DashboardTestimonial = ({
                   data-tooltip="Edit Content"
                   onClick={handleAddFirst}
                 >
-                  <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
+                  <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                 </a>
                 <div className="w-[6rem] h-[6rem] lg:w-[30%] lg:h-[100%]">
                   <img
@@ -83,7 +81,7 @@ const DashboardTestimonial = ({
                   data-tooltip="Edit Content"
                   onClick={handleAddSecond}
                 >
-                  <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
+                  <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                 </a>
                 <div className="w-[6rem] h-[6rem] lg:w-[30%] lg:h-[100%]">
                   <img
@@ -111,7 +109,7 @@ const DashboardTestimonial = ({
                   data-tooltip="Edit Content"
                   onClick={handleAddThird}
                 >
-                  <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
+                  <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                 </a>
                 <div className="w-[6rem] h-[6rem] lg:w-[30%] lg:h-[100%]">
                   <img

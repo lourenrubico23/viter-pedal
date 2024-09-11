@@ -251,6 +251,9 @@
   .btnImgUpload button {
     @apply text-2xl text-white bg-dark bg-opacity-50 transition-all opacity-0 group-hover:opacity-40 w-full grid place-items-center h-full absolute top-0 left-0;
   }
+  .header-nav li a.active {
+    @apply text-black;
+  }
 }
 
 .shadow_wrapper {
@@ -322,7 +325,7 @@
     @apply p-1 mr-1.5 bg-transparent leading-none;
   }
   .tooltip-header-nav::after {
-    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full top-[5px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-4;
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full top-[9px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-4;
   }
   .tooltip-header-nav:hover::after {
     @apply scale-100 opacity-100;
@@ -338,7 +341,7 @@
   .tooltip-desktop:hover::after {
     @apply scale-100 opacity-100;
   }
-  /* phone tool-tip */
+  /* mobile tool-tip */
   .tooltip-phone {
     @apply bg-transparent leading-none;
   }
@@ -348,12 +351,12 @@
   .tooltip-phone:hover::after {
     @apply scale-100 opacity-100;
   }
-  /* colors tool-tip */
+  /* palette tool-tip */
   .tooltip-colors {
     @apply bg-transparent leading-none;
   }
   .tooltip-colors::after {
-    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-[25px];
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 -right-[10px];
   }
   .tooltip-colors:hover::after {
     @apply scale-100 opacity-100;

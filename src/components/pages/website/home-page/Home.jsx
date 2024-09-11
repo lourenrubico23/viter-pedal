@@ -10,6 +10,7 @@ import Services from "./Services";
 import About from "./About";
 import Testimonial from "./Testimonial";
 import Footer from "./Footer";
+import ContactBanner from "./ContactBanner";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <Banner />
       <Services />
       <About />
+      <ContactBanner/>
       <Testimonial />
       <Footer />
     </>

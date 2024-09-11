@@ -9,17 +9,16 @@ const Header = () => {
 
   const handleShow = () => {
     dispatch(setIsShow(!store.isShow));
-    document.body.classList.toggle('overflow-hidden');
+    document.body.classList.toggle("overflow-hidden");
     console.log(store.isShow);
   };
 
   return (
-    <header className={store.isShow ? "" : "overflow-hidden"}>
+    <header className={store.isShow ? "" : "overflow-hidden"} id="header">
       <div className="container relative">
         <div className="flex justify-between items-center">
-          <div className="flex gap-2 items-center py-1">
-            <FaAngleDoubleUp className="text-accent size-4 lg:size-5 lg:ml-0" />
-            <h1 className="text-[clamp(20px,4vw,29px)] font-[comfortaa-semiBold] ">Pedal</h1>
+          <div className="py-1 w-[90px] md:w-[115px] md:h-[37px] relative">
+            <img src="/img/pedalLogo.png" alt="" className="object-cover" />
           </div>
 
           <nav>

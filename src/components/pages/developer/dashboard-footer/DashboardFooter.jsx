@@ -1,7 +1,4 @@
-import React from "react";
-import { FaAngleDoubleUp, FaRegImages } from "react-icons/fa";
 import { HiPencil } from "react-icons/hi2";
-import { MdFileUpload } from "react-icons/md";
 
 const DashboardFooter = ({ setItemEdit, setIsAdd }) => {
   const handleAddCopyright = () => {
@@ -47,7 +44,7 @@ const DashboardFooter = ({ setItemEdit, setIsAdd }) => {
                   data-tooltip="Edit Content"
                   onClick={handleAddCopyright}
                 >
-                  <HiPencil className=" bg-accent text-black rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
+                  <HiPencil className=" bg-accent text-black rounded-full w-[25px] h-[25px] p-[5px] border-[1px]" />
                 </a>
                 &copy; Pedal 2024. We love our Community!
               </h3>

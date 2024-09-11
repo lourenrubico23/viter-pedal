@@ -5,7 +5,14 @@ import {
 } from "react-icons/fa";
 import { HiPencil } from "react-icons/hi2";
 
-const DashboardAbout = ({setItemEdit, setIsAdd, setIsTitle, setIsContent, setIsDescription, setIsImage2}) => {
+const DashboardAbout = ({
+  setItemEdit,
+  setIsAdd,
+  setIsTitle,
+  setIsContent,
+  setIsDescription,
+  setIsImage2,
+}) => {
   const handleAddImage1 = () => {
     setIsAdd(true);
     setItemEdit(null);
@@ -39,9 +46,10 @@ const DashboardAbout = ({setItemEdit, setIsAdd, setIsTitle, setIsContent, setIsD
                   <div className="dicover flex flex-col gap-4 lg:my-20 lg:ml-20 relative">
                     <a
                       className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
-                      data-tooltip="Edit Content" onClick={handleAddTitle1}
+                      data-tooltip="Edit Content"
+                      onClick={handleAddTitle1}
                     >
-                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
+                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                     </a>
                     <h2 className="text-[clamp(1rem,6vw,24px)] font-[montserrat-extrabold] leading-7 text-center lg:text-left">
                       Discover the Beauty of Nature on Two Wheels
@@ -59,9 +67,10 @@ const DashboardAbout = ({setItemEdit, setIsAdd, setIsTitle, setIsContent, setIsD
                     <div className="md:my-5 relative">
                       <a
                         className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
-                        data-tooltip="Edit Content" onClick={handleAddContents}
+                        data-tooltip="Edit Content"
+                        onClick={handleAddContents}
                       >
-                        <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
+                        <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                       </a>
                       <div className="discover-content lg:mt-5">
                         <div className="flex flex-row gap-2 md:items-center">
@@ -124,7 +133,8 @@ const DashboardAbout = ({setItemEdit, setIsAdd, setIsTitle, setIsContent, setIsD
 
               <a
                 className="absolute z-30 m-10 left-[600px] -top-2 cursor-pointer tooltip-header"
-                data-tooltip="Upload Image" onClick={handleAddImage1}
+                data-tooltip="Upload Image"
+                onClick={handleAddImage1}
               >
                 <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
               </a>
@@ -141,7 +151,8 @@ const DashboardAbout = ({setItemEdit, setIsAdd, setIsTitle, setIsContent, setIsD
             <div className="lg:absolute lg:right-0 lg:top-0 h-full lg:w-[50%] block relative">
               <a
                 className="absolute z-30 m-10 right-[30px] cursor-pointer tooltip-header-nav"
-                data-tooltip="Upload Image" onClick={handleAddAboutImage2}
+                data-tooltip="Upload Image"
+                onClick={handleAddAboutImage2}
               >
                 <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
               </a>
@@ -156,9 +167,10 @@ const DashboardAbout = ({setItemEdit, setIsAdd, setIsTitle, setIsContent, setIsD
                 <div className="dicover flex flex-col gap-4 py-7 lg:gap-0 md:my-6 relative">
                   <a
                     className="absolute z-30 m-10 right-[310px] top-6 cursor-pointer tooltip-header"
-                    data-tooltip="Edit Content" onClick={handleAddAboutDescription}
+                    data-tooltip="Edit Content"
+                    onClick={handleAddAboutDescription}
                   >
-                    <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px] " />
+                    <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                   </a>
                   <h2 className="text-[clamp(1rem,6vw,1.5rem)] font-[montserrat-extrabold] leading-7 text-center lg:text-left lg:flex lg:items-center lg:gap-3 lg:py-10">
                     About Pedal
