@@ -18,7 +18,7 @@ const DashboardBanner = ({ setIsAdd, setItemEdit, setIsNav, setIsBanner }) => {
   return (
     <>
       <section
-        className="3xl:max-w-[100rem] 3xl:mx-auto 3xl:h-[900px]"
+        className=""
         id="header"
       >
         <div className="container_dashboard py-0 px-3 md:max-w-full md:max-h-full md:px-6 md:py-0 mx-auto relative bg-primary ">
@@ -52,7 +52,7 @@ const DashboardBanner = ({ setIsAdd, setItemEdit, setIsNav, setIsBanner }) => {
           </div>
         </div>
 
-        <div className="banner relative md:bg-[url('/img/Rectangle.webp')]">
+        <div className="relative md:bg-[url('/img/Rectangle.webp')]">
           <div className=" container_dashboard flex h-full ">
             <div className="flex flex-col items-center md:items-start md:justify-center h-full md:gap-7 md:h-[815px] ">
               <h1 className="text-center md:text-left md:max-w-[calc(50% + 90px)] w-[50%] md:w-[50%] text-[clamp(1rem,5vw,3.5rem)] py-6 font-[montserrat-extralight]">

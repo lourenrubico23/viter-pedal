@@ -28,16 +28,16 @@ const Header = () => {
 
   return (
     <>
-      {isLoading ? (
+      {/* {isLoading ? (
         <HeaderLoader />
-      ) : (
+      ) : ( */}
         <DashboardBanner
           setItemEdit={setItemEdit}
           setIsAdd={setIsAdd}
           setIsNav={setIsNav}
           setIsBanner={setIsBanner}
         />
-      )}
+      {/* )} */}
 
       {isAdd && <ModalAddLogo itemEdit={itemEdit} setIsAdd={setIsAdd} />}
       {isNav && <ModalAddNavigation itemEdit={itemEdit} setIsNav={setIsNav} />}

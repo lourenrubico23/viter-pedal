@@ -15,7 +15,7 @@ const Dashboard = () => {
         <div className="fixed bg-dashPrimary py-3 w-[100%] h-[27px] z-50 "></div>
         <div className="wrapper shadow_wrapper">
           <DashboardHeader menu="dashboard" />
-          <div className="md:pt-12 3xl:pt-12">
+          <div className="md:pt-[2.5rem]">
             <Header />
             <Services />
             <About />
