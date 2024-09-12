@@ -108,7 +108,9 @@ const DashboardBanner = ({
                 className="relative md:bg-no-repeat md:bg-cover"
                 style={{
                   backgroundImage: `url(${bannerImg})`,
-                  // backgroundSize: cover,
+                  backgroundSize: 'cover',  // Makes sure the image covers the entire div
+    backgroundPosition: 'center',  // Centers the image within the div
+    backgroundRepeat: 'no-repeat'
                 }}
               >
                 <div className=" container_dashboard flex h-full ">
