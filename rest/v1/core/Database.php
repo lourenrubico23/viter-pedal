@@ -11,7 +11,7 @@ class Database
 
         // Localhost
         $host = "localhost";
-        $dbname = "viter-local-hr";
+        $dbname = "viter-single-page";
         $username = "root";
         $password = "";
 

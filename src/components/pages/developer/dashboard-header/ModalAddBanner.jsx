@@ -1,21 +1,21 @@
-import useUploadPhoto from '@/components/custom-hooks/useUploadPhoto';
-import { InputPhotoUpload, InputText } from '@/components/helpers/FormInputs';
-import { apiVersion } from '@/components/helpers/functions-general';
-import { queryData } from '@/components/helpers/queryData';
-import ModalWrapper from '@/components/partials/modals/ModalWrapper';
-import ButtonSpinner from '@/components/partials/spinner/ButtonSpinner';
-import { setError, setMessage, setSuccess } from '@/store/StoreAction';
-import { StoreContext } from '@/store/StoreContext';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Form, Formik } from 'formik';
-import React from 'react'
-import { GrFormClose } from 'react-icons/gr';
-import { IoImageOutline } from 'react-icons/io5';
-import { MdOutlineFileUpload } from 'react-icons/md';
+import useUploadPhoto from "@/components/custom-hooks/useUploadPhoto";
+import { InputPhotoUpload, InputText } from "@/components/helpers/FormInputs";
+import { apiVersion, devBaseImgUrl } from "@/components/helpers/functions-general";
+import { queryData } from "@/components/helpers/queryData";
+import ModalWrapper from "@/components/partials/modals/ModalWrapper";
+import ButtonSpinner from "@/components/partials/spinner/ButtonSpinner";
+import { setError, setMessage, setSuccess } from "@/store/StoreAction";
+import { StoreContext } from "@/store/StoreContext";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Form, Formik } from "formik";
+import React from "react";
+import { GrFormClose } from "react-icons/gr";
+import { IoImageOutline } from "react-icons/io5";
+import { MdOutlineFileUpload } from "react-icons/md";
 import * as Yup from "yup";
 
-const ModalAddBanner = ({itemEdit, setIsBanner}) => {
-    const { store, dispatch } = React.useContext(StoreContext);
+const ModalAddBanner = ({ itemEdit, setIsBanner }) => {
+  const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
   const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
     `${apiVersion}/upload-photo`,
@@ -25,7 +25,7 @@ const ModalAddBanner = ({itemEdit, setIsBanner}) => {
   const handleClose = () => {
     setAnimate("translate-x-full");
     setTimeout(() => {
-        setIsBanner(false);
+      setIsBanner(false);
     }, 200);
   };
 
@@ -34,10 +34,8 @@ const ModalAddBanner = ({itemEdit, setIsBanner}) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/header/${itemEdit.header_aid}` // update
-          : `/v1/header`, // create
-        itemEdit ? "put" : "post",
+        `/v1/header/banner/${itemEdit.header_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -50,7 +48,7 @@ const ModalAddBanner = ({itemEdit, setIsBanner}) => {
         console.log("Success");
         setIsBanner(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
@@ -60,10 +58,13 @@ const ModalAddBanner = ({itemEdit, setIsBanner}) => {
   }, []);
 
   const initVal = {
-    header_banner_img: itemEdit ? itemEdit?.data[0].header_banner_img : "",
+    header_banner_img: itemEdit ? itemEdit.header_banner_img : "",
+    header_banner_text: itemEdit ? itemEdit.header_banner_text : "",
+    header_button_text: itemEdit ? itemEdit.header_button_text : "",
   };
 
   const yupSchema = Yup.object({});
+
   return (
     <ModalWrapper
       className={`transition-all ease-linear transform duration-200 ${animate}`}
@@ -105,7 +106,8 @@ const ModalAddBanner = ({itemEdit, setIsBanner}) => {
                             </h1>
                           </div>
                         </div>
-                      ) : (itemEdit?.header_banner_img === "" && photo === null) ||
+                      ) : (itemEdit?.header_banner_img === "" &&
+                          photo === null) ||
                         photo === "" ? (
                         <div className="group-hover:opacity-20 mb-4 bg-gray-700 grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
                           <div>
@@ -119,8 +121,10 @@ const ModalAddBanner = ({itemEdit, setIsBanner}) => {
                         <img
                           src={
                             photo
-                              ? URL.createObjectURl(photo) // preview
-                              : devBaseImgUrl + "/" + itemEdit?.header_banner_img // check db
+                              ? URL.createObjectURL(photo) // preview
+                              : devBaseImgUrl +
+                                "/" +
+                                itemEdit?.header_banner_img // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"
@@ -197,7 +201,7 @@ const ModalAddBanner = ({itemEdit, setIsBanner}) => {
         </Formik>
       </div>
     </ModalWrapper>
-  )
-}
+  );
+};
 
-export default ModalAddBanner
+export default ModalAddBanner;

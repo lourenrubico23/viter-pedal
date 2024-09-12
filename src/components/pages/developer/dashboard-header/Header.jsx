@@ -19,9 +19,9 @@ const Header = () => {
   const {
     isLoading,
     error,
-    data: header,
+    data: headerData,
   } = useQueryData(
-    "/v2/header", // endpoint
+    "/v1/header", // endpoint
     "get", // method
     "header" // key
   );
@@ -31,12 +31,13 @@ const Header = () => {
       {/* {isLoading ? (
         <HeaderLoader />
       ) : ( */}
-        <DashboardBanner
-          setItemEdit={setItemEdit}
-          setIsAdd={setIsAdd}
-          setIsNav={setIsNav}
-          setIsBanner={setIsBanner}
-        />
+      <DashboardBanner
+        setItemEdit={setItemEdit}
+        setIsAdd={setIsAdd}
+        setIsNav={setIsNav}
+        setIsBanner={setIsBanner}
+        headerData={headerData}
+      />
       {/* )} */}
 
       {isAdd && <ModalAddLogo itemEdit={itemEdit} setIsAdd={setIsAdd} />}

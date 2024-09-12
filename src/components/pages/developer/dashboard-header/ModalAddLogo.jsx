@@ -17,7 +17,10 @@ import {
   setSuccess,
 } from "../../../../store/StoreAction";
 import * as Yup from "yup";
-import { apiVersion, devBaseImgUrl } from "@/components/helpers/functions-general";
+import {
+  apiVersion,
+  devBaseImgUrl,
+} from "@/components/helpers/functions-general";
 
 const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -39,10 +42,8 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/header/${itemEdit.header_aid}` // update
-          : `/v1/header`, // create
-        itemEdit ? "put" : "post",
+        `/v1/header/logo-img/${itemEdit.header_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -51,11 +52,12 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
         dispatch(setError(true));
         dispatch(setMessage(data.error));
         dispatch(setSuccess(false));
-      } else {
+      }
+      if (data.success) {
         console.log("Success");
         setIsAdd(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
@@ -65,7 +67,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
   }, []);
 
   const initVal = {
-    header_img: itemEdit ? itemEdit?.data[0].header_img : "",
+    header_logo_img: itemEdit ? itemEdit.header_logo_img : "",
   };
 
   const yupSchema = Yup.object({});
@@ -89,7 +91,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
             // to get all of the data of image
             const data = {
               ...values,
-              header_img: photo?.name || itemEdit.header_img,
+              header_logo_img: photo?.name || itemEdit.header_logo_img,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -111,7 +113,8 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
                             </h1>
                           </div>
                         </div>
-                      ) : (itemEdit?.header_img === "" && photo === null) ||
+                      ) : (itemEdit?.header_logo_img === "" &&
+                          photo === null) ||
                         photo === "" ? (
                         <div className="group-hover:opacity-20 mb-4 bg-gray-700 grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
                           <div>
@@ -125,8 +128,8 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
                         <img
                           src={
                             photo
-                              ? URL.createObjectURl(photo) // preview
-                              : devBaseImgUrl + "/" + itemEdit?.header_img // check db
+                              ? URL.createObjectURL(photo) // preview
+                              : devBaseImgUrl + "/" + itemEdit?.header_logo_img // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"
@@ -143,7 +146,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
                             accept="image/*"
                             title="Upload Logo"
                             onChange={(e) =>
-                              handleChangePhoto(e, initVal.header_img)
+                              handleChangePhoto(e, initVal.header_logo_img)
                             }
                             className="opacity-0 absolute right-0 top-0 h-full left-0 m-auto cursor-pointer z-[999]"
                           />
@@ -161,7 +164,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
                         ((mutation.isPending || !props.dirty) &&
                           photo === null) ||
                         photo === "" ||
-                        initVal.header_img === photo?.name
+                        initVal.header_logo_img === photo?.name
                       }
                     >
                       {mutation.isPending ? (

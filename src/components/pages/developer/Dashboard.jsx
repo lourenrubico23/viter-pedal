@@ -13,7 +13,7 @@ const Dashboard = () => {
       <Navigation />
       <div className="main-wrapper">
         <div className="fixed bg-dashPrimary py-3 w-[100%] h-[27px] z-50 "></div>
-        <div className="wrapper shadow_wrapper">
+        <div className="wrapper w-[calc(100%_-_40px)] shadow_wrapper">
           <DashboardHeader menu="dashboard" />
           <div className="md:pt-[2.5rem]">
             <Header />

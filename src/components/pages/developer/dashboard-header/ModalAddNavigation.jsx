@@ -26,10 +26,8 @@ const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/header/${itemEdit.header_aid}` // update
-          : `/v1/header`, // create
-        itemEdit ? "put" : "post",
+        `/v1/header/${itemEdit.header_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -42,7 +40,7 @@ const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
         console.log("Success");
         setIsNav(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
@@ -52,7 +50,10 @@ const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
   }, []);
 
   const initVal = {
-    header_img: itemEdit ? itemEdit?.data[0].header_img : "",
+    header_nav_a: itemEdit ? itemEdit.header_nav_a : "",
+    header_nav_b: itemEdit ? itemEdit.header_nav_b : "",
+    header_nav_c: itemEdit ? itemEdit.header_nav_c : "",
+    header_nav_d: itemEdit ? itemEdit.header_nav_d : "",
   };
 
   const yupSchema = Yup.object({});
@@ -86,7 +87,7 @@ const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
                     <InputText
                       label="Navigation 1"
                       type="text"
-                      name="header_navigation_1"
+                      name="header_nav_a"
                       disabled={mutation.isPending}
                     />
                   </div>
@@ -94,7 +95,7 @@ const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
                     <InputText
                       label="Navigation 2"
                       type="text"
-                      name="header_navigation_2"
+                      name="header_nav_b"
                       disabled={mutation.isPending}
                     />
                   </div>
@@ -102,7 +103,7 @@ const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
                     <InputText
                       label="Navigation 3"
                       type="text"
-                      name="header_navigation_3"
+                      name="header_nav_c"
                       disabled={mutation.isPending}
                     />
                   </div>
@@ -110,7 +111,7 @@ const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
                     <InputText
                       label="Navigation 4"
                       type="text"
-                      name="header_navigation_4"
+                      name="header_nav_d"
                       disabled={mutation.isPending}
                     />
                   </div>

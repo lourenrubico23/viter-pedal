@@ -49,7 +49,7 @@ const Navigation = () => {
           }
         });
       },
-      { threshold: 0.5 } // Adjust this threshold as needed (50% of the section is in view)
+      { threshold: 0.3 } // Adjust this threshold as needed (50% of the section is in view)
     );
 
     // Observe each section on the page
@@ -76,7 +76,7 @@ const Navigation = () => {
     if (section) {
       section.scrollIntoView({
         behavior: "smooth",
-        block: "start",
+        block: "nearest",
       });
     }
   };
