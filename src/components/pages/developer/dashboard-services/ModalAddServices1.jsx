@@ -1,43 +1,48 @@
-import useUploadPhoto from '@/components/custom-hooks/useUploadPhoto';
-import { InputPhotoUpload, InputText, InputTextArea } from '@/components/helpers/FormInputs';
-import { apiVersion, devBaseImgUrl } from '@/components/helpers/functions-general';
-import { queryData } from '@/components/helpers/queryData';
-import ModalWrapper from '@/components/partials/modals/ModalWrapper';
-import ButtonSpinner from '@/components/partials/spinner/ButtonSpinner';
-import { setError, setMessage, setSuccess } from '@/store/StoreAction';
-import { StoreContext } from '@/store/StoreContext';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Form, Formik } from 'formik';
-import React from 'react'
-import { GrFormClose } from 'react-icons/gr';
-import { IoImageOutline } from 'react-icons/io5';
-import { MdOutlineFileUpload } from 'react-icons/md';
+import useUploadPhoto from "@/components/custom-hooks/useUploadPhoto";
+import {
+  InputPhotoUpload,
+  InputText,
+  InputTextArea,
+} from "@/components/helpers/FormInputs";
+import {
+  apiVersion,
+  devBaseImgUrl,
+} from "@/components/helpers/functions-general";
+import { queryData } from "@/components/helpers/queryData";
+import ModalWrapper from "@/components/partials/modals/ModalWrapper";
+import ButtonSpinner from "@/components/partials/spinner/ButtonSpinner";
+import { setError, setMessage, setSuccess } from "@/store/StoreAction";
+import { StoreContext } from "@/store/StoreContext";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Form, Formik } from "formik";
+import React from "react";
+import { GrFormClose } from "react-icons/gr";
+import { IoImageOutline } from "react-icons/io5";
+import { MdOutlineFileUpload } from "react-icons/md";
 import * as Yup from "yup";
 
-const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
-    const { store, dispatch } = React.useContext(StoreContext);
-    const [animate, setAnimate] = React.useState("translate-x-full");
-    const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
-      `${apiVersion}/upload-photo`,
-      dispatch
-    );
-  
-    const handleClose = () => {
-      setAnimate("translate-x-full");
-      setTimeout(() => {
-        setIsServices1(false);
-      }, 200);
-    };
+const ModalAddServices1 = ({ itemEdit, setIsServices1 }) => {
+  const { store, dispatch } = React.useContext(StoreContext);
+  const [animate, setAnimate] = React.useState("translate-x-full");
+  const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
+    `${apiVersion}/upload-photo`,
+    dispatch
+  );
 
-    const queryClient = useQueryClient();
+  const handleClose = () => {
+    setAnimate("translate-x-full");
+    setTimeout(() => {
+      setIsServices1(false);
+    }, 200);
+  };
+
+  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/services/${itemEdit.services_aid}` // update
-          : `/v1/services`, // create
-        itemEdit ? "put" : "post",
+        `/v1/services/update-product-a/${itemEdit.services_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -60,7 +65,10 @@ const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
   }, []);
 
   const initVal = {
-    services_img_1: itemEdit ? itemEdit?.data[0].services_img_1 : "",
+    services_img_a: itemEdit ? itemEdit.services_img_a : "",
+    services_product_a: itemEdit ? itemEdit.services_product_a : "",
+    services_description_a: itemEdit ? itemEdit.services_description_a : "",
+    services_button_text_a: itemEdit ? itemEdit.services_button_text_a : "",
   };
 
   const yupSchema = Yup.object({});
@@ -84,7 +92,7 @@ const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
             // to get all of the data of image
             const data = {
               ...values,
-              services_img_1: photo?.name || itemEdit.services_img_1,
+              services_img_a: photo?.name || itemEdit.services_img_a,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -95,7 +103,9 @@ const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
               <Form className="modal-form">
                 <div className="form-input">
                   <div className="mt-5">
-                    <span className="top-20 px-2 text-dark">Services Image</span>
+                    <span className="top-20 px-2 text-dark">
+                      Services Image
+                    </span>
                     <div className="relative w-fit m-auto group">
                       {itemEdit === null && photo === null ? (
                         <div className="group-hover:opacity-20 bg-dashAccent mb-4 items-center gap-2 h-[180px] w-[350px] border rounded-md p-2 grid place-items-center">
@@ -106,12 +116,12 @@ const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
                             </h1>
                           </div>
                         </div>
-                      ) : (itemEdit?.services_img_1 === "" && photo === null) ||
+                      ) : (itemEdit?.services_img_a === "" && photo === null) ||
                         photo === "" ? (
-                        <div className="group-hover:opacity-20 mb-4 bg-gray-700 grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
+                        <div className="group-hover:opacity-20 mb-4 bg-dashAccent grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
                           <div>
-                            <IoImageOutline className="text-[30px] text-gray" />
-                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[30px] text-center">
+                            <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
+                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[gray] text-[15px] text-center">
                               Upload Image
                             </h1>
                           </div>
@@ -120,8 +130,8 @@ const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
                         <img
                           src={
                             photo
-                              ? URL.createObjectURl(photo) // preview
-                              : devBaseImgUrl + "/" + itemEdit?.services_img_1 // check db
+                              ? URL.createObjectURL(photo) // preview
+                              : devBaseImgUrl + "/" + itemEdit?.services_img_a // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"
@@ -138,7 +148,7 @@ const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
                             accept="image/*"
                             title="Upload Logo"
                             onChange={(e) =>
-                              handleChangePhoto(e, initVal.services_img_1)
+                              handleChangePhoto(e, initVal.services_img_a)
                             }
                             className="opacity-0 absolute right-0 top-0 h-full left-0 m-auto cursor-pointer z-[999]"
                           />
@@ -150,7 +160,7 @@ const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
                     <InputText
                       label="*Name"
                       type="text"
-                      name="services_name_1"
+                      name="services_product_a"
                       disabled={mutation.isPending}
                     />
                   </div>
@@ -158,7 +168,7 @@ const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
                     <InputTextArea
                       label="Description"
                       type="text"
-                      name="services_description_1"
+                      name="services_description_a"
                       disabled={mutation.isPending}
                     />
                   </div>
@@ -166,7 +176,7 @@ const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
                     <InputText
                       label="*Button Text"
                       type="text"
-                      name="services_button_1"
+                      name="services_button_text_a"
                       disabled={mutation.isPending}
                     />
                   </div>
@@ -180,7 +190,7 @@ const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
                         ((mutation.isPending || !props.dirty) &&
                           photo === null) ||
                         photo === "" ||
-                        initVal.services_img_1 === photo?.name
+                        initVal.services_img_a === photo?.name
                       }
                     >
                       {mutation.isPending ? (
@@ -206,7 +216,7 @@ const ModalAddServices1 = ({itemEdit, setIsServices1}) => {
         </Formik>
       </div>
     </ModalWrapper>
-  )
-}
+  );
+};
 
-export default ModalAddServices1
+export default ModalAddServices1;

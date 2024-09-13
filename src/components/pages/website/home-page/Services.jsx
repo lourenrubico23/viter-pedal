@@ -1,19 +1,31 @@
+import useQueryData from "@/components/custom-hooks/useQueryData";
 import React from "react";
 
 const Services = () => {
+  const {
+    isLoading,
+    error,
+    data: servicesData,
+  } = useQueryData(
+    "/v1/services", // endpoint
+    "get", // method
+    "services" // key
+  );
   return (
     <>
       {/* choose your companion */}
       <div className="card_wrapper py-14 " id="services">
         <div className="container lg:py-20">
-          <div className="flex flex-col justify-center text-center pb-5 lg:text-left lg:pb-14">
-            <h2 className="text-[clamp(1rem,6vw,2.5rem)] font-[montserrat-medium]">
-              Choose your Companion
-            </h2>
-            <h3 className="pt-2 text-[clamp(.5rem,4vw,1.3rem)] line-clamp-2 font-[montserrat-extralight]">
-              Escape the Ordinary: Experience the Thrill
-            </h3>
-          </div>
+          {servicesData?.data.map((item, key) => (
+            <div className="flex flex-col justify-center text-center pb-5 lg:text-left lg:pb-14" key={key}>
+              <h2 className="text-[clamp(1rem,6vw,2.5rem)] font-[montserrat-medium]">
+                {item.services_title ? item.services_title : "Lorem ipsum dolor sit amet."}
+              </h2>
+              <h3 className="pt-2 text-[clamp(.5rem,4vw,1.3rem)] line-clamp-2 font-[montserrat-extralight]">
+                {item.services_subtitle ? item.services_subtitle : "Lorem ipsum dolor sit amet."}
+              </h3>
+            </div>
+          ))}
 
           <div className="cards_wrapper flex flex-col lg:flex lg:flex-row lg:gap-14 md:flex-row md:flex-wrap md:gap-5 md:mt-10 md:min-h-[100px]">
             <div className="py-8 lg:py-0">

@@ -1,23 +1,23 @@
-import { InputText } from '@/components/helpers/FormInputs';
-import { queryData } from '@/components/helpers/queryData';
-import ModalWrapper from '@/components/partials/modals/ModalWrapper';
-import ButtonSpinner from '@/components/partials/spinner/ButtonSpinner';
-import { setError, setMessage, setSuccess } from '@/store/StoreAction';
-import { StoreContext } from '@/store/StoreContext';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Form, Formik } from 'formik';
-import React from 'react'
-import { GrFormClose } from 'react-icons/gr';
+import { InputText } from "@/components/helpers/FormInputs";
+import { queryData } from "@/components/helpers/queryData";
+import ModalWrapper from "@/components/partials/modals/ModalWrapper";
+import ButtonSpinner from "@/components/partials/spinner/ButtonSpinner";
+import { setError, setMessage, setSuccess } from "@/store/StoreAction";
+import { StoreContext } from "@/store/StoreContext";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Form, Formik } from "formik";
+import React from "react";
+import { GrFormClose } from "react-icons/gr";
 import * as Yup from "yup";
 
-const ModalAddServicesTitle = ({itemEdit, setIsAdd}) => {
-    const { store, dispatch } = React.useContext(StoreContext);
+const ModalAddServicesTitle = ({ itemEdit, setIsAdd }) => {
+  const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
 
   const handleClose = () => {
     setAnimate("translate-x-full");
     setTimeout(() => {
-        setIsAdd(false);
+      setIsAdd(false);
     }, 200);
   };
 
@@ -26,10 +26,8 @@ const ModalAddServicesTitle = ({itemEdit, setIsAdd}) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/services/${itemEdit.services_aid}` // update
-          : `/v1/services`, // create
-        itemEdit ? "put" : "post",
+        `/v1/services/${itemEdit.services_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -52,21 +50,18 @@ const ModalAddServicesTitle = ({itemEdit, setIsAdd}) => {
   }, []);
 
   const initVal = {
-    services_title_1: itemEdit ? itemEdit?.data[0].services_title_1 : "",
+    services_title: itemEdit ? itemEdit.services_title : "",
+    services_subtitle: itemEdit ? itemEdit.services_subtitle : "",
   };
 
-  const yupSchema = Yup.object({
-    services_title_1: Yup.string().required("Required"),
-  });
+  const yupSchema = Yup.object({});
   return (
     <ModalWrapper
       className={`transition-all ease-linear transform duration-200 ${animate}`}
       handleClose={handleClose}
     >
       <div className="modal-title">
-        <h2 className="text-sm">
-          {itemEdit ? "Edit" : "Add"} Services Title
-        </h2>
+        <h2 className="text-sm">Edit Services Title</h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />
         </button>
@@ -85,17 +80,17 @@ const ModalAddServicesTitle = ({itemEdit, setIsAdd}) => {
                 <div className="form-input">
                   <div className="input-wrapper">
                     <InputText
-                      label="Title 1"
+                      label="Title"
                       type="text"
-                      name="services_title_1"
+                      name="services_title"
                       disabled={mutation.isPending}
                     />
                   </div>
                   <div className="input-wrapper">
                     <InputText
-                      label="Title 2"
+                      label="Subtitle"
                       type="text"
-                      name="services_title_2"
+                      name="services_subtitle"
                       disabled={mutation.isPending}
                     />
                   </div>
@@ -130,7 +125,7 @@ const ModalAddServicesTitle = ({itemEdit, setIsAdd}) => {
         </Formik>
       </div>
     </ModalWrapper>
-  )
-}
+  );
+};
 
-export default ModalAddServicesTitle
+export default ModalAddServicesTitle;

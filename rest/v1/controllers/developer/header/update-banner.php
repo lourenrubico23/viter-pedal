@@ -26,8 +26,8 @@ if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
     // get data
     $header->header_aid = $_GET['headerid'];
     $header->header_banner_img = $data["header_banner_img"];
-    $header->header_banner_text = checkIndex($data, "header_banner_text");
-    $header->header_button_text = checkIndex($data, "header_button_text");
+    $header->header_banner_text = $data["header_banner_text"];
+    $header->header_button_text = $data["header_button_text"];
 
     $header->header_datetime = date("Y-m-d H:i:s");
     checkId($header->header_aid);

@@ -17,7 +17,7 @@ const Header = () => {
   const [itemEdit, setItemEdit] = React.useState(null);
 
   const {
-    isLoading,
+    isFetching,
     error,
     data: headerData,
   } = useQueryData(
@@ -28,17 +28,16 @@ const Header = () => {
 
   return (
     <>
-      {/* {isLoading ? (
-        <HeaderLoader />
-      ) : ( */}
+     
       <DashboardBanner
         setItemEdit={setItemEdit}
         setIsAdd={setIsAdd}
         setIsNav={setIsNav}
         setIsBanner={setIsBanner}
         headerData={headerData}
+        isFetching={isFetching}
       />
-      {/* )} */}
+    
 
       {isAdd && <ModalAddLogo itemEdit={itemEdit} setIsAdd={setIsAdd} />}
       {isNav && <ModalAddNavigation itemEdit={itemEdit} setIsNav={setIsNav} />}

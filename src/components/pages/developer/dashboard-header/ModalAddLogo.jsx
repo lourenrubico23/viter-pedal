@@ -116,10 +116,10 @@ const ModalAddLogo = ({ itemEdit, setIsAdd }) => {
                       ) : (itemEdit?.header_logo_img === "" &&
                           photo === null) ||
                         photo === "" ? (
-                        <div className="group-hover:opacity-20 mb-4 bg-gray-700 grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
+                        <div className="group-hover:opacity-20 mb-4 bg-dashAccent grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
                           <div>
-                            <IoImageOutline className="text-[30px] text-gray" />
-                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[30px] text-center">
+                            <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
+                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[gray] text-[15px] text-center">
                               Upload Image
                             </h1>
                           </div>

@@ -64,7 +64,7 @@ const MobileViewHeader = () => {
 
           <div className=" bg-none bg-primary ">
             <div className="container flex h-full ">
-              <div className="banner_wrapper flex flex-col items-center h-full ">
+              <div className="banner_wrapper flex flex-col items-center h-full mx-auto ">
                 <h1 className="text-center text-[1rem] py-6 font-[montserrat-extralight]">
                 {item.header_banner_text}
                 </h1>

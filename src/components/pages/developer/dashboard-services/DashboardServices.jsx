@@ -1,4 +1,8 @@
+import useQueryData from "@/components/custom-hooks/useQueryData";
+import { devBaseImgUrl } from "@/components/helpers/functions-general";
 import { HiPencil } from "react-icons/hi2";
+import { IoImageOutline } from "react-icons/io5";
+import ServicesLoader from "./ServicesLoader";
 
 const DashboardServices = ({
   setItemEdit,
@@ -7,141 +11,291 @@ const DashboardServices = ({
   setIsServices2,
   setIsServices3,
 }) => {
-  const handleAddTitle = () => {
+  const {
+    isFetching,
+    error,
+    data: servicesData,
+  } = useQueryData(
+    "/v1/services", // endpoint
+    "get", // method
+    "services" // key
+  );
+
+  const handleAddTitle = (item) => {
     setIsAdd(true);
-    setItemEdit(null);
+    setItemEdit(item);
   };
-  const handleAddServices1 = () => {
+  const handleAddServices1 = (item) => {
     setIsServices1(true);
-    setItemEdit(null);
+    setItemEdit(item);
   };
-  const handleAddServices2 = () => {
+  const handleAddServices2 = (item) => {
     setIsServices2(true);
-    setItemEdit(null);
+    setItemEdit(item);
   };
-  const handleAddServices3 = () => {
+  const handleAddServices3 = (item) => {
     setIsServices3(true);
-    setItemEdit(null);
+    setItemEdit(item);
   };
   return (
     <>
       <section id="services">
         {/* choose your companion */}
-        <div className="card_wrapper py-14 relative">
-          <div className="container_dashboard lg:py-20">
-            <div className="flex flex-col justify-center text-center pb-5 lg:text-left lg:pb-14 relative">
-              <h2 className="text-[clamp(1rem,6vw,2.5rem)] font-[montserrat-medium]">
-                Choose your Companion
-              </h2>
-              <h3 className="pt-2 text-[clamp(.5rem,4vw,1.3rem)] line-clamp-2 font-[montserrat-extralight]">
-                Escape the Ordinary: Experience the Thrill
-              </h3>
-              <a
-                className="absolute z-30 m-10 left-[470px] -top-9 cursor-pointer tooltip-header"
-                data-tooltip="Edit Content"
-                onClick={handleAddTitle}
-              >
-                <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
-              </a>
-            </div>
-
-            <div className="cards_wrapper flex flex-col lg:flex lg:flex-row lg:gap-14 md:flex-row md:flex-wrap md:gap-5 md:mt-10 md:min-h-[100px]">
-              <div className="py-8 lg:py-0">
-                <div className="cards">
-                  <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative ">
+        {isFetching ? (
+          <ServicesLoader />
+        ) : (
+          <div className="card_wrapper py-14 relative">
+            <div className="container_dashboard lg:py-20">
+              {servicesData?.data.map((item, key) => (
+                <div
+                  className="flex flex-col justify-center text-center pb-5 lg:text-left lg:pb-14"
+                  key={key}
+                >
+                  <h2 className="flex flex-row text-[clamp(1rem,6vw,2.5rem)] font-[montserrat-medium]">
+                    {item.services_title
+                      ? item.services_title
+                      : "Lorem ipsum dolor sit amet."}
                     <a
-                      className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                      className="relative z-30  cursor-pointer tooltip-header"
                       data-tooltip="Edit Content"
-                      onClick={handleAddServices1}
+                      onClick={() => handleAddTitle(item)}
                     >
                       <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                     </a>
-                    <div className="image_wrapper md:w-[20rem] md:h-[10rem]">
-                      <img
-                        src="./img/bike1.webp"
-                        alt=""
-                        className="object-contain md:h-full md:w-full"
-                      />
+                  </h2>
+                  <h3 className="pt-2 text-[clamp(.5rem,4vw,1.3rem)] line-clamp-2 font-[montserrat-extralight]">
+                    {item.services_subtitle
+                      ? item.services_subtitle
+                      : "Lorem ipsum dolor sit amet."}
+                  </h3>
+                </div>
+              ))}
+
+              <div className="cards_wrapper flex flex-col lg:flex lg:flex-row lg:gap-14 md:flex-row md:flex-wrap md:gap-5 md:mt-10 md:min-h-[100px]">
+                <div className="py-8 lg:py-0">
+                  {servicesData?.data.map((item, key) => (
+                    <div className="cards" key={key}>
+                      {item.services_img_a === "" ? (
+                        <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative ">
+                          <a
+                            className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                            data-tooltip="Edit Content"
+                            onClick={() => handleAddServices1(item)}
+                          >
+                            <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                          </a>
+                          <div className="image_wrapper w-[20rem] h-[10rem]">
+                            <IoImageOutline className="text-[40px] mx-auto text-gray-500" />
+                          </div>
+                          <h3 className="text-[clamp(.7rem,4.7vw,18px)] font-[montserrat-extrabold]">
+                            {item.services_product_a
+                              ? item.services_product_a
+                              : "Lorem ipsum dolor sit amet consectetur."}
+                          </h3>
+                          <div className="md:min-h-[100px]">
+                            <p className="text-[clamp(.7rem,4.7vw,16px)]">
+                              {item.services_description_a
+                                ? item.services_description_a
+                                : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea itaque quod ab nostrum quas reprehenderit?"}
+                            </p>
+                          </div>
+                          <button className="btn-light">
+                            {item.services_button_text_a
+                              ? item.services_button_text_a
+                              : "Lorem, ipsum dolor."}
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative ">
+                          <a
+                            className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                            data-tooltip="Edit Content"
+                            onClick={() => handleAddServices1(item)}
+                          >
+                            <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                          </a>
+                          <div className="image_wrapper md:w-[20rem] md:h-[10rem]">
+                            <img
+                              src={`${devBaseImgUrl}/${servicesData?.data[0].services_img_a}`}
+                              alt=""
+                              className="object-contain md:h-full md:w-full"
+                            />
+                          </div>
+                          <h3 className="text-[clamp(.7rem,4.7vw,18px)] font-[montserrat-extrabold]">
+                            {item.services_product_a
+                              ? item.services_product_a
+                              : "Lorem ipsum dolor sit amet consectetur."}
+                          </h3>
+                          <div className="md:min-h-[100px]">
+                            <p className="text-[clamp(.7rem,4.7vw,16px)]">
+                              {item.services_description_a
+                                ? item.services_description_a
+                                : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea itaque quod ab nostrum quas reprehenderit?"}
+                            </p>
+                          </div>
+                          <button className="btn-light">
+                            {item.services_button_text_a
+                              ? item.services_button_text_a
+                              : "Lorem, ipsum dolor."}
+                          </button>
+                        </div>
+                      )}
                     </div>
-                    <h3 className="text-[clamp(.7rem,4.7vw,18px)] font-[montserrat-extrabold]">
-                      Sed ut perspiciatis
-                    </h3>
-                    <div className="md:min-h-[100px]">
-                      <p className="text-[clamp(.7rem,4.7vw,16px)]">
-                        Amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor.
-                      </p>
-                    </div>
-                    <button className="btn-light">Talk to Us</button>
+                  ))}
+                </div>
+                <div className="py-8 lg:py-0">
+                  <div className="cards">
+                    {servicesData?.data.map((item, key) => (
+                      <div key={key}>
+                        {item.services_img_b === "" ? (
+                          <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
+                            <a
+                              className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                              data-tooltip="Edit Content"
+                              onClick={() => handleAddServices2(item)}
+                            >
+                              <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                            </a>
+                            <div className="image_wrapper w-[20rem] h-[10rem]">
+                              <IoImageOutline className="text-[40px] mx-auto text-gray-500" />
+                            </div>
+
+                            <h3 className="text-[clamp(.7rem,4.7vw,18px)] font-[montserrat-extrabold]">
+                              {item.services_product_b
+                                ? item.services_product_b
+                                : "Lorem ipsum dolor sit amet consectetur."}
+                            </h3>
+                            <div className="md:h-[100px]">
+                              <p className="text-[clamp(.7rem,4.7vw,16px)]">
+                                {item.services_description_b
+                                  ? item.services_description_b
+                                  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea itaque quod ab nostrum quas reprehenderit?"}
+                              </p>
+                            </div>
+                            <button className="btn-light">
+                              {item.services_button_text_b
+                                ? item.services_button_text_b
+                                : "Lorem, ipsum dolor."}
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
+                            <a
+                              className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                              data-tooltip="Edit Content"
+                              onClick={() => handleAddServices2(item)}
+                            >
+                              <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                            </a>
+                            <div className="image_wrapper md:w-[20rem] md:h-[10rem] ">
+                              <img
+                                src={`${devBaseImgUrl}/${servicesData?.data[0].services_img_b}`}
+                                alt=""
+                                className="object-contain md:h-full md:w-full"
+                              />
+                            </div>
+
+                            <h3 className="text-[clamp(.7rem,4.7vw,18px)] font-[montserrat-extrabold]">
+                              {item.services_product_b
+                                ? item.services_product_b
+                                : "Lorem ipsum dolor sit amet consectetur."}
+                            </h3>
+                            <div className="md:h-[100px]">
+                              <p className="text-[clamp(.7rem,4.7vw,16px)]">
+                                {item.services_description_b
+                                  ? item.services_description_b
+                                  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea itaque quod ab nostrum quas reprehenderit?"}
+                              </p>
+                            </div>
+                            <button className="btn-light">
+                              {item.services_button_text_b
+                                ? item.services_button_text_b
+                                : "Lorem, ipsum dolor."}
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
-              <div className="py-8 lg:py-0">
-                <div className="cards">
-                  <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
-                    <a
-                      className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
-                      data-tooltip="Edit Content"
-                      onClick={handleAddServices2}
-                    >
-                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
-                    </a>
-                    <div className="image_wrapper md:w-[20rem] md:h-[10rem] ">
-                      <img
-                        src="./img/bike2.webp"
-                        alt=""
-                        className="object-contain md:h-full md:w-full"
-                      />
-                    </div>
 
-                    <h3 className="text-[clamp(.7rem,4.7vw,18px)] font-[montserrat-extrabold]">
-                      Lorem ipsum dolor
-                    </h3>
-                    <div className="md:h-[100px]">
-                      <p className="text-[clamp(.7rem,4.7vw,16px)]">
-                        Amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis.
-                      </p>
-                    </div>
-                    <button className="btn-light">Talk to Us</button>
-                  </div>
-                </div>
-              </div>
-              <div className="py-8 lg:py-0">
-                <div className="cards">
-                  <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
-                    <a
-                      className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
-                      data-tooltip="Edit Content"
-                      onClick={handleAddServices3}
-                    >
-                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
-                    </a>
-                    <div className="image_wrapper md:w-[20rem] md:h-[10rem]">
-                      <img
-                        src="./img/bike3.webp"
-                        alt=""
-                        className="object-contain md:h-full md:w-full"
-                      />
-                    </div>
-                    <h3 className="text-[clamp(.7rem,4.7vw,18px)] font-[montserrat-extrabold]">
-                      Nemo enim ipsam
-                    </h3>
-                    <div className="md:h-[100px]">
-                      <p className="text-[clamp(.7rem,4.7vw,16px)]">
-                        Consequuntur magni dolores eos qui ratione voluptatem
-                        sequi nesciunt. Neque porro quisquam est, qui dolorem
-                        ipsum quia dolor.
-                      </p>
-                    </div>
-                    <button className="btn-light">Talk to Us</button>
+                <div className="py-8 lg:py-0">
+                  <div className="cards">
+                    {servicesData?.data.map((item, key) => (
+                      <div key={key}>
+                        {item.services_img_c === "" ? (
+                          <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
+                            <a
+                              className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                              data-tooltip="Edit Content"
+                              onClick={() => handleAddServices3(item)}
+                            >
+                              <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                            </a>
+                            <div className="image_wrapper w-[20rem] h-[10rem]">
+                              <IoImageOutline className="text-[40px] mx-auto text-gray-500" />
+                            </div>
+                            <h3 className="text-[clamp(.7rem,4.7vw,18px)] font-[montserrat-extrabold]">
+                              {item.services_product_c
+                                ? item.services_product_c
+                                : "Lorem ipsum dolor sit amet consectetur."}
+                            </h3>
+                            <div className="md:h-[100px]">
+                              <p className="text-[clamp(.7rem,4.7vw,16px)]">
+                                {item.services_description_c
+                                  ? item.services_description_c
+                                  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea itaque quod ab nostrum quas reprehenderit?"}
+                              </p>
+                            </div>
+                            <button className="btn-light">
+                              {item.services_button_text_c
+                                ? item.services_button_text_c
+                                : "Lorem, ipsum dolor."}
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
+                            <a
+                              className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                              data-tooltip="Edit Content"
+                              onClick={() => handleAddServices3(item)}
+                            >
+                              <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                            </a>
+                            <div className="image_wrapper md:w-[20rem] md:h-[10rem]">
+                              <img
+                                src={`${devBaseImgUrl}/${servicesData?.data[0].services_img_c}`}
+                                alt=""
+                                className="object-contain md:h-full md:w-full"
+                              />
+                            </div>
+                            <h3 className="text-[clamp(.7rem,4.7vw,18px)] font-[montserrat-extrabold]">
+                              {item.services_product_c
+                                ? item.services_product_c
+                                : "Lorem ipsum dolor sit amet consectetur."}
+                            </h3>
+                            <div className="md:h-[100px]">
+                              <p className="text-[clamp(.7rem,4.7vw,16px)]">
+                                {item.services_description_c
+                                  ? item.services_description_c
+                                  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea itaque quod ab nostrum quas reprehenderit?"}
+                              </p>
+                            </div>
+                            <button className="btn-light">
+                              {item.services_button_text_c
+                                ? item.services_button_text_c
+                                : "Lorem, ipsum dolor."}
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </section>
     </>
   );
