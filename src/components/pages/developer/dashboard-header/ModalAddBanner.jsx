@@ -1,6 +1,9 @@
 import useUploadPhoto from "@/components/custom-hooks/useUploadPhoto";
 import { InputPhotoUpload, InputText } from "@/components/helpers/FormInputs";
-import { apiVersion, devBaseImgUrl } from "@/components/helpers/functions-general";
+import {
+  apiVersion,
+  devBaseImgUrl,
+} from "@/components/helpers/functions-general";
 import { queryData } from "@/components/helpers/queryData";
 import ModalWrapper from "@/components/partials/modals/ModalWrapper";
 import ButtonSpinner from "@/components/partials/spinner/ButtonSpinner";
@@ -14,7 +17,7 @@ import { IoImageOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
 import * as Yup from "yup";
 
-const ModalAddBanner = ({ itemEdit, setIsBanner }) => {
+const ModalAddBanner = ({ itemEdit, setIsBanner, headerData }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
   const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
@@ -34,7 +37,7 @@ const ModalAddBanner = ({ itemEdit, setIsBanner }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/header/banner/${itemEdit.header_aid}`, // update
+        `/v1/header/${headerData?.data[0].header_aid}`, // update
         "put",
         values
       ),
@@ -58,9 +61,14 @@ const ModalAddBanner = ({ itemEdit, setIsBanner }) => {
   }, []);
 
   const initVal = {
-    header_banner_img: itemEdit ? itemEdit.header_banner_img : "",
-    header_banner_text: itemEdit ? itemEdit.header_banner_text : "",
-    header_button_text: itemEdit ? itemEdit.header_button_text : "",
+    isUpdateHeader: itemEdit,
+    header_banner_img: headerData ? headerData?.data[0].header_banner_img : "",
+    header_banner_text: headerData
+      ? headerData?.data[0].header_banner_text
+      : "",
+    header_button_text: headerData
+      ? headerData?.data[0].header_button_text
+      : "",
   };
 
   const yupSchema = Yup.object({});
@@ -71,7 +79,9 @@ const ModalAddBanner = ({ itemEdit, setIsBanner }) => {
       handleClose={handleClose}
     >
       <div className="modal-title">
-        <h2 className="text-sm">{itemEdit ? "Edit" : "Add"} Banner Contents</h2>
+        <h2 className="text-sm">
+          {headerData ? "Edit" : "Add"} Banner Contents
+        </h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />
         </button>
@@ -84,7 +94,8 @@ const ModalAddBanner = ({ itemEdit, setIsBanner }) => {
             // to get all of the data of image
             const data = {
               ...values,
-              header_banner_img: photo?.name || itemEdit.header_banner_img,
+              header_banner_img:
+                photo?.name || headerData?.data[0].header_banner_img,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -97,7 +108,7 @@ const ModalAddBanner = ({ itemEdit, setIsBanner }) => {
                   <div className="mt-5">
                     <span className="top-20 px-2 text-dark">Banner Image</span>
                     <div className="relative w-fit m-auto group">
-                      {itemEdit === null && photo === null ? (
+                      {headerData === null && photo === null ? (
                         <div className="group-hover:opacity-20 bg-dashAccent mb-4 items-center gap-2 h-[180px] w-[350px] border rounded-md p-2 grid place-items-center">
                           <div className="">
                             <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
@@ -106,7 +117,7 @@ const ModalAddBanner = ({ itemEdit, setIsBanner }) => {
                             </h1>
                           </div>
                         </div>
-                      ) : (itemEdit?.header_banner_img === "" &&
+                      ) : (headerData?.data[0].header_banner_img === "" &&
                           photo === null) ||
                         photo === "" ? (
                         <div className="group-hover:opacity-20 mb-4 bg-dashAccent grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
@@ -124,7 +135,7 @@ const ModalAddBanner = ({ itemEdit, setIsBanner }) => {
                               ? URL.createObjectURL(photo) // preview
                               : devBaseImgUrl +
                                 "/" +
-                                itemEdit?.header_banner_img // check db
+                                headerData?.data[0].header_banner_img // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"

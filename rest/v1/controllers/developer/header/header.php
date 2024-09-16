@@ -20,14 +20,17 @@ if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
     sendResponse($result);
     exit;
   }
-
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $result = require 'create.php';
+    sendResponse($result);
+    exit;
+  }
   // PUT
   if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $result = require 'update.php';
     sendResponse($result);
     exit;
   }
-  
 }
 
 http_response_code(200);

@@ -28,8 +28,8 @@ const Header = () => {
   return (
     <header className={store.isShow ? "" : "overflow-hidden"} id="header">
       <div className="container relative">
-        {headerData?.data.map((item, key) => (
-          <div className="flex justify-between items-center" key={key}>
+        
+          <div className="flex justify-between items-center">
             <div className="py-1 w-[90px] md:w-[115px] md:h-[37px] relative">
               <img
                 src={`${devBaseImgUrl}/${headerData?.data[0].header_logo_img}`}
@@ -37,7 +37,6 @@ const Header = () => {
                 className="object-cover"
               />
             </div>
-
             <nav>
               <div className="toggle lg:hidden" onClick={handleShow}>
                 <span></span>
@@ -46,21 +45,21 @@ const Header = () => {
               </div>
               <ul className={store.isShow ? "show nav" : "nav"}>
                 <li className="hover:text-accent cursor-pointer">
-                  {item.header_nav_a}
+                  {headerData?.data[0].header_nav_a}
                 </li>
                 <li className="hover:text-accent cursor-pointer">
-                  {item.header_nav_b}
+                  {headerData?.data[0].header_nav_b}
                 </li>
                 <li className="hover:text-accent cursor-pointer">
-                  {item.header_nav_c}
+                  {headerData?.data[0].header_nav_c}
                 </li>
                 <li className="hover:text-accent cursor-pointer">
-                  {item.header_nav_d}
+                  {headerData?.data[0].header_nav_d}
                 </li>
               </ul>
             </nav>
           </div>
-        ))}
+       
       </div>
     </header>
   );

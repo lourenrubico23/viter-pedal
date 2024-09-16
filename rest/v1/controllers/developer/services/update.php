@@ -13,21 +13,57 @@ if (array_key_exists("servicesid", $_GET)) {
   checkPayload($data);
   // get data
 
-  $services->services_aid = $_GET['servicesid'];
-  $services->services_title = $data["services_title"];
-  $services->services_subtitle = $data["services_subtitle"];
+  $isUpdateServices = $data['isUpdateServices'];
+  if ($isUpdateServices == "titleUpdate") {
+    $services->services_aid = $_GET['servicesid'];
+    $services->services_title = $data["services_title"];
+    $services->services_subtitle = $data["services_subtitle"];
 
-  $services->services_datetime = date("Y-m-d H:i:s");
-  checkId($services->services_aid);
+    $services->services_datetime = date("Y-m-d H:i:s");
+    checkId($services->services_aid);
+    // update
+    $query = checkUpdate($services);
+    returnSuccess($services, "services", $query);
+  }
+  if ($isUpdateServices == "productAUpdate") {
+    $services->services_aid = $_GET['servicesid'];
+    $services->services_img_a = $data["services_img_a"];
+    $services->services_product_a = $data["services_product_a"];
+    $services->services_description_a = $data["services_description_a"];
+    $services->services_button_text_a = $data["services_button_text_a"];
 
+    $services->services_datetime = date("Y-m-d H:i:s");
+    checkId($services->services_aid);
+    // update
+    $query = checkUpdateProductA($services);
+    returnSuccess($services, "services", $query);
+  }
+  if ($isUpdateServices == "productBUpdate") {
+    $services->services_aid = $_GET['servicesid'];
+    $services->services_img_b = $data["services_img_b"];
+    $services->services_product_b = $data["services_product_b"];
+    $services->services_description_b = $data["services_description_b"];
+    $services->services_button_text_b = $data["services_button_text_b"];
 
-  // //checks current data to avoid same entries from being updated
-  // $employees_fname_old = checkIndex($data, 'employees_fname_old');
-  // compareName($services, $employees_fname_old, $services->employees_fname);
+    $services->services_datetime = date("Y-m-d H:i:s");
+    checkId($services->services_aid);
+    // update
+    $query = checkUpdateProductB($services);
+    returnSuccess($services, "services", $query);
+  }
+  if ($isUpdateServices == "productCUpdate") {
+    $services->services_aid = $_GET['servicesid'];
+    $services->services_img_c = $data["services_img_c"];
+    $services->services_product_c = $data["services_product_c"];
+    $services->services_description_c = $data["services_description_c"];
+    $services->services_button_text_c = $data["services_button_text_c"];
 
-  // update
-  $query = checkUpdate($services);
-  returnSuccess($services, "services", $query);
+    $services->services_datetime = date("Y-m-d H:i:s");
+    checkId($services->services_aid);
+    // update
+    $query = checkUpdateProductC($services);
+    returnSuccess($services, "services", $query);
+  }
 }
 
 // return 404 error if endpoint not available

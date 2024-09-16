@@ -14,7 +14,7 @@ const Header = () => {
   const [isAdd, setIsAdd] = React.useState(false);
   const [isNav, setIsNav] = React.useState(false);
   const [isBanner, setIsBanner] = React.useState(false);
-  const [itemEdit, setItemEdit] = React.useState(null);
+  const [itemEdit, setItemEdit] = React.useState("");
 
   const {
     isFetching,
@@ -28,7 +28,6 @@ const Header = () => {
 
   return (
     <>
-     
       <DashboardBanner
         setItemEdit={setItemEdit}
         setIsAdd={setIsAdd}
@@ -37,15 +36,29 @@ const Header = () => {
         headerData={headerData}
         isFetching={isFetching}
       />
-    
 
-      {isAdd && <ModalAddLogo itemEdit={itemEdit} setIsAdd={setIsAdd} />}
-      {isNav && <ModalAddNavigation itemEdit={itemEdit} setIsNav={setIsNav} />}
+      {isAdd && (
+        <ModalAddLogo
+          itemEdit={itemEdit}
+          setIsAdd={setIsAdd}
+          headerData={headerData}
+        />
+      )}
+      {isNav && (
+        <ModalAddNavigation
+          itemEdit={itemEdit}
+          setIsNav={setIsNav}
+          headerData={headerData}
+        />
+      )}
       {isBanner && (
-        <ModalAddBanner itemEdit={itemEdit} setIsBanner={setIsBanner} />
+        <ModalAddBanner
+          itemEdit={itemEdit}
+          setIsBanner={setIsBanner}
+          headerData={headerData}
+        />
       )}
       {store.success && <ModalSuccess />}
-      {store.error && <ModalError />}
     </>
   );
 };

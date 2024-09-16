@@ -21,7 +21,7 @@ import { IoImageOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
 import * as Yup from "yup";
 
-const ModalAddServices2 = ({ itemEdit, setIsServices2 }) => {
+const ModalAddServices2 = ({ itemEdit, setIsServices2, servicesData }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
   const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
@@ -41,10 +41,8 @@ const ModalAddServices2 = ({ itemEdit, setIsServices2 }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/services/update-product-b/${itemEdit.services_aid}` // update
-          : `/v1/services`, // create
-        itemEdit ? "put" : "post",
+        `/v1/services/${servicesData?.data[0].services_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -57,7 +55,7 @@ const ModalAddServices2 = ({ itemEdit, setIsServices2 }) => {
         console.log("Success");
         setIsServices2(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
@@ -67,10 +65,17 @@ const ModalAddServices2 = ({ itemEdit, setIsServices2 }) => {
   }, []);
 
   const initVal = {
-    services_img_b: itemEdit ? itemEdit.services_img_b : "",
-    services_product_b: itemEdit ? itemEdit.services_product_b : "",
-    services_description_b: itemEdit ? itemEdit.services_description_b : "",
-    services_button_text_b: itemEdit ? itemEdit.services_button_text_b : "",
+    isUpdateServices: itemEdit,
+    services_img_b: servicesData ? servicesData?.data[0].services_img_b : "",
+    services_product_b: servicesData
+      ? servicesData?.data[0].services_product_b
+      : "",
+    services_description_b: servicesData
+      ? servicesData?.data[0].services_description_b
+      : "",
+    services_button_text_b: servicesData
+      ? servicesData?.data[0].services_button_text_b
+      : "",
   };
 
   const yupSchema = Yup.object({});
@@ -81,7 +86,7 @@ const ModalAddServices2 = ({ itemEdit, setIsServices2 }) => {
       handleClose={handleClose}
     >
       <div className="modal-title">
-        <h2 className="text-sm">{itemEdit ? "Edit" : "Add"} Services</h2>
+        <h2 className="text-sm">Edit Services</h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />
         </button>
@@ -94,7 +99,8 @@ const ModalAddServices2 = ({ itemEdit, setIsServices2 }) => {
             // to get all of the data of image
             const data = {
               ...values,
-              services_img_b: photo?.name || itemEdit.services_img_b,
+              services_img_b:
+                photo?.name || servicesData?.data[0].services_img_b,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -109,7 +115,7 @@ const ModalAddServices2 = ({ itemEdit, setIsServices2 }) => {
                       Services Image
                     </span>
                     <div className="relative w-fit m-auto group">
-                      {itemEdit === null && photo === null ? (
+                      {servicesData === null && photo === null ? (
                         <div className="group-hover:opacity-20 bg-dashAccent mb-4 items-center gap-2 h-[180px] w-[350px] border rounded-md p-2 grid place-items-center">
                           <div className="">
                             <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
@@ -118,7 +124,8 @@ const ModalAddServices2 = ({ itemEdit, setIsServices2 }) => {
                             </h1>
                           </div>
                         </div>
-                      ) : (itemEdit?.services_img_b === "" && photo === null) ||
+                      ) : (servicesData?.data[0].services_img_b === "" &&
+                          photo === null) ||
                         photo === "" ? (
                         <div className="group-hover:opacity-20 mb-4 bg-dashAccent grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
                           <div>
@@ -133,7 +140,9 @@ const ModalAddServices2 = ({ itemEdit, setIsServices2 }) => {
                           src={
                             photo
                               ? URL.createObjectURL(photo) // preview
-                              : devBaseImgUrl + "/" + itemEdit?.services_img_b // check db
+                              : devBaseImgUrl +
+                                "/" +
+                                servicesData?.data[0].services_img_b // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"

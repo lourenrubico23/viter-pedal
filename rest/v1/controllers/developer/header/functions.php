@@ -4,7 +4,7 @@
 function checkUpdateLogoImg($object)
 {
     $query = $object->updateLogoImg();
-    checkQuery($query, "There's a problem processing your request. (update)");
+    checkQuery($query, "There's a problem processing your request. (update logo)");
     return $query;
 }
 
@@ -12,6 +12,6 @@ function checkUpdateLogoImg($object)
 function checkUpdateBanner($object)
 {
     $query = $object->updateBanner();
-    checkQuery($query, "There's a problem processing your request. (update)");
+    checkQuery($query, "There's a problem processing your request. (update banner)");
     return $query;
 }

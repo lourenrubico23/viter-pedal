@@ -13,23 +13,42 @@ if (array_key_exists("headerid", $_GET)) {
   checkPayload($data);
   // get data
 
-  $header->header_aid = $_GET['headerid'];
-  $header->header_nav_a = checkIndex($data, "header_nav_a");
-  $header->header_nav_b = checkIndex($data, "header_nav_b");
-  $header->header_nav_c = checkIndex($data, "header_nav_c");
-  $header->header_nav_d = checkIndex($data, "header_nav_d");;
+  $isUpdateHeader = $data['isUpdateHeader'];
+  if ($isUpdateHeader == "logoUpdate") {
+    $header->header_aid = $_GET['headerid'];
+    $header->header_logo_img = $data["header_logo_img"];
 
-  $header->header_datetime = date("Y-m-d H:i:s");
-  checkId($header->header_aid);
+    $header->header_datetime = date("Y-m-d H:i:s");
+    checkId($header->header_aid);
+    // update
+    $query = checkUpdateLogoImg($header);
+    returnSuccess($header, "header", $query);
+  }
+  if ($isUpdateHeader == "navUpdate") {
+    $header->header_aid = $_GET['headerid'];
+    $header->header_nav_a = $data["header_nav_a"];
+    $header->header_nav_b = $data["header_nav_b"];
+    $header->header_nav_c = $data["header_nav_c"];
+    $header->header_nav_d = $data["header_nav_d"];;
 
+    $header->header_datetime = date("Y-m-d H:i:s");
+    checkId($header->header_aid);
+    // update
+    $query = checkUpdate($header);
+    returnSuccess($header, "header", $query);
+  }
+  if ($isUpdateHeader == "bannerUpdate") {
+    $header->header_aid = $_GET['headerid'];
+    $header->header_banner_img = $data["header_banner_img"];
+    $header->header_banner_text = $data["header_banner_text"];
+    $header->header_button_text = $data["header_button_text"];
 
-  // //checks current data to avoid same entries from being updated
-  // $employees_fname_old = checkIndex($data, 'employees_fname_old');
-  // compareName($header, $employees_fname_old, $header->employees_fname);
-
-  // update
-  $query = checkUpdate($header);
-  returnSuccess($header, "header", $query);
+    $header->header_datetime = date("Y-m-d H:i:s");
+    checkId($header->header_aid);
+    // update
+    $query = checkUpdateBanner($header);
+    returnSuccess($header, "header", $query);
+  }
 }
 
 // return 404 error if endpoint not available

@@ -10,32 +10,24 @@ const DashboardServices = ({
   setIsServices1,
   setIsServices2,
   setIsServices3,
+  servicesData,
+  isFetching,
 }) => {
-  const {
-    isFetching,
-    error,
-    data: servicesData,
-  } = useQueryData(
-    "/v1/services", // endpoint
-    "get", // method
-    "services" // key
-  );
-
-  const handleAddTitle = (item) => {
+  const handleAddTitle = () => {
     setIsAdd(true);
-    setItemEdit(item);
+    setItemEdit("titleUpdate");
   };
-  const handleAddServices1 = (item) => {
+  const handleAddServices1 = () => {
     setIsServices1(true);
-    setItemEdit(item);
+    setItemEdit("productAUpdate");
   };
-  const handleAddServices2 = (item) => {
+  const handleAddServices2 = () => {
     setIsServices2(true);
-    setItemEdit(item);
+    setItemEdit("productBUpdate");
   };
-  const handleAddServices3 = (item) => {
+  const handleAddServices3 = () => {
     setIsServices3(true);
-    setItemEdit(item);
+    setItemEdit("productCUpdate");
   };
   return (
     <>
@@ -46,30 +38,25 @@ const DashboardServices = ({
         ) : (
           <div className="card_wrapper py-14 relative">
             <div className="container_dashboard lg:py-20">
-              {servicesData?.data.map((item, key) => (
-                <div
-                  className="flex flex-col justify-center text-center pb-5 lg:text-left lg:pb-14"
-                  key={key}
-                >
-                  <h2 className="flex flex-row text-[clamp(1rem,6vw,2.5rem)] font-[montserrat-medium]">
-                    {item.services_title
-                      ? item.services_title
-                      : "Lorem ipsum dolor sit amet."}
-                    <a
-                      className="relative z-30  cursor-pointer tooltip-header"
-                      data-tooltip="Edit Content"
-                      onClick={() => handleAddTitle(item)}
-                    >
-                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
-                    </a>
-                  </h2>
-                  <h3 className="pt-2 text-[clamp(.5rem,4vw,1.3rem)] line-clamp-2 font-[montserrat-extralight]">
-                    {item.services_subtitle
-                      ? item.services_subtitle
-                      : "Lorem ipsum dolor sit amet."}
-                  </h3>
-                </div>
-              ))}
+              <div className="flex flex-col justify-center text-center pb-5 lg:text-left lg:pb-14">
+                <h2 className="flex flex-row text-[clamp(1rem,6vw,2.5rem)] font-[montserrat-medium]">
+                  {servicesData?.data[0].services_title
+                    ? servicesData?.data[0].services_title
+                    : "Lorem ipsum dolor sit amet."}
+                  <a
+                    className="relative z-30  cursor-pointer tooltip-header"
+                    data-tooltip="Edit Content"
+                    onClick={handleAddTitle}
+                  >
+                    <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                  </a>
+                </h2>
+                <h3 className="pt-2 text-[clamp(.5rem,4vw,1.3rem)] line-clamp-2 font-[montserrat-extralight]">
+                  {servicesData?.data[0].services_subtitle
+                    ? servicesData?.data[0].services_subtitle
+                    : "Lorem ipsum dolor sit amet."}
+                </h3>
+              </div>
 
               <div className="cards_wrapper flex flex-col lg:flex lg:flex-row lg:gap-14 md:flex-row md:flex-wrap md:gap-5 md:mt-10 md:min-h-[100px]">
                 <div className="py-8 lg:py-0">
@@ -80,12 +67,12 @@ const DashboardServices = ({
                           <a
                             className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                             data-tooltip="Edit Content"
-                            onClick={() => handleAddServices1(item)}
+                            onClick={handleAddServices1}
                           >
                             <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                           </a>
-                          <div className="image_wrapper w-[20rem] h-[10rem]">
-                            <IoImageOutline className="text-[40px] mx-auto text-gray-500" />
+                          <div className="image_wrapper w-[20rem] h-[10rem] bg-gray-300 place-content-center">
+                            <IoImageOutline className="text-[40px] mx-auto text-gray-500 " />
                           </div>
                           <h3 className="text-[clamp(.7rem,4.7vw,18px)] font-[montserrat-extrabold]">
                             {item.services_product_a
@@ -110,7 +97,7 @@ const DashboardServices = ({
                           <a
                             className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                             data-tooltip="Edit Content"
-                            onClick={() => handleAddServices1(item)}
+                            onClick={handleAddServices1}
                           >
                             <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                           </a>
@@ -152,11 +139,11 @@ const DashboardServices = ({
                             <a
                               className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                               data-tooltip="Edit Content"
-                              onClick={() => handleAddServices2(item)}
+                              onClick={handleAddServices2}
                             >
                               <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                             </a>
-                            <div className="image_wrapper w-[20rem] h-[10rem]">
+                            <div className="image_wrapper w-[20rem] h-[10rem] bg-gray-300 place-content-center">
                               <IoImageOutline className="text-[40px] mx-auto text-gray-500" />
                             </div>
 
@@ -183,7 +170,7 @@ const DashboardServices = ({
                             <a
                               className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                               data-tooltip="Edit Content"
-                              onClick={() => handleAddServices2(item)}
+                              onClick={handleAddServices2}
                             >
                               <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                             </a>
@@ -228,11 +215,11 @@ const DashboardServices = ({
                             <a
                               className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                               data-tooltip="Edit Content"
-                              onClick={() => handleAddServices3(item)}
+                              onClick={handleAddServices3}
                             >
                               <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                             </a>
-                            <div className="image_wrapper w-[20rem] h-[10rem]">
+                            <div className="image_wrapper w-[20rem] h-[10rem] bg-gray-300 place-content-center">
                               <IoImageOutline className="text-[40px] mx-auto text-gray-500" />
                             </div>
                             <h3 className="text-[clamp(.7rem,4.7vw,18px)] font-[montserrat-extrabold]">
@@ -258,7 +245,7 @@ const DashboardServices = ({
                             <a
                               className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                               data-tooltip="Edit Content"
-                              onClick={() => handleAddServices3(item)}
+                              onClick={handleAddServices3}
                             >
                               <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                             </a>

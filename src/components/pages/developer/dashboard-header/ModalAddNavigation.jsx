@@ -10,7 +10,7 @@ import React from "react";
 import { GrFormClose } from "react-icons/gr";
 import * as Yup from "yup";
 
-const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
+const ModalAddNavigation = ({ itemEdit, setIsNav, headerData }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
 
@@ -26,7 +26,7 @@ const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/header/${itemEdit.header_aid}`, // update
+        `/v1/header/${headerData?.data[0].header_aid}`, // update
         "put",
         values
       ),
@@ -50,10 +50,11 @@ const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
   }, []);
 
   const initVal = {
-    header_nav_a: itemEdit ? itemEdit.header_nav_a : "",
-    header_nav_b: itemEdit ? itemEdit.header_nav_b : "",
-    header_nav_c: itemEdit ? itemEdit.header_nav_c : "",
-    header_nav_d: itemEdit ? itemEdit.header_nav_d : "",
+    isUpdateHeader: itemEdit,
+    header_nav_a: headerData ? headerData?.data[0].header_nav_a : "",
+    header_nav_b: headerData ? headerData?.data[0].header_nav_b : "",
+    header_nav_c: headerData ? headerData?.data[0].header_nav_c : "",
+    header_nav_d: headerData ? headerData?.data[0].header_nav_d : "",
   };
 
   const yupSchema = Yup.object({});
@@ -65,7 +66,7 @@ const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
     >
       <div className="modal-title">
         <h2 className="text-sm">
-          {itemEdit ? "Edit" : "Add"} Header Navigation
+          {headerData ? "Edit" : "Add"} Header Navigation
         </h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />
@@ -125,7 +126,7 @@ const ModalAddNavigation = ({ itemEdit, setIsNav }) => {
                     >
                       {mutation.isPending ? (
                         <ButtonSpinner />
-                      ) : itemEdit ? (
+                      ) : headerData ? (
                         "Save"
                       ) : (
                         "Add"

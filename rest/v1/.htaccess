@@ -12,12 +12,7 @@ RewriteRule ^upload-photo$ core/upload-photo.php [L]
 # HEADER
 RewriteRule ^header$ controllers/developer/header/header.php [L]
 RewriteRule ^header/([0-9]+)$ controllers/developer/header/header.php?headerid=$1 [L]
-RewriteRule ^header/logo-img/([0-9]+)$ controllers/developer/header/update-logo-img.php?headerid=$1 [L]
-RewriteRule ^header/banner/([0-9]+)$ controllers/developer/header/update-banner.php?headerid=$1 [L]
 
 # SERVICES
 RewriteRule ^services$ controllers/developer/services/services.php [L]
 RewriteRule ^services/([0-9]+)$ controllers/developer/services/services.php?servicesid=$1 [L]
-RewriteRule ^services/update-product-a/([0-9]+)$ controllers/developer/services/update-product-a.php?servicesid=$1 [L]
-RewriteRule ^services/update-product-b/([0-9]+)$ controllers/developer/services/update-product-b.php?servicesid=$1 [L]
-RewriteRule ^services/update-product-c/([0-9]+)$ controllers/developer/services/update-product-c.php?servicesid=$1 [L]

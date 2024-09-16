@@ -10,7 +10,7 @@ import React from "react";
 import { GrFormClose } from "react-icons/gr";
 import * as Yup from "yup";
 
-const ModalAddServicesTitle = ({ itemEdit, setIsAdd }) => {
+const ModalAddServicesTitle = ({ itemEdit, setIsAdd, servicesData }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
 
@@ -26,7 +26,7 @@ const ModalAddServicesTitle = ({ itemEdit, setIsAdd }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/services/${itemEdit.services_aid}`, // update
+        `/v1/services/${servicesData?.data[0].services_aid}`, // update
         "put",
         values
       ),
@@ -40,7 +40,7 @@ const ModalAddServicesTitle = ({ itemEdit, setIsAdd }) => {
         console.log("Success");
         setIsAdd(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
@@ -50,8 +50,9 @@ const ModalAddServicesTitle = ({ itemEdit, setIsAdd }) => {
   }, []);
 
   const initVal = {
-    services_title: itemEdit ? itemEdit.services_title : "",
-    services_subtitle: itemEdit ? itemEdit.services_subtitle : "",
+    isUpdateServices: itemEdit,
+    services_title: servicesData ? servicesData?.data[0].services_title : "",
+    services_subtitle: servicesData ? servicesData?.data[0].services_subtitle : "",
   };
 
   const yupSchema = Yup.object({});
