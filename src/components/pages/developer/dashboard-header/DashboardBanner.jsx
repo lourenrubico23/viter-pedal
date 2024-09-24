@@ -106,13 +106,13 @@ const DashboardBanner = ({
                 <div className="relative md:bg-no-repeat md:bg-cover">
                   <div className=" container_dashboard flex h-full ">
                     <div className="py-1 grid grid-cols-[_2fr,_1fr] gap-3 w-[100%] h-[100%] relative">
-                      <div className="flex flex-col items-start justify-center md:gap-7 h-[815px] ">
-                        <h1 className="relative text-center md:text-left md:max-w-[calc(50% + 90px)] w-[50%] md:w-[50%] text-[clamp(1rem,5vw,3.5rem)] py-6 font-[montserrat-extralight]">
+                      <div className="flex flex-col items-start justify-center md:gap-7 h-[815px] w-full">
+                        <h1 className="relative flex text-center md:text-left md:max-w-[calc(50% + 90px)] w-[50%] md:w-[50%] text-[clamp(1rem,5vw,3.5rem)] py-6 font-[montserrat-extralight]">
                           {headerData?.data[0].header_banner_text
                             ? headerData?.data[0].header_banner_text
                             : "Lorem ipsum dolor sit amet consectetur adipisicing."}
                           <a
-                            className="absolute z-30 m-10 place-items-end top-2 cursor-pointer tooltip-header"
+                            className="relative z-3 place-items-end top-2 cursor-pointer tooltip-header"
                             data-tooltip="Edit Content"
                             onClick={handleAddBanner}
                           >

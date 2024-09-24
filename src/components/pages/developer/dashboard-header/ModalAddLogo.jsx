@@ -169,13 +169,7 @@ const ModalAddLogo = ({ itemEdit, setIsAdd, headerData }) => {
                         initVal.header_logo_img === photo?.name
                       }
                     >
-                      {mutation.isPending ? (
-                        <ButtonSpinner />
-                      ) : headerData ? (
-                        "Save"
-                      ) : (
-                        "Add"
-                      )}
+                      {mutation.isPending ? <ButtonSpinner /> : "Save"}
                     </button>
                     <button
                       className="btn-modal-cancel"

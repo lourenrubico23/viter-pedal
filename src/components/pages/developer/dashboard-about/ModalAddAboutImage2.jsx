@@ -1,19 +1,22 @@
-import useUploadPhoto from '@/components/custom-hooks/useUploadPhoto';
-import { InputPhotoUpload } from '@/components/helpers/FormInputs';
-import { apiVersion } from '@/components/helpers/functions-general';
-import { queryData } from '@/components/helpers/queryData';
-import ModalWrapper from '@/components/partials/modals/ModalWrapper';
-import ButtonSpinner from '@/components/partials/spinner/ButtonSpinner';
-import { StoreContext } from '@/store/StoreContext';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Form, Formik } from 'formik';
-import React from 'react'
-import { GrFormClose } from 'react-icons/gr';
-import { IoImageOutline } from 'react-icons/io5';
-import { MdOutlineFileUpload } from 'react-icons/md';
+import useUploadPhoto from "@/components/custom-hooks/useUploadPhoto";
+import { InputPhotoUpload } from "@/components/helpers/FormInputs";
+import {
+  apiVersion,
+  devBaseImgUrl,
+} from "@/components/helpers/functions-general";
+import { queryData } from "@/components/helpers/queryData";
+import ModalWrapper from "@/components/partials/modals/ModalWrapper";
+import ButtonSpinner from "@/components/partials/spinner/ButtonSpinner";
+import { StoreContext } from "@/store/StoreContext";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Form, Formik } from "formik";
+import React from "react";
+import { GrFormClose } from "react-icons/gr";
+import { IoImageOutline } from "react-icons/io5";
+import { MdOutlineFileUpload } from "react-icons/md";
 import * as Yup from "yup";
 
-const ModalAddAboutImage2 = ({itemEdit, setIsImage2}) => {
+const ModalAddAboutImage2 = ({ itemEdit, setIsImage2, aboutData }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
   const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
@@ -33,10 +36,8 @@ const ModalAddAboutImage2 = ({itemEdit, setIsImage2}) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/about/${itemEdit.about_aid}` // update
-          : `/v1/about`, // create
-        itemEdit ? "put" : "post",
+        `/v1/about/${aboutData?.data[0].about_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -49,17 +50,18 @@ const ModalAddAboutImage2 = ({itemEdit, setIsImage2}) => {
         console.log("Success");
         setIsImage2(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
-
+console.log(aboutData)
   React.useEffect(() => {
     setAnimate("");
   }, []);
 
   const initVal = {
-    about_img_1: itemEdit ? itemEdit?.data[0].about_img_1 : "",
+    isUpdateAbout: itemEdit,
+    about_img_b: aboutData ? aboutData?.data[0].about_img_b : "",
   };
 
   const yupSchema = Yup.object({});
@@ -70,7 +72,7 @@ const ModalAddAboutImage2 = ({itemEdit, setIsImage2}) => {
       handleClose={handleClose}
     >
       <div className="modal-title">
-        <h2 className="text-sm">{itemEdit ? "Edit" : "Add"} About Image</h2>
+        <h2 className="text-sm">Edit About Image</h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />
         </button>
@@ -83,7 +85,7 @@ const ModalAddAboutImage2 = ({itemEdit, setIsImage2}) => {
             // to get all of the data of image
             const data = {
               ...values,
-              header_img_1: photo?.name || itemEdit.header_img_1,
+              about_img_b: photo?.name || aboutData.about_img_b,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -96,7 +98,7 @@ const ModalAddAboutImage2 = ({itemEdit, setIsImage2}) => {
                   <div className="mt-5">
                     <span className="top-20 px-2 text-dark">About Image</span>
                     <div className="relative w-fit m-auto group">
-                      {itemEdit === null && photo === null ? (
+                      {aboutData === null && photo === null ? (
                         <div className="group-hover:opacity-20 bg-dashAccent mb-4 items-center gap-2 h-[180px] w-[350px] border rounded-md p-2 grid place-items-center">
                           <div className="">
                             <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
@@ -105,12 +107,13 @@ const ModalAddAboutImage2 = ({itemEdit, setIsImage2}) => {
                             </h1>
                           </div>
                         </div>
-                      ) : (itemEdit?.header_img_1 === "" && photo === null) ||
+                      ) : (aboutData?.data[0].about_img_b === "" &&
+                          photo === null) ||
                         photo === "" ? (
-                        <div className="group-hover:opacity-20 mb-4 bg-gray-700 grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
+                        <div className="group-hover:opacity-20 mb-4 bg-dashAccent grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
                           <div>
-                            <IoImageOutline className="text-[30px] text-gray" />
-                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[30px] text-center">
+                            <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
+                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[gray] text-[15px] text-center">
                               Upload Image
                             </h1>
                           </div>
@@ -119,8 +122,10 @@ const ModalAddAboutImage2 = ({itemEdit, setIsImage2}) => {
                         <img
                           src={
                             photo
-                              ? URL.createObjectURl(photo) // preview
-                              : devBaseImgUrl + "/" + itemEdit?.header_img_1 // check db
+                              ? URL.createObjectURL(photo) // preview
+                              : devBaseImgUrl +
+                                "/" +
+                                aboutData?.data[0].about_img_b // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"
@@ -137,7 +142,7 @@ const ModalAddAboutImage2 = ({itemEdit, setIsImage2}) => {
                             accept="image/*"
                             title="Upload Logo"
                             onChange={(e) =>
-                              handleChangePhoto(e, initVal.header_img_1)
+                              handleChangePhoto(e, initVal.about_img_b)
                             }
                             className="opacity-0 absolute right-0 top-0 h-full left-0 m-auto cursor-pointer z-[999]"
                           />
@@ -155,16 +160,10 @@ const ModalAddAboutImage2 = ({itemEdit, setIsImage2}) => {
                         ((mutation.isPending || !props.dirty) &&
                           photo === null) ||
                         photo === "" ||
-                        initVal.header_img_1 === photo?.name
+                        initVal.about_img_b === photo?.name
                       }
                     >
-                      {mutation.isPending ? (
-                        <ButtonSpinner />
-                      ) : itemEdit ? (
-                        "Save"
-                      ) : (
-                        "Add"
-                      )}
+                      {mutation.isPending ? <ButtonSpinner /> : "Save"}
                     </button>
                     <button
                       className="btn-modal-cancel"
@@ -181,7 +180,7 @@ const ModalAddAboutImage2 = ({itemEdit, setIsImage2}) => {
         </Formik>
       </div>
     </ModalWrapper>
-  )
-}
+  );
+};
 
-export default ModalAddAboutImage2
+export default ModalAddAboutImage2;

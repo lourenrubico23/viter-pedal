@@ -1,82 +1,101 @@
-import React from 'react'
-import { FaAngleDoubleRight, FaAngleDoubleUp } from 'react-icons/fa'
+import useQueryData from "@/components/custom-hooks/useQueryData";
+import { devBaseImgUrl } from "@/components/helpers/functions-general";
+import React from "react";
+import { FaAngleDoubleRight, FaAngleDoubleUp } from "react-icons/fa";
 
 const About = () => {
+  const {
+    isFetching,
+    error,
+    data: aboutData,
+  } = useQueryData(
+    "/v1/about", // endpoint
+    "get", // method
+    "about" // key
+  );
+
   return (
     <>
-    {/* discover */}
-    <div>
-        <div className="discover_wrapper" id='about'>
+      {/* discover */}
+      <div>
+        <div className="discover_wrapper" id="about">
           <div className="lg:flex lg:flex-row-reverse lg:relative md:w-[100%] ">
             <div className="container">
               <div className="lg:grid lg:grid-cols-2">
                 <div></div>
                 <div className="dicover flex flex-col gap-4 lg:my-20 lg:ml-20">
                   <h2 className="text-[clamp(1rem,6vw,24px)] font-[montserrat-extrabold] leading-7 text-center lg:text-left">
-                    Discover the Beauty of Nature on Two Wheels
+                    {aboutData?.data[0].about_title_a
+                      ? aboutData?.data[0].about_title_a
+                      : "Lorem ipsum dolor sit amet consectetur"}
                   </h2>
                   <p className="py-2 md:font-bold md:leading-6 text-[clamp(6vw,16px)]">
-                    Biking refers to the activity of riding a bicycle, which is
-                    a pedal-driven, two-wheeled vehicle. It's a popular form of
-                    transportation, recreation, and exercise that involves using
-                    leg power to propel the bike forward. Biking can be done on
-                    various types of terrain, including roads, trails, and
-                    off-road paths, and it offers numerous physical and mental
-                    health benefits, as well as environmental advantages.
+                    {aboutData?.data[0].about_description_a
+                      ? aboutData?.data[0].about_description_a
+                      : "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe iusto reprehenderit earum. Modi molestias vitae esse vero natus dolorem eius, at temporibus quia quas labore nemoearum? Labore nihil, illo veritatis excepturi odiosapiente dignissimos mollitia maiores, quia vero rerumnisi natus aperiam omnis repellat. Dolor laborummolestiae vero blanditiis."}
                   </p>
                   <div className="md:my-5">
                     <div className="discover-content lg:mt-5">
                       <div className="flex flex-row gap-2 md:items-center">
                         <FaAngleDoubleRight className="text-accent text-[clamp(1rem,6vw,2.5rem)]" />
                         <h3 className="text-accent text-[clamp(.5rem,4vw,16px)] lg:hidden">
-                          Improved Health:
+                          {aboutData?.data[0].about_content_title_a
+                            ? aboutData?.data[0].about_content_title_a
+                            : "Lorem ipsum dolor sit amet:"}
                         </h3>
                       </div>
                       <p className="ml-6 my-4 lg:-my-[37px] lg:ml-16 lg:mb-10 font-bold text-gray-500 text-[clamp(.5rem,4vw,14px)] md:leading-[25px]">
                         <span className="text-accent hidden lg:inline-block font-bold ">
-                          Improved Health:
+                          {aboutData?.data[0].about_content_title_a
+                            ? aboutData?.data[0].about_content_title_a
+                            : "Lorem ipsum dolor sit amet:"}
                         </span>{" "}
                         <span></span>
-                        Cycling is an excellent low-impact exercise that can
-                        help improve cardiovascular fitness, increase muscle
-                        strength, and boost overall endurance. It's also great
-                        for maintaining a healthy weight.
+                        {aboutData?.data[0].about_content_description_a
+                          ? aboutData?.data[0].about_content_description_a
+                          : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt at asperiores, omnis quas sint, non recusandae voluptates accusamus quisquam sunt nostrum debitis. Id error quibusdam alias asperiores sint rem quae!"}
                       </p>
                     </div>
                     <div className="discover-content">
                       <div className="flex flex-row gap-2 md:items-center">
                         <FaAngleDoubleRight className="text-accent text-[clamp(1rem,6vw,2.5rem)]" />
                         <h3 className="text-accent text-[clamp(.5rem,4vw,16px)] lg:hidden">
-                          Cost-Effective Transportation:
+                          {aboutData?.data[0].about_content_title_b
+                            ? aboutData?.data[0].about_content_title_b
+                            : "Lorem ipsum dolor sit amet:"}
                         </h3>
                       </div>
                       <p className="ml-6 my-4 lg:-my-[37px] lg:ml-16 lg:mb-10 font-bold text-gray-500 text-[clamp(.5rem,4vw,14px)] md:leading-[25px]">
                         <span className="text-accent hidden lg:inline-block font-bold">
-                          Cost-Effective Transportation:
+                          {aboutData?.data[0].about_content_title_b
+                            ? aboutData?.data[0].about_content_title_b
+                            : "Lorem ipsum dolor sit amet:"}
                         </span>{" "}
                         <span></span>
-                        Biking is an affordable way to get around, especially
-                        compared to driving a car. It also helps save money on
-                        parking fees, fuel costs, and vehicle maintenance.
+                        {aboutData?.data[0].about_content_description_b
+                          ? aboutData?.data[0].about_content_description_b
+                          : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt at asperiores, omnis quas sint, non recusandae voluptates accusamus quisquam sunt nostrum debitis. Id error quibusdam alias asperiores sint rem quae!"}
                       </p>
                     </div>
                     <div className="discover-content">
                       <div className="flex flex-row gap-2 md:items-center">
                         <FaAngleDoubleRight className="text-accent text-[clamp(1rem,6vw,2.5rem)]" />
                         <h3 className="text-accent text-[clamp(.5rem,4vw,16px)] lg:hidden">
-                          Environmental Benefits:
+                          {aboutData?.data[0].about_content_title_c
+                            ? aboutData?.data[0].about_content_title_c
+                            : "Lorem ipsum dolor sit amet:"}
                         </h3>
                       </div>
                       <p className="ml-6 my-4 lg:-my-[37px] lg:ml-16 lg:pb-10 font-bold text-gray-500 text-[clamp(.5rem,4vw,14px)] md:leading-[25px]">
                         <span className="text-accent hidden lg:inline-block font-bold">
-                          Environmental Benefits:
+                          {aboutData?.data[0].about_content_title_c
+                            ? aboutData?.data[0].about_content_title_c
+                            : "Lorem ipsum dolor sit amet:"}
                         </span>{" "}
                         <span></span>
-                        Cycling is an eco-friendly mode of transportation that
-                        doesn't produce air pollution or noise pollution. By
-                        choosing to ride a bike instead of drive, you can reduce
-                        your carbon footprint and contribute to a cleaner
-                        environment.
+                        {aboutData?.data[0].about_content_description_c
+                          ? aboutData?.data[0].about_content_description_c
+                          : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt at asperiores, omnis quas sint, non recusandae voluptates accusamus quisquam sunt nostrum debitis. Id error quibusdam alias asperiores sint rem quae!"}
                       </p>
                     </div>
                   </div>
@@ -85,7 +104,7 @@ const About = () => {
             </div>
             <div className="lg:absolute lg:left-0 lg:top-0 h-full lg:w-[50%] block overflow-hidden">
               <img
-                src="/img/biking.webp"
+                src={`${devBaseImgUrl}/${aboutData?.data[0].about_img_a}`}
                 alt=""
                 className="lg:w-full lg:h-full object-cover md:w-full"
               />
@@ -96,7 +115,7 @@ const About = () => {
         <div className="discover_wrapper lg:flex lg:flex-row-reverse lg:relative md:w-[100%]">
           <div className="lg:absolute lg:right-0 lg:top-0 h-full lg:w-[50%] block ">
             <img
-              src="/img/pedal.webp"
+              src={`${devBaseImgUrl}/${aboutData?.data[0].about_img_b}`}
               alt=""
               className="lg:w-full lg:h-full object-cover md:w-full"
             />
@@ -105,30 +124,28 @@ const About = () => {
             <div className="lg:grid lg:grid-cols-2 lg:mr-20 lg:pr-10 ">
               <div className="dicover flex flex-col gap-4 py-7 lg:gap-0 md:my-6">
                 <h2 className="text-[clamp(1rem,6vw,1.5rem)] font-[montserrat-extrabold] leading-7 text-center lg:text-left lg:flex lg:items-center lg:gap-3 lg:py-10">
-                  About Pedal
+                {aboutData?.data[0].about_title_b
+                        ? aboutData?.data[0].about_title_b
+                        : "Lorem ipsum dolor sit amet"}
                   <FaAngleDoubleUp className="text-accent hidden lg:block" />
                 </h2>
                 <p className="my-3 lg:my-5 lg:text-lg">
-                  Our bike shop is a family-owned business dedicated to
-                  promoting sustainable transportation and fostering a love for
-                  cycling in our community. We offer a wide range of
-                  high-quality bikes, accessories, and gear to cater to riders
-                  of all levels – from beginners to seasoned enthusiasts. Our
-                  knowledgeable staff is always ready to assist you in finding
-                  the perfect bike, ensuring a comfortable and enjoyable riding
-                  experience. Additionally, we provide professional bike
-                  servicing and maintenance to keep your ride running smoothly.
-                  Join us in our mission to create a greener, healthier world
-                  through the joy of cycling!
+                {aboutData?.data[0].about_description_b
+                        ? aboutData?.data[0].about_description_b
+                        : "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe iusto reprehenderit earum. Modi molestias vitae esse vero natus dolorem eius, at temporibus quia quas labore nemoearum? Labore nihil, illo veritatis excepturi odiosapiente dignissimos mollitia maiores, quia vero rerumnisi natus aperiam omnis repellat. Dolor laborummolestiae vero blanditiis."}
                 </p>
               </div>
               <div></div>
               <div className="border-t-[2px] border-gray-400 md:mb-8 mb-4">
                 <h3 className="text-[clamp(.5rem,4vw,18px)] py-1 lg:mt-10 lg:py-3 font-[montserrat-extrabold]">
-                  Our Direct Line:
+                {aboutData?.data[0].about_contact_text
+                        ? aboutData?.data[0].about_contact_text
+                        : "Lorem ipsum dolor sit amet"}
                 </h3>
                 <h2 className="text-accent text-[clamp(1.2rem,4vw,48px)]">
-                  +63 987 654 3210
+                {aboutData?.data[0].about_contact_number
+                        ? aboutData?.data[0].about_contact_number
+                        : "+000000000"}
                 </h2>
               </div>
             </div>
@@ -136,7 +153,7 @@ const About = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default About
+export default About;

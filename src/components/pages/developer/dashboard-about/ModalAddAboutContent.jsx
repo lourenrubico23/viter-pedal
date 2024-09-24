@@ -11,7 +11,7 @@ import { GrFormClose } from 'react-icons/gr';
 import * as Yup from "yup";
 
 
-const ModalAddAboutContent = ({itemEdit, setIsContent}) => {
+const ModalAddAboutContent = ({itemEdit, setIsContent, aboutData}) => {
     const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
 
@@ -27,10 +27,8 @@ const ModalAddAboutContent = ({itemEdit, setIsContent}) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/about/${itemEdit.about_aid}` // update
-          : `/v1/about`, // create
-        itemEdit ? "put" : "post",
+        `/v1/about/${aboutData?.data[0].about_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -41,19 +39,26 @@ const ModalAddAboutContent = ({itemEdit, setIsContent}) => {
         dispatch(setSuccess(false));
       } else {
         console.log("Success");
-        setIsTitle(false);
+        setIsContent(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
+
 
   React.useEffect(() => {
     setAnimate("");
   }, []);
 
   const initVal = {
-    about_img_1: itemEdit ? itemEdit?.data[0].about_img_1 : "",
+    isUpdateAbout: itemEdit,
+    about_content_title_a: aboutData ? aboutData?.data[0].about_content_title_a : "",
+    about_content_title_b: aboutData ? aboutData?.data[0].about_content_title_b : "",
+    about_content_title_c: aboutData ? aboutData?.data[0].about_content_title_c : "",
+    about_content_description_a: aboutData ? aboutData?.data[0].about_content_description_a : "",
+    about_content_description_b: aboutData ? aboutData?.data[0].about_content_description_b : "",
+    about_content_description_c: aboutData ? aboutData?.data[0].about_content_description_c : "",
   };
 
   const yupSchema = Yup.object({});
@@ -65,7 +70,7 @@ const ModalAddAboutContent = ({itemEdit, setIsContent}) => {
   >
     <div className="modal-title">
       <h2 className="text-sm">
-        {itemEdit ? "Edit" : "Add"} About Contents
+        Edit About Contents
       </h2>
       <button onClick={handleClose}>
         <GrFormClose className="text-[25px]" />
@@ -139,13 +144,7 @@ const ModalAddAboutContent = ({itemEdit, setIsContent}) => {
                     type="submit"
                     disabled={mutation.isPending || !props.dirty}
                   >
-                    {mutation.isPending ? (
-                      <ButtonSpinner />
-                    ) : itemEdit ? (
-                      "Save"
-                    ) : (
-                      "Add"
-                    )}
+                    {mutation.isPending ? <ButtonSpinner /> : "Save"}
                   </button>
                   <button
                     className="btn-modal-cancel"

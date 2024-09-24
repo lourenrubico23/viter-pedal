@@ -124,13 +124,7 @@ const ModalAddNavigation = ({ itemEdit, setIsNav, headerData }) => {
                       type="submit"
                       disabled={mutation.isPending || !props.dirty}
                     >
-                      {mutation.isPending ? (
-                        <ButtonSpinner />
-                      ) : headerData ? (
-                        "Save"
-                      ) : (
-                        "Add"
-                      )}
+                      {mutation.isPending ? <ButtonSpinner /> : "Save"}
                     </button>
                     <button
                       className="btn-modal-cancel"
