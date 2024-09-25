@@ -10,7 +10,7 @@ const Testimonial = () => {
       <div className="feedback_wrapper py-12 md:py-32 md:pb-28" id='testimonials'>
         <div className="container">
           <div className="feedback-title flex flex-col items-center pb-5 md:pb-20">
-            <h2 className="text-[clamp(1rem,5vw,48px)] font-[montserrat-extralight]">
+            <h2 className="text-[clamp(1rem,5vw,48px)] font-[montserrat-extralight] text-center leading-tight">
               You’re in good Shop
             </h2>
             <h3 className="text-center block md:hidden">

@@ -55,7 +55,7 @@ const ModalAddServices1 = ({ itemEdit, setIsServices1, servicesData }) => {
         console.log("Success");
         setIsServices1(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
@@ -67,9 +67,15 @@ const ModalAddServices1 = ({ itemEdit, setIsServices1, servicesData }) => {
   const initVal = {
     isUpdateServices: itemEdit,
     services_img_a: servicesData ? servicesData?.data[0].services_img_a : "",
-    services_product_a: servicesData ? servicesData?.data[0].services_product_a : "",
-    services_description_a: servicesData ? servicesData?.data[0].services_description_a : "",
-    services_button_text_a: servicesData ? servicesData?.data[0].services_button_text_a : "",
+    services_product_a: servicesData
+      ? servicesData?.data[0].services_product_a
+      : "",
+    services_description_a: servicesData
+      ? servicesData?.data[0].services_description_a
+      : "",
+    services_button_text_a: servicesData
+      ? servicesData?.data[0].services_button_text_a
+      : "",
   };
 
   const yupSchema = Yup.object({});
@@ -93,7 +99,8 @@ const ModalAddServices1 = ({ itemEdit, setIsServices1, servicesData }) => {
             // to get all of the data of image
             const data = {
               ...values,
-              services_img_a: photo?.name || servicesData?.data[0].services_img_a,
+              services_img_a:
+                photo?.name || servicesData?.data[0].services_img_a,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -117,7 +124,8 @@ const ModalAddServices1 = ({ itemEdit, setIsServices1, servicesData }) => {
                             </h1>
                           </div>
                         </div>
-                      ) : (servicesData?.data[0].services_img_a === "" && photo === null) ||
+                      ) : (servicesData?.data[0].services_img_a === "" &&
+                          photo === null) ||
                         photo === "" ? (
                         <div className="group-hover:opacity-20 mb-4 bg-dashAccent grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
                           <div>
@@ -132,7 +140,9 @@ const ModalAddServices1 = ({ itemEdit, setIsServices1, servicesData }) => {
                           src={
                             photo
                               ? URL.createObjectURL(photo) // preview
-                              : devBaseImgUrl + "/" + servicesData?.data[0].services_img_a // check db
+                              : devBaseImgUrl +
+                                "/" +
+                                servicesData?.data[0].services_img_a // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"
@@ -194,13 +204,7 @@ const ModalAddServices1 = ({ itemEdit, setIsServices1, servicesData }) => {
                         initVal.services_img_a === photo?.name
                       }
                     >
-                      {mutation.isPending ? (
-                        <ButtonSpinner />
-                      ) : itemEdit ? (
-                        "Save"
-                      ) : (
-                        "Add"
-                      )}
+                      {mutation.isPending ? <ButtonSpinner /> : "Save"}
                     </button>
                     <button
                       className="btn-modal-cancel"

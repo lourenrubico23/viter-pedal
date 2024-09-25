@@ -24,3 +24,7 @@ RewriteRule ^about/([0-9]+)$ controllers/developer/about/about.php?aboutid=$1 [L
 # CONTACT BANNER
 RewriteRule ^contactBanner$ controllers/developer/contact-banner/contactBanner.php [L]
 RewriteRule ^contactBanner/([0-9]+)$ controllers/developer/contact-banner/contactBanner.php?contactBannerid=$1 [L]
+
+# TESTIMONIAL
+RewriteRule ^testimonial$ controllers/developer/testimonial/testimonial.php [L]
+RewriteRule ^testimonial/([0-9]+)$ controllers/developer/testimonial/testimonial.php?testimonialid=$1 [L]

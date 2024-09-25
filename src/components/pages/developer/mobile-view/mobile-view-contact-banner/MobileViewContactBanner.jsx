@@ -1,4 +1,5 @@
 import useQueryData from "@/components/custom-hooks/useQueryData";
+import { devBaseImgUrl } from "@/components/helpers/functions-general";
 
 const MobileViewContactBanner = () => {
   const {
@@ -11,9 +12,18 @@ const MobileViewContactBanner = () => {
     "contactBanner" // key
   );
 
+  const contactBannerImg = `${devBaseImgUrl}/${contactBannerData?.data[0].contact_banner_img}`;
+
   return (
     <>
-      <div className="bg-secondary py-16" id="contact-banner">
+      <div
+        className="bg-secondary py-16"
+        id="contact-banner"
+        style={{ backgroundImage: `url(${contactBannerImg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat", }}
+      >
         <div className="container">
           <div className="">
             <h2 className="text-[1.2rem] leading-7 text-center justify-center mx-auto w-[15rem] font-[montserrat-medium] pb-6 text-gray-800">

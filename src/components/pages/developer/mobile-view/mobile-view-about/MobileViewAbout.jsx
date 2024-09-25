@@ -93,7 +93,7 @@ const MobileViewAbout = () => {
                 <img
                   src={`${devBaseImgUrl}/${aboutData?.data[0].about_img_a}`}
                   alt=""
-                  className=" object-cover"
+                  className="object-cover w-full"
                 />
               </div>
             )}
@@ -110,7 +110,7 @@ const MobileViewAbout = () => {
               <img
                 src={`${devBaseImgUrl}/${aboutData?.data[0].about_img_b}`}
                 alt=""
-                className=" object-cover "
+                className="object-cover w-full "
               />
             </div>
           )}

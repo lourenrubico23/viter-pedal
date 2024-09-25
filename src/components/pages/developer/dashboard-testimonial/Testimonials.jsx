@@ -7,6 +7,7 @@ import ModalAddTestimonialTitle from "./ModalAddTestimonialTitle";
 import ModalAddFirstTestimonial from "./ModalAddFirstTestimonial";
 import ModalAddSecondTestimonial from "./ModalAddSecondTestimonial";
 import ModalAddThirdTestimonial from "./ModalAddThirdTestimonial";
+import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const Testimonials = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -16,6 +17,16 @@ const Testimonials = () => {
   const [isThird, setIsThird] = React.useState(false);
   const [itemEdit, setItemEdit] = React.useState(null);
 
+  const {
+    isFetching,
+    error,
+    data: testimonialData,
+  } = useQueryData(
+    "/v1/testimonial", // endpoint
+    "get", // method
+    "testimonial" // key
+  );
+
   return (
     <>
       <DashboardTestimonial
@@ -24,23 +35,35 @@ const Testimonials = () => {
         setIsFirst={setIsFirst}
         setIsSecond={setIsSecond}
         setIsThird={setIsThird}
+        isFetching={isFetching}
+        testimonialData={testimonialData}
       />
       {isAdd && (
-        <ModalAddTestimonialTitle itemEdit={itemEdit} setIsAdd={setIsAdd} />
+        <ModalAddTestimonialTitle
+          itemEdit={itemEdit}
+          setIsAdd={setIsAdd}
+          testimonialData={testimonialData}
+        />
       )}
       {isFirst && (
-        <ModalAddFirstTestimonial itemEdit={itemEdit} setIsFirst={setIsFirst} />
+        <ModalAddFirstTestimonial
+          itemEdit={itemEdit}
+          setIsFirst={setIsFirst}
+          testimonialData={testimonialData}
+        />
       )}
       {isSecond && (
         <ModalAddSecondTestimonial
           itemEdit={itemEdit}
           setIsSecond={setIsSecond}
+          testimonialData={testimonialData}
         />
       )}
       {isThird && (
         <ModalAddThirdTestimonial
           itemEdit={itemEdit}
           setIsThird={setIsThird}
+          testimonialData={testimonialData}
         />
       )}
       {store.success && <ModalSuccess />}

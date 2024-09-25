@@ -1,5 +1,9 @@
 import useUploadPhoto from "@/components/custom-hooks/useUploadPhoto";
-import { InputPhotoUpload, InputText, InputTextArea } from "@/components/helpers/FormInputs";
+import {
+  InputPhotoUpload,
+  InputText,
+  InputTextArea,
+} from "@/components/helpers/FormInputs";
 import {
   apiVersion,
   devBaseImgUrl,
@@ -17,7 +21,11 @@ import { IoImageOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
 import * as Yup from "yup";
 
-const ModalAddFirstTestimonial = ({ itemEdit, setIsFirst }) => {
+const ModalAddFirstTestimonial = ({
+  itemEdit,
+  setIsFirst,
+  testimonialData,
+}) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
   const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
@@ -37,10 +45,8 @@ const ModalAddFirstTestimonial = ({ itemEdit, setIsFirst }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/testimonial/${itemEdit.testimonial_aid}` // update
-          : `/v1/testimonial`, // create
-        itemEdit ? "put" : "post",
+        `/v1/testimonial/${testimonialData?.data[0].testimonial_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -53,7 +59,7 @@ const ModalAddFirstTestimonial = ({ itemEdit, setIsFirst }) => {
         console.log("Success");
         setIsFirst(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
@@ -63,11 +69,16 @@ const ModalAddFirstTestimonial = ({ itemEdit, setIsFirst }) => {
   }, []);
 
   const initVal = {
-    testimonial_name_a: itemEdit ? itemEdit?.data[0].testimonial_name_a : "",
-    testimonial_description_a: itemEdit
-      ? itemEdit?.data[0].testimonial_description_a
+    isUpdateTestimonial: itemEdit,
+    testimonial_img_a: testimonialData
+      ? testimonialData?.data[0].testimonial_img_a
       : "",
-    testimonial_img_a: itemEdit ? itemEdit?.data[0].testimonial_img_a : "",
+    testimonial_name_a: testimonialData
+      ? testimonialData?.data[0].testimonial_name_a
+      : "",
+    testimonial_description_a: testimonialData
+      ? testimonialData?.data[0].testimonial_description_a
+      : "",
   };
 
   const yupSchema = Yup.object({});
@@ -78,7 +89,7 @@ const ModalAddFirstTestimonial = ({ itemEdit, setIsFirst }) => {
       handleClose={handleClose}
     >
       <div className="modal-title">
-        <h2 className="text-sm">{itemEdit ? "Edit" : "Add"} Testimonial</h2>
+        <h2 className="text-sm">Edit Testimonial</h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />
         </button>
@@ -91,7 +102,8 @@ const ModalAddFirstTestimonial = ({ itemEdit, setIsFirst }) => {
             // to get all of the data of image
             const data = {
               ...values,
-              testimonial_img_a: photo?.name || itemEdit.testimonial_img_a,
+              testimonial_img_a:
+                photo?.name || testimonialData?.data[0].testimonial_img_a,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -104,22 +116,22 @@ const ModalAddFirstTestimonial = ({ itemEdit, setIsFirst }) => {
                   <div className="mt-5">
                     <span className="top-20 px-2 text-dark">Image</span>
                     <div className="relative w-fit m-auto group">
-                      {itemEdit === null && photo === null ? (
+                      {testimonialData === null && photo === null ? (
                         <div className="group-hover:opacity-20 bg-dashAccent mb-4 items-center gap-2 h-[180px] w-[350px] border rounded-md p-2 grid place-items-center">
-                          <div className="">
-                            <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
-                            <h1 className="mb-0 leading-tight text-[gray] text-[15px] text-center">
-                              Upload Image
-                            </h1>
-                          </div>
+                        <div className="">
+                          <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
+                          <h1 className="mb-0 leading-tight text-[gray] text-[15px] text-center">
+                            Upload Image
+                          </h1>
                         </div>
-                      ) : (itemEdit?.testimonial_img_a === "" &&
+                      </div>
+                      ) : (testimonialData?.data[0].testimonial_img_a === "" &&
                           photo === null) ||
                         photo === "" ? (
-                        <div className="group-hover:opacity-20 mb-4 bg-gray-700 grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
+                          <div className="group-hover:opacity-20 mb-4 bg-dashAccent grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
                           <div>
-                            <IoImageOutline className="text-[30px] text-gray" />
-                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[30px] text-center">
+                            <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
+                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[gray] text-[15px] text-center">
                               Upload Image
                             </h1>
                           </div>
@@ -128,10 +140,10 @@ const ModalAddFirstTestimonial = ({ itemEdit, setIsFirst }) => {
                         <img
                           src={
                             photo
-                              ? URL.createObjectURl(photo) // preview
+                              ? URL.createObjectURL(photo) // preview
                               : devBaseImgUrl +
                                 "/" +
-                                itemEdit?.testimonial_img_a // check db
+                                testimonialData?.data[0].testimonial_img_a // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"
@@ -185,13 +197,7 @@ const ModalAddFirstTestimonial = ({ itemEdit, setIsFirst }) => {
                         initVal.testimonial_img_a === photo?.name
                       }
                     >
-                      {mutation.isPending ? (
-                        <ButtonSpinner />
-                      ) : itemEdit ? (
-                        "Save"
-                      ) : (
-                        "Add"
-                      )}
+                      {mutation.isPending ? <ButtonSpinner /> : "Save"}
                     </button>
                     <button
                       className="btn-modal-cancel"

@@ -47,11 +47,11 @@ const DashboardAbout = ({
         ) : (
           <div>
             <div className="discover_wrapper">
-              <div className="lg:flex lg:flex-row-reverse lg:relative ">
+              <div className="lg:flex lg:flex-row-reverse lg:relative">
                 <div className="container_dashboard">
-                  <div className="grid grid-cols-2">
+                  <div className="lg:grid lg:grid-cols-2">
                     <div></div>
-                    <div className="dicover flex flex-col gap-4 lg:my-20 lg:ml-20 relative">
+                    <div className="dicover flex flex-col gap-4 lg:my-20 lg:ml-12 mr-20 relative">
                       <h2 className="flex flex-row text-[clamp(1rem,6vw,24px)] font-[montserrat-extrabold] leading-7 text-center lg:text-left">
                         {aboutData?.data[0].about_title_a
                           ? aboutData?.data[0].about_title_a
@@ -145,23 +145,37 @@ const DashboardAbout = ({
                   </div>
                 </div>
                 {aboutData?.data[0].about_img_a === "" ? (
-                  <div>
+                  // <div className="">
+                  //   <a
+                  //     className="absolute z-30 m-10 left-[600px] -top-2 cursor-pointer tooltip-header"
+                  //     data-tooltip="Upload Image"
+                  //     onClick={handleAddImage1}
+                  //   >
+                  //     <FaRegImages className="bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
+                  //   </a>
+                  //   <div className="lg:absolute lg:left-0 lg:top-0 h-full lg:w-[50%] block overflow-hidden">
+                  //     <div className="image_wrapper w-full h-full bg-gray-300 place-content-center">
+                  //       <IoImageOutline className="text-[200px] mx-auto text-gray-500" />
+                  //     </div>
+                  //   </div>
+                  // </div>
+                  <div className="h-full w-full relative">
                     <a
-                      className="absolute z-30 m-10 left-[600px] -top-2 cursor-pointer tooltip-header"
+                      className="absolute z-30 m-10 right-[30px] cursor-pointer tooltip-header-nav"
                       data-tooltip="Upload Image"
                       onClick={handleAddImage1}
                     >
                       <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
                     </a>
-                    <div className="lg:absolute lg:left-0 lg:top-0 h-full lg:w-[50%] block overflow-hidden">
-                      <div className="image_wrapper w-[44rem] h-full bg-gray-300 place-content-center">
+                    <div className=" h-full block">
+                      <div className="image_wrapper h-[635px] bg-gray-300 place-content-center">
                         <IoImageOutline className="text-[200px] mx-auto text-gray-500" />
                       </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2">
-                    <div className="lg:absolute lg:left-0 lg:top-0 h-full lg:w-[50%] block overflow-hidden">
+                  <div className="">
+                    <div className="absolute lg:left-0 lg:top-0 h-full lg:w-[50%] block overflow-hidden">
                       <img
                         src={`${devBaseImgUrl}/${aboutData?.data[0].about_img_a}`}
                         alt=""
@@ -190,10 +204,10 @@ const DashboardAbout = ({
                     <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
                   </a>
                   <div className=" h-full block">
-                      <div className="image_wrapper max-w-full min-h-[35rem] bg-gray-300 place-content-center">
-                        <IoImageOutline className="text-[200px] mx-auto text-gray-500" />
-                      </div>
+                    <div className="image_wrapper max-w-full min-h-[35rem] bg-gray-300 place-content-center">
+                      <IoImageOutline className="text-[200px] mx-auto text-gray-500" />
                     </div>
+                  </div>
                 </div>
               ) : (
                 <div className=" h-full lg:w-full relative">
