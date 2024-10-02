@@ -67,12 +67,8 @@ const DashboardTestimonial = ({
                     >
                       <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                     </a>
-                    <div className="w-[6rem] h-[6rem] lg:w-[30%] lg:h-[100%]">
-                      <img
-                        src={`${devBaseImgUrl}/${testimonialData?.data[0].testimonial_img_a}`}
-                        alt=""
-                        className="object-contain object-top md:h-full md:w-full"
-                      />
+                    <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-content-center">
+                      <IoImageOutline className="text-[30px] mx-auto text-gray-500  " />
                     </div>
 
                     <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%] relative">
@@ -81,7 +77,7 @@ const DashboardTestimonial = ({
                           ? testimonialData?.data[0].testimonial_name_a
                           : "Lorem ipsum dolor sit"}
                       </h3>
-                      <p className="md:font-bold">
+                      <p className="md:font-bold md:min-h-[160px]">
                         {testimonialData?.data[0].testimonial_description_a
                           ? testimonialData?.data[0].testimonial_description_a
                           : "Lorem ipsum dolor sit amet consectetur. Neque risusaugue eget vel pellentesque amet diam amet ultricies. Sapien suspendisse sollicitudin dignissim cursus. Ut acmorbi pretium eget porta magna arcu sit nam. Quis arcuvitae id mi."}
@@ -97,8 +93,12 @@ const DashboardTestimonial = ({
                     >
                       <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                     </a>
-                    <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-content-center">
-                      <IoImageOutline className="text-[30px] mx-auto text-gray-500  " />
+                    <div className="w-[6rem] h-[6rem] lg:w-[30%] lg:h-[100%]">
+                      <img
+                        src={`${devBaseImgUrl}/${testimonialData?.data[0].testimonial_img_a}`}
+                        alt=""
+                        className="object-contain object-top md:h-full md:w-full"
+                      />
                     </div>
 
                     <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%] relative">
@@ -107,7 +107,7 @@ const DashboardTestimonial = ({
                           ? testimonialData?.data[0].testimonial_name_a
                           : "Lorem ipsum dolor sit"}
                       </h3>
-                      <p className="md:font-bold">
+                      <p className="md:font-bold md:min-h-[160px]">
                         {testimonialData?.data[0].testimonial_description_a
                           ? testimonialData?.data[0].testimonial_description_a
                           : "Lorem ipsum dolor sit amet consectetur. Neque risusaugue eget vel pellentesque amet diam amet ultricies. Sapien suspendisse sollicitudin dignissim cursus. Ut acmorbi pretium eget porta magna arcu sit nam. Quis arcuvitae id mi."}
@@ -124,23 +124,29 @@ const DashboardTestimonial = ({
                   >
                     <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                   </a>
-                  <div className="w-[6rem] h-[6rem] lg:w-[30%] lg:h-[100%]">
-                    <img
-                      src="/img/feedback2.webp"
-                      alt=""
-                      className="object-contain object-top lg:h-full lg:w-full"
-                    />
-                  </div>
+                  {testimonialData?.data[0].testimonial_img_b === "" ? (
+                    <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-content-center">
+                      <IoImageOutline className="text-[30px] mx-auto text-gray-500  " />
+                    </div>
+                  ) : (
+                    <div className="w-[6rem] h-[6rem] lg:w-[30%] lg:h-[100%]">
+                      <img
+                        src={`${devBaseImgUrl}/${testimonialData?.data[0].testimonial_img_b}`}
+                        alt=""
+                        className="object-contain object-top lg:h-full lg:w-full"
+                      />
+                    </div>
+                  )}
                   <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%]">
                     <h3 className="text-[clamp(.6rem,4vw,16px)] font-[montserrat-extrabold] md:pb-4">
-                      Annalyn Jovellano
+                      {testimonialData?.data[0].testimonial_name_b
+                        ? testimonialData?.data[0].testimonial_name_b
+                        : "Lorem ipsum dolor sit"}
                     </h3>
-                    <p className="md:font-bold">
-                      Lorem ipsum dolor sit amet consectetur. Neque risus augue
-                      eget vel pellentesque amet diam amet ultricies. Sapien
-                      suspendisse sollicitudin dignissim cursus. Ut ac morbi
-                      pretium eget porta magna arcu sit nam. Quis arcu vitae id
-                      mi.
+                    <p className="md:font-bold md:min-h-[160px]">
+                      {testimonialData?.data[0].testimonial_description_b
+                        ? testimonialData?.data[0].testimonial_description_b
+                        : "Lorem ipsum dolor sit amet consectetur. Neque risusaugue eget vel pellentesque amet diam amet ultricies. Sapien suspendisse sollicitudin dignissim cursus. Ut acmorbi pretium eget porta magna arcu sit nam. Quis arcuvitae id mi."}
                     </p>
                   </div>
                 </div>
@@ -152,23 +158,30 @@ const DashboardTestimonial = ({
                   >
                     <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
                   </a>
-                  <div className="w-[6rem] h-[6rem] lg:w-[30%] lg:h-[100%]">
-                    <img
-                      src="/img/feedback3.webp"
-                      alt=""
-                      className="object-contain object-top lg:h-full lg:w-full"
-                    />
+                  {testimonialData?.data[0].testimonial_img_c === "" ? (
+                    <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-content-center">
+                    <IoImageOutline className="text-[30px] mx-auto text-gray-500  " />
                   </div>
+                  ) : (
+                    <div className="w-[6rem] h-[6rem] lg:w-[30%] lg:h-[100%]">
+                      <img
+                        src={`${devBaseImgUrl}/${testimonialData?.data[0].testimonial_img_c}`}
+                        alt=""
+                        className="object-contain object-top lg:h-full lg:w-full"
+                      />
+                    </div>
+                  )}
+
                   <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%]">
                     <h3 className="text-[clamp(.6rem,4vw,16px)] font-[montserrat-extrabold] md:pb-4">
-                      Mark Anthony Bilog
+                    {testimonialData?.data[0].testimonial_name_c
+                        ? testimonialData?.data[0].testimonial_name_c
+                        : "Lorem ipsum dolor sit"}
                     </h3>
-                    <p className="md:font-bold">
-                      Lorem ipsum dolor sit amet consectetur. Neque risus augue
-                      eget vel pellentesque amet diam amet ultricies. Sapien
-                      suspendisse sollicitudin dignissim cursus. Ut ac morbi
-                      pretium eget porta magna arcu sit nam. Quis arcu vitae id
-                      mi.
+                    <p className="md:font-bold md:min-h-[160px]">
+                    {testimonialData?.data[0].testimonial_description_c
+                        ? testimonialData?.data[0].testimonial_description_c
+                        : "Lorem ipsum dolor sit amet consectetur. Neque risusaugue eget vel pellentesque amet diam amet ultricies. Sapien suspendisse sollicitudin dignissim cursus. Ut acmorbi pretium eget porta magna arcu sit nam. Quis arcuvitae id mi."}
                     </p>
                   </div>
                 </div>

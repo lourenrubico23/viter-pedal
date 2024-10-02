@@ -10,7 +10,6 @@ import ModalError from "@/components/partials/modals/ModalError";
 import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const Services = () => {
-  const { store, dispatch } = React.useContext(StoreContext);
   const [isAdd, setIsAdd] = React.useState(false);
   const [isServices1, setIsServices1] = React.useState(false);
   const [isServices2, setIsServices2] = React.useState(false);
@@ -65,8 +64,7 @@ const Services = () => {
           servicesData={servicesData}
         />
       )}
-      {store.success && <ModalSuccess />}
-      {store.error && <ModalError />}
+      
     </>
   );
 };

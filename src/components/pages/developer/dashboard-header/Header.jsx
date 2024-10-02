@@ -10,7 +10,6 @@ import useQueryData from "@/components/custom-hooks/useQueryData";
 import HeaderLoader from "./HeaderLoader";
 
 const Header = () => {
-  const { store, dispatch } = React.useContext(StoreContext);
   const [isAdd, setIsAdd] = React.useState(false);
   const [isNav, setIsNav] = React.useState(false);
   const [isBanner, setIsBanner] = React.useState(false);
@@ -58,7 +57,6 @@ const Header = () => {
           headerData={headerData}
         />
       )}
-      {store.success && <ModalSuccess />}
     </>
   );
 };

@@ -12,7 +12,6 @@ import ModalAddAboutImage2 from "./ModalAddAboutImage2";
 import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const About = () => {
-  const { store, dispatch } = React.useContext(StoreContext);
   const [isAdd, setIsAdd] = React.useState(false);
   const [isTitle, setIsTitle] = React.useState(false);
   const [isContent, setIsContent] = React.useState(false);
@@ -77,8 +76,7 @@ const About = () => {
           aboutData={aboutData}
         />
       )}
-      {store.success && <ModalSuccess />}
-      {store.error && <ModalError />}
+      
     </>
   );
 };

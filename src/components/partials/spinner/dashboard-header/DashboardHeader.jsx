@@ -1,17 +1,13 @@
+import React from "react";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import { FaDesktop } from "react-icons/fa";
 import { FiSmartphone } from "react-icons/fi";
 import { LuPaintbrush2 } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { devNavUrl } from "../../../helpers/functions-general";
-import React from "react";
-import { StoreContext } from "@/store/StoreContext";
 import ModalChangeColor from "./ModalChangeColor";
-import ModalSuccess from "../../modals/ModalSuccess";
-import ModalError from "../../modals/ModalError";
 
 const DashboardHeader = ({ menu }) => {
-  const { store, dispatch } = React.useContext(StoreContext);
   const [isAdd, setIsAdd] = React.useState(false);
   const [itemEdit, setItemEdit] = React.useState(null);
 
@@ -62,11 +58,12 @@ const DashboardHeader = ({ menu }) => {
                   menu === "colors"
                     ? "text-dark"
                     : "text-dashAccent hover:text-dark"
-                }`} 
+                }`}
               >
                 <Link
                   className="tooltip-colors"
-                  data-tooltip="Color Palette"onClick={handleChangeColor}
+                  data-tooltip="Color Palette"
+                  onClick={handleChangeColor}
                 >
                   <LuPaintbrush2 className="size-4 text-dashAccent hover:text-dark" />
                 </Link>
@@ -91,9 +88,7 @@ const DashboardHeader = ({ menu }) => {
         </div>
       </div>
 
-      {isAdd && <ModalChangeColor itemEdit={itemEdit} setIsAdd={setIsAdd}/>}
-      {store.success && <ModalSuccess />}
-      {store.error && <ModalError />}
+      {isAdd && <ModalChangeColor itemEdit={itemEdit} setIsAdd={setIsAdd} />}
     </>
   );
 };

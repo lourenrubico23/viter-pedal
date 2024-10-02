@@ -1,5 +1,9 @@
 import useUploadPhoto from "@/components/custom-hooks/useUploadPhoto";
-import { InputPhotoUpload, InputText, InputTextArea } from "@/components/helpers/FormInputs";
+import {
+  InputPhotoUpload,
+  InputText,
+  InputTextArea,
+} from "@/components/helpers/FormInputs";
 import {
   apiVersion,
   devBaseImgUrl,
@@ -17,7 +21,11 @@ import { IoImageOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
 import * as Yup from "yup";
 
-const ModalAddSecondTestimonial = ({ itemEdit, setIsSecond }) => {
+const ModalAddSecondTestimonial = ({
+  itemEdit,
+  setIsSecond,
+  testimonialData,
+}) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
   const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
@@ -37,10 +45,8 @@ const ModalAddSecondTestimonial = ({ itemEdit, setIsSecond }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/testimonial/${itemEdit.testimonial_aid}` // update
-          : `/v1/testimonial`, // create
-        itemEdit ? "put" : "post",
+        `/v1/testimonial/${testimonialData?.data[0].testimonial_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -53,7 +59,7 @@ const ModalAddSecondTestimonial = ({ itemEdit, setIsSecond }) => {
         console.log("Success");
         setIsSecond(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
@@ -63,11 +69,16 @@ const ModalAddSecondTestimonial = ({ itemEdit, setIsSecond }) => {
   }, []);
 
   const initVal = {
-    testimonial_name_b: itemEdit ? itemEdit?.data[0].testimonial_name_b : "",
-    testimonial_description_b: itemEdit
-      ? itemEdit?.data[0].testimonial_description_b
+    isUpdateTestimonial: itemEdit,
+    testimonial_img_b: testimonialData
+      ? testimonialData?.data[0].testimonial_img_b
       : "",
-    testimonial_img_b: itemEdit ? itemEdit?.data[0].testimonial_img_b : "",
+    testimonial_description_b: testimonialData
+      ? testimonialData?.data[0].testimonial_description_b
+      : "",
+    testimonial_name_b: testimonialData
+      ? testimonialData?.data[0].testimonial_name_b
+      : "",
   };
 
   const yupSchema = Yup.object({});
@@ -78,7 +89,9 @@ const ModalAddSecondTestimonial = ({ itemEdit, setIsSecond }) => {
       handleClose={handleClose}
     >
       <div className="modal-title">
-        <h2 className="text-sm">{itemEdit ? "Edit" : "Add"} Testimonial</h2>
+        <h2 className="text-sm">
+          {testimonialData ? "Edit" : "Add"} Testimonial
+        </h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />
         </button>
@@ -91,7 +104,8 @@ const ModalAddSecondTestimonial = ({ itemEdit, setIsSecond }) => {
             // to get all of the data of image
             const data = {
               ...values,
-              testimonial_img_b: photo?.name || itemEdit.testimonial_img_b,
+              testimonial_img_b:
+                photo?.name || testimonialData.testimonial_img_b,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -104,7 +118,7 @@ const ModalAddSecondTestimonial = ({ itemEdit, setIsSecond }) => {
                   <div className="mt-5">
                     <span className="top-20 px-2 text-dark">Image</span>
                     <div className="relative w-fit m-auto group">
-                      {itemEdit === null && photo === null ? (
+                      {testimonialData === null && photo === null ? (
                         <div className="group-hover:opacity-20 bg-dashAccent mb-4 items-center gap-2 h-[180px] w-[350px] border rounded-md p-2 grid place-items-center">
                           <div className="">
                             <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
@@ -113,13 +127,13 @@ const ModalAddSecondTestimonial = ({ itemEdit, setIsSecond }) => {
                             </h1>
                           </div>
                         </div>
-                      ) : (itemEdit?.testimonial_img_b === "" &&
+                      ) : (testimonialData?.data[0].testimonial_img_b === "" &&
                           photo === null) ||
                         photo === "" ? (
-                        <div className="group-hover:opacity-20 mb-4 bg-gray-700 grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
+                        <div className="group-hover:opacity-20 mb-4 bg-dashAccent grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
                           <div>
-                            <IoImageOutline className="text-[30px] text-gray" />
-                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[30px] text-center">
+                            <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
+                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[gray] text-[15px] text-center">
                               Upload Image
                             </h1>
                           </div>
@@ -128,10 +142,10 @@ const ModalAddSecondTestimonial = ({ itemEdit, setIsSecond }) => {
                         <img
                           src={
                             photo
-                              ? URL.createObjectURl(photo) // preview
+                              ? URL.createObjectURL(photo) // preview
                               : devBaseImgUrl +
                                 "/" +
-                                itemEdit?.testimonial_img_b // check db
+                                testimonialData?.testimonial_img_b // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"
@@ -187,7 +201,7 @@ const ModalAddSecondTestimonial = ({ itemEdit, setIsSecond }) => {
                     >
                       {mutation.isPending ? (
                         <ButtonSpinner />
-                      ) : itemEdit ? (
+                      ) : testimonialData ? (
                         "Save"
                       ) : (
                         "Add"

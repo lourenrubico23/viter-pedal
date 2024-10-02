@@ -6,8 +6,13 @@ import Footer from "./dashboard-footer/Footer";
 import Header from "./dashboard-header/Header";
 import Services from "./dashboard-services/Services";
 import Testimonials from "./dashboard-testimonial/Testimonials";
+import { StoreContext } from "@/store/StoreContext";
+import ModalSuccess from "@/components/partials/modals/ModalSuccess";
+import ModalError from "@/components/partials/modals/ModalError";
+import React from "react";
 
 const Dashboard = () => {
+  const { store, dispatch } = React.useContext(StoreContext);
   return (
     <>
       <Navigation />
@@ -25,6 +30,8 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      {store.success && <ModalSuccess />}
+      {store.error && <ModalError />}
     </>
   );
 };

@@ -10,7 +10,6 @@ import ModalAddThirdTestimonial from "./ModalAddThirdTestimonial";
 import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const Testimonials = () => {
-  const { store, dispatch } = React.useContext(StoreContext);
   const [isAdd, setIsAdd] = React.useState(false);
   const [isFirst, setIsFirst] = React.useState(false);
   const [isSecond, setIsSecond] = React.useState(false);
@@ -66,8 +65,6 @@ const Testimonials = () => {
           testimonialData={testimonialData}
         />
       )}
-      {store.success && <ModalSuccess />}
-      {store.error && <ModalError />}
     </>
   );
 };

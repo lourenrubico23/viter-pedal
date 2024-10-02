@@ -3,21 +3,21 @@
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$services = new Services($conn);
+$testimonial = new Testimonial($conn);
 // get $_GET data
 $error = [];
 $returnData = [];
 
-if (array_key_exists("servicesid", $_GET)) {
-  $services->services_aid = $_GET['servicesid'];
-  checkId($services->services_aid);
-  $query = checkReadById($services);
+if (array_key_exists("testimonialid", $_GET)) {
+  $testimonial->testimonial_aid = $_GET['testimonialid'];
+  checkId($testimonial->testimonial_aid);
+  $query = checkReadById($testimonial);
   http_response_code(200);
   getQueriedData($query);
 }
 
 if (empty($_GET)) {
-  $query = checkReadAll($services);
+  $query = checkReadAll($testimonial);
   http_response_code(200);
   getQueriedData($query);
 }

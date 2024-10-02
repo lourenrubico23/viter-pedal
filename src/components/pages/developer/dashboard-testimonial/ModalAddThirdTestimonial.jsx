@@ -21,7 +21,11 @@ import { IoImageOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
 import * as Yup from "yup";
 
-const ModalAddThirdTestimonial = ({ itemEdit, setIsThird }) => {
+const ModalAddThirdTestimonial = ({
+  itemEdit,
+  setIsThird,
+  testimonialData,
+}) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
   const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
@@ -41,10 +45,8 @@ const ModalAddThirdTestimonial = ({ itemEdit, setIsThird }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/testimonial/${itemEdit.testimonial_aid}` // update
-          : `/v1/testimonial`, // create
-        itemEdit ? "put" : "post",
+        `/v1/testimonial/${itemEdit.testimonial_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {

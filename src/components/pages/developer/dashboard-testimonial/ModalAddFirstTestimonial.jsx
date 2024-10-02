@@ -45,7 +45,7 @@ const ModalAddFirstTestimonial = ({
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/testimonial/${testimonialData?.data[0].testimonial_aid}`, // update
+        `/v1/testimonial/${testimonialData?.data[0]?.testimonial_aid}`, // update
         "put",
         values
       ),
@@ -71,13 +71,13 @@ const ModalAddFirstTestimonial = ({
   const initVal = {
     isUpdateTestimonial: itemEdit,
     testimonial_img_a: testimonialData
-      ? testimonialData?.data[0].testimonial_img_a
+      ? testimonialData?.data[0]?.testimonial_img_a
       : "",
     testimonial_name_a: testimonialData
-      ? testimonialData?.data[0].testimonial_name_a
+      ? testimonialData?.data[0]?.testimonial_name_a
       : "",
     testimonial_description_a: testimonialData
-      ? testimonialData?.data[0].testimonial_description_a
+      ? testimonialData?.data[0]?.testimonial_description_a
       : "",
   };
 
@@ -103,7 +103,7 @@ const ModalAddFirstTestimonial = ({
             const data = {
               ...values,
               testimonial_img_a:
-                photo?.name || testimonialData?.data[0].testimonial_img_a,
+                photo?.name || testimonialData?.data[0]?.testimonial_img_a,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -125,7 +125,7 @@ const ModalAddFirstTestimonial = ({
                           </h1>
                         </div>
                       </div>
-                      ) : (testimonialData?.data[0].testimonial_img_a === "" &&
+                      ) : (testimonialData?.data[0]?.testimonial_img_a === "" &&
                           photo === null) ||
                         photo === "" ? (
                           <div className="group-hover:opacity-20 mb-4 bg-dashAccent grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
@@ -143,7 +143,7 @@ const ModalAddFirstTestimonial = ({
                               ? URL.createObjectURL(photo) // preview
                               : devBaseImgUrl +
                                 "/" +
-                                testimonialData?.data[0].testimonial_img_a // check db
+                                testimonialData?.data[0]?.testimonial_img_a // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"

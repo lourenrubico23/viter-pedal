@@ -7,7 +7,6 @@ import ModalAddContactBanner from "./ModalAddContactBanner";
 import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const ContactBanner = () => {
-  const { store, dispatch } = React.useContext(StoreContext);
   const [isAdd, setIsAdd] = React.useState(false);
   const [itemEdit, setItemEdit] = React.useState(null);
 
@@ -36,8 +35,7 @@ const ContactBanner = () => {
           contactBannerData={contactBannerData}
         />
       )}
-      {store.success && <ModalSuccess />}
-      {store.error && <ModalError />}
+     
     </>
   );
 };
