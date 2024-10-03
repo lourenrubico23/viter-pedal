@@ -3,26 +3,6 @@ import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  // const header = document.querySelector(".navigation-list ul li.header");
-  // // header.add("active");
-
-  // window.onscroll = () => {
-  //   var current = "";
-
-  //   const sections = document.querySelectorAll("section");
-  //   const navLi = document.querySelectorAll(".navigation-list ul li");
-  //   sections.forEach((section) => {
-  //     const sectionTop = section.offsetTop;
-  //     if (pageYOffset >= sectionTop) {
-  //       current = section.getAttribute("id");
-  //       console.log(current);
-  //     }
-  //   });
-
-  //   navLi.forEach((li) => {
-  //     li.remove("active");
-  //   });
-  // };
 
   const [activeSection, setActiveSection] = React.useState("#header");
 
@@ -105,11 +85,11 @@ const Navigation = () => {
         <div className="navigation-wrapper">
           <div className="navigation-content">
             <div className="mb-[133px]">
-              <h3 className="font-[inter24-bold] text-[16px]">
+              <h3 className="font-[inter24-bold] text-[16px] text-black">
                 Pedal's Website
               </h3>
             </div>
-            <nav className="navigation-list ">
+            <nav className="navigation-list">
               <ul>
                 <li
                   className={activeSection === "header" ? "active" : ""}

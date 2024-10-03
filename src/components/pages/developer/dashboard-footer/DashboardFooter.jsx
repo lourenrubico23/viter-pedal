@@ -1,9 +1,79 @@
+import useQueryData from "@/components/custom-hooks/useQueryData";
+import { devBaseImgUrl } from "@/components/helpers/functions-general";
 import { HiPencil } from "react-icons/hi2";
+import React from "react";
 
-const DashboardFooter = ({ setItemEdit, setIsAdd }) => {
+const DashboardFooter = ({ setItemEdit, setIsAdd, footerData }) => {
+  const [activeSection, setActiveSection] = React.useState("#header");
+
+  // console.log(activeSection);
+  // const sections = useRef([]);
+
+  React.useEffect(() => {
+    // Define the section IDs to track
+    const sectionIds = [
+      "header",
+      "services",
+      "about",
+      "contact-banner",
+      "testimonials",
+      "footer",
+    ];
+
+    // Create an IntersectionObserver to track the active section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 } // Adjust this threshold as needed (50% of the section is in view)
+    );
+
+    // Observe each section on the page
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    // Cleanup observer on component unmount
+    return () => {
+      sectionIds.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
+  }, []);
+
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  };
+
+  const {
+    isFetching,
+    error,
+    data: headerData,
+  } = useQueryData(
+    "/v1/header", // endpoint
+    "get", // method
+    "header" // key
+  );
+
   const handleAddCopyright = () => {
     setIsAdd(true);
-    setItemEdit(null);
+    setItemEdit("footerUpdate");
   };
 
   return (
@@ -15,24 +85,44 @@ const DashboardFooter = ({ setItemEdit, setIsAdd }) => {
             <div className="lg:flex lg:justify-between lg:items-center">
               <div className="footer-nav text-center">
                 <ul className="text-[clamp(.6rem,4vw,15px)] font-[montserrat-extrabold] flex flex-col gap-2 lg:flex lg:flex-row lg:gap-24">
-                  <li className="hover:text-accent transition-all cursor-pointer">
-                    Home
+                  <li
+                    className="hover:text-accent transition-all cursor-pointer"
+                    onClick={() => scrollToSection("header")}
+                  >
+                    {headerData?.data[0].header_nav_a
+                      ? headerData?.data[0].header_nav_a
+                      : "navigation1"}
                   </li>
-                  <li className="hover:text-accent transition-all cursor-pointer">
-                    Products
+                  <li
+                    className="hover:text-accent transition-all cursor-pointer"
+                    onClick={() => scrollToSection("services")}
+                  >
+                    {headerData?.data[0].header_nav_b
+                      ? headerData?.data[0].header_nav_b
+                      : "navigation2"}
                   </li>
-                  <li className="hover:text-accent transition-all cursor-pointer">
-                    Community
+                  <li
+                    className="hover:text-accent transition-all cursor-pointer"
+                    onClick={() => scrollToSection("about")}
+                  >
+                    {headerData?.data[0].header_nav_c
+                      ? headerData?.data[0].header_nav_c
+                      : "navigation3"}
                   </li>
-                  <li className="hover:text-accent transition-all cursor-pointer">
-                    Support
+                  <li
+                    className="hover:text-accent transition-all cursor-pointer"
+                    onClick={() => scrollToSection("testimonials")}
+                  >
+                    {headerData?.data[0].header_nav_d
+                      ? headerData?.data[0].header_nav_d
+                      : "navigation4"}
                   </li>
                 </ul>
               </div>
               <div className="logo flex items-center gap-2 justify-center py-10 lg:order-first">
                 <div className="py-1 w-[115px] h-[37px]">
                   <img
-                    src="/img/pedalLogo.png"
+                    src={`${devBaseImgUrl}/${headerData?.data[0].header_logo_img}`}
                     alt=""
                     className="object-cover"
                   />
@@ -46,7 +136,10 @@ const DashboardFooter = ({ setItemEdit, setIsAdd }) => {
                 >
                   <HiPencil className=" bg-accent text-black rounded-full w-[25px] h-[25px] p-[5px] border-[1px]" />
                 </a>
-                &copy; Pedal 2024. We love our Community!
+                &copy;{" "}
+                {footerData?.data[0].footer_copyright
+                  ? footerData?.data[0].footer_copyright
+                  : "copyright"}
               </h3>
             </div>
           </div>

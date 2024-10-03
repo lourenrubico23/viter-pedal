@@ -9,8 +9,9 @@ import { GrFormClose } from "react-icons/gr";
 import { Form, Formik } from "formik";
 import { InputText } from "@/components/helpers/FormInputs";
 import ButtonSpinner from "../ButtonSpinner";
+import { hexToRgb } from "@/components/helpers/functions-general";
 
-const ModalChangeColor = ({ itemEdit, setIsAdd }) => {
+const ModalChangeColor = ({ itemEdit, setIsAdd, colorsData }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
 
@@ -26,10 +27,8 @@ const ModalChangeColor = ({ itemEdit, setIsAdd }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/colors/${itemEdit.colors_aid}` // update
-          : `/v1/colors`, // create
-        itemEdit ? "put" : "post",
+        `/v1/colors/${colorsData?.data[0].colors_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -42,7 +41,7 @@ const ModalChangeColor = ({ itemEdit, setIsAdd }) => {
         console.log("Success");
         setIsAdd(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
@@ -52,23 +51,24 @@ const ModalChangeColor = ({ itemEdit, setIsAdd }) => {
   }, []);
 
   const initVal = {
-    colors_primary: itemEdit ? itemEdit.colors_primary : "#000000",
-    colors_secondary: itemEdit ? itemEdit.colors_secondary : "#000000",
-    colors_accent: itemEdit ? itemEdit.colors_accent : "#000000",
-    colors_text: itemEdit ? itemEdit.colors_text : "#000000",
-    colors_hover: itemEdit ? itemEdit.colors_hover : "#000000",
+    isUpdateColors: itemEdit,
+    colors_primary: colorsData ? colorsData?.data[0].colors_primary : "#000000",
+    colors_secondary: colorsData
+      ? colorsData?.data[0].colors_secondary
+      : "#000000",
+    colors_accent: colorsData ? colorsData?.data[0].colors_accent : "#000000",
+    colors_text: colorsData ? colorsData?.data[0].colors_text : "#000000",
+    colors_hover: colorsData ? colorsData?.data[0].colors_hover : "#000000",
   };
 
-  const yupSchema = Yup.object({
-
-  });
+  const yupSchema = Yup.object({});
   return (
     <ModalWrapper
       className={`transition-all ease-linear transform duration-200 ${animate}`}
       handleClose={handleClose}
     >
       <div className="modal-title">
-        <h2 className="text-sm">{itemEdit ? "Edit" : "Add"} Theme Palette</h2>
+        <h2 className="text-sm">Edit Theme Palette</h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />
         </button>
@@ -101,10 +101,7 @@ const ModalChangeColor = ({ itemEdit, setIsAdd }) => {
               );
             document
               .querySelector(":root")
-              .style.setProperty(
-                "--dark-color",
-                hexToRgb(values.colors_text)
-              );
+              .style.setProperty("--dark-color", hexToRgb(values.colors_text));
             document
               .querySelector(":root")
               .style.setProperty(
@@ -167,7 +164,7 @@ const ModalChangeColor = ({ itemEdit, setIsAdd }) => {
                     >
                       {mutation.isPending ? (
                         <ButtonSpinner />
-                      ) : itemEdit ? (
+                      ) : colorsData ? (
                         "Save"
                       ) : (
                         "Add"

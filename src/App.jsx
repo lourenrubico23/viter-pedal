@@ -5,6 +5,7 @@ import { StoreProvider } from "./store/StoreContext";
 
 
 function App() {
+  
   const queryClient = new QueryClient();
 
   return (

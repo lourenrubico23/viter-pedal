@@ -31,7 +31,7 @@ const DashboardServices = ({
   };
   return (
     <>
-      <section id="services">
+      <section id="services" className="bg-primary">
         {/* choose your companion */}
         {isFetching ? (
           <ServicesLoader />

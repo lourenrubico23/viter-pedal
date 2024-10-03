@@ -41,7 +41,7 @@ const DashboardAbout = ({
 
   return (
     <>
-      <section id="about">
+      <section id="about" className="bg-primary">
         {isFetching ? (
           <AboutLoader />
         ) : (
@@ -187,7 +187,7 @@ const DashboardAbout = ({
                       data-tooltip="Upload Image"
                       onClick={handleAddImage1}
                     >
-                      <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
+                      <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]"/>
                     </a>
                   </div>
                 )}

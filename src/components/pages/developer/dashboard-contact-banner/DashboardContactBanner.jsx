@@ -18,7 +18,7 @@ const DashboardContactBanner = ({
   return (
     <>
       {/* unleash */}
-      <section id="contact-banner">
+      <section id="contact-banner" className="bg-primary">
         {isFetching ? (
           <ContactBannerLoader />
         ) : (

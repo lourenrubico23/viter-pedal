@@ -105,7 +105,7 @@ const ModalAddSecondTestimonial = ({
             const data = {
               ...values,
               testimonial_img_b:
-                photo?.name || testimonialData.testimonial_img_b,
+                photo?.name || testimonialData?.data[0]?.testimonial_img_b,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -145,7 +145,7 @@ const ModalAddSecondTestimonial = ({
                               ? URL.createObjectURL(photo) // preview
                               : devBaseImgUrl +
                                 "/" +
-                                testimonialData?.testimonial_img_b // check db
+                                testimonialData?.data[0].testimonial_img_b // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"

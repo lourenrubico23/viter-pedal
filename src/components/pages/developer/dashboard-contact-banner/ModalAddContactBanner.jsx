@@ -62,7 +62,7 @@ const ModalAddContactBanner = ({ itemEdit, setIsAdd, contactBannerData }) => {
   const initVal = {
     isUpdateContactBanner: itemEdit,
     contact_banner_img: contactBannerData
-      ? contactBannerData.contact_banner_img
+      ? contactBannerData?.data[0].contact_banner_img
       : "",
     contact_banner_title: contactBannerData
       ? contactBannerData?.data[0].contact_banner_title
@@ -93,8 +93,9 @@ const ModalAddContactBanner = ({ itemEdit, setIsAdd, contactBannerData }) => {
             // to get all of the data of image
             const data = {
               ...values,
-              contact_banner_img:
-                photo?.name || contactBannerData.contact_banner_img,
+              contact_banner_img: photo
+                ? photo.name
+                : contactBannerData?.data[0].contact_banner_img,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -109,7 +110,8 @@ const ModalAddContactBanner = ({ itemEdit, setIsAdd, contactBannerData }) => {
                       Contact Banner Image
                     </span>
                     <div className="relative w-fit m-auto group">
-                      {contactBannerData === null && photo === null ? (
+                      {(contactBannerData === null && photo === null) ||
+                      (photo === "" && contactBannerData === null) ? (
                         <div className="group-hover:opacity-20 bg-dashAccent mb-4 items-center gap-2 h-[180px] w-[350px] border rounded-md p-2 grid place-items-center">
                           <div className="">
                             <IoImageOutline className="text-[30px] text-[gray] mx-auto" />

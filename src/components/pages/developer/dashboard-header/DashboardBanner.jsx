@@ -13,6 +13,63 @@ const DashboardBanner = ({
   headerData,
   isFetching,
 }) => {
+  const [activeSection, setActiveSection] = React.useState("#header");
+
+  // console.log(activeSection);
+  // const sections = useRef([]);
+
+  React.useEffect(() => {
+    // Define the section IDs to track
+    const sectionIds = [
+      "header",
+      "services",
+      "about",
+      "contact-banner",
+      "testimonials",
+      "footer",
+    ];
+
+    // Create an IntersectionObserver to track the active section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3 } // Adjust this threshold as needed (50% of the section is in view)
+    );
+
+    // Observe each section on the page
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    // Cleanup observer on component unmount
+    return () => {
+      sectionIds.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
+  }, []);
+
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  };
+
   const handleAddLogo = () => {
     setIsAdd(true);
     setItemEdit("logoUpdate");
@@ -30,7 +87,7 @@ const DashboardBanner = ({
 
   return (
     <>
-      <section className="" id="header">
+      <section className="bg-primary" id="header">
         {isFetching ? (
           <>
             <HeaderLoader />
@@ -76,22 +133,34 @@ const DashboardBanner = ({
                     >
                       <HiPencil className=" bg-accent rounded-full  w-[25px] h-[25px] p-[5px] border-[1px]" />
                     </a>
-                    <li className="hover:text-accent cursor-pointer">
+                    <li
+                      className="hover:text-accent cursor-pointer"
+                      onClick={() => scrollToSection("header")}
+                    >
                       {headerData?.data[0].header_nav_a
                         ? headerData?.data[0].header_nav_a
                         : "navigation1"}
                     </li>
-                    <li className="hover:text-accent cursor-pointer">
+                    <li
+                      className="hover:text-accent cursor-pointer"
+                      onClick={() => scrollToSection("services")}
+                    >
                       {headerData?.data[0].header_nav_b
                         ? headerData?.data[0].header_nav_b
                         : "navigation2"}
                     </li>
-                    <li className="hover:text-accent cursor-pointer">
+                    <li
+                      className="hover:text-accent cursor-pointer"
+                      onClick={() => scrollToSection("about")}
+                    >
                       {headerData?.data[0].header_nav_c
                         ? headerData?.data[0].header_nav_c
                         : "navigation3"}
                     </li>
-                    <li className="hover:text-accent cursor-pointer">
+                    <li
+                      className="hover:text-accent cursor-pointer"
+                      onClick={() => scrollToSection("testimonials")}
+                    >
                       {headerData?.data[0].header_nav_d
                         ? headerData?.data[0].header_nav_d
                         : "navigation4"}

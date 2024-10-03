@@ -15,7 +15,7 @@ const Services = () => {
   return (
     <>
       {/* choose your companion */}
-      <div className="card_wrapper py-14 " id="services">
+      <div className="card_wrapper py-14 bg-primary" id="services">
         <div className="container lg:py-20">
           <div className="flex flex-col justify-center text-center pb-5 lg:text-left lg:pb-14">
             <h2 className="text-[clamp(1rem,6vw,2.5rem)] font-[montserrat-medium]">

@@ -17,7 +17,7 @@ const About = () => {
   return (
     <>
       {/* discover */}
-      <div>
+      <div className="bg-primary">
         <div className="discover_wrapper" id="about">
           <div className="lg:flex lg:flex-row-reverse lg:relative md:w-[100%] ">
             <div className="container">

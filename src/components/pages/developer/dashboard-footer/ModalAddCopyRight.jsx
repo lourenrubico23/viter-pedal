@@ -9,7 +9,7 @@ import React from "react";
 import { GrFormClose } from "react-icons/gr";
 import * as Yup from "yup";
 
-const ModalAddCopyRight = ({ itemEdit, setIsAdd }) => {
+const ModalAddCopyRight = ({ itemEdit, setIsAdd, footerData }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
 
@@ -25,10 +25,8 @@ const ModalAddCopyRight = ({ itemEdit, setIsAdd }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit
-          ? `/v1/footer/${itemEdit.footer_aid}` // update
-          : `/v1/footer`, // create
-        itemEdit ? "put" : "post",
+        `/v1/footer/${footerData?.data[0].footer_aid}`, // update
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -41,7 +39,7 @@ const ModalAddCopyRight = ({ itemEdit, setIsAdd }) => {
         console.log("Success");
         setIsAdd(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
@@ -51,7 +49,8 @@ const ModalAddCopyRight = ({ itemEdit, setIsAdd }) => {
   }, []);
 
   const initVal = {
-    footer_copyright: itemEdit ? itemEdit?.data[0].footer_copyright : "",
+    isUpdatefooter: itemEdit,
+    footer_copyright: footerData ? footerData?.data[0].footer_copyright : "",
   };
 
   const yupSchema = Yup.object({});
@@ -62,7 +61,7 @@ const ModalAddCopyRight = ({ itemEdit, setIsAdd }) => {
       handleClose={handleClose}
     >
       <div className="modal-title">
-        <h2 className="text-sm">{itemEdit ? "Edit" : "Add"} Copyright</h2>
+        <h2 className="text-sm">Edit Copyright</h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />
         </button>
@@ -95,13 +94,7 @@ const ModalAddCopyRight = ({ itemEdit, setIsAdd }) => {
                       type="submit"
                       disabled={mutation.isPending || !props.dirty}
                     >
-                      {mutation.isPending ? (
-                        <ButtonSpinner />
-                      ) : itemEdit ? (
-                        "Save"
-                      ) : (
-                        "Add"
-                      )}
+                      {mutation.isPending ? <ButtonSpinner /> : "Save"}
                     </button>
                     <button
                       className="btn-modal-cancel"

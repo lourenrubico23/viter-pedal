@@ -24,6 +24,66 @@ const MobileViewHeader = () => {
     "get", // method
     "header" // key
   );
+  
+  const [activeSection, setActiveSection] = React.useState("#header");
+
+  // const sections = useRef([]);
+
+  React.useEffect(() => {
+    // Define the section IDs to track
+    const sectionIds = [
+      "header",
+      "services",
+      "about",
+      "contact-banner",
+      "testimonials",
+      "footer",
+    ];
+
+    // Create an IntersectionObserver to track the active section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 } // Adjust this threshold as needed (50% of the section is in view)
+    );
+
+    // Observe each section on the page
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    // Cleanup observer on component unmount
+    return () => {
+      sectionIds.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
+  }, []);
+
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      document.body.classList.remove("overflow-hidden");
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      setTimeout(() => {
+        dispatch(setIsShow(false));
+      }, 100);
+    }
+  };
 
   return (
     <header className={store.isShow ? "" : "overflow-hidden"} id="header">
@@ -57,22 +117,22 @@ const MobileViewHeader = () => {
                     : "bg-primary absolute text-dark flex flex-col text-[16px] h-[100vh] p-4 text-center justify-center gap-8 font-[montserrat-medium] font-bold transition-all"
                 }
               >
-                <li className="hover:text-accent cursor-pointer">
+                <li className="hover:text-accent cursor-pointer" onClick={() => scrollToSection("header")}>
                   {headerData?.data[0].header_nav_a
                     ? headerData?.data[0].header_nav_a
                     : "navigation1"}
                 </li>
-                <li className="hover:text-accent cursor-pointer">
+                <li className="hover:text-accent cursor-pointer" onClick={() => scrollToSection("services")}>
                   {headerData?.data[0].header_nav_b
                     ? headerData?.data[0].header_nav_b
                     : "navigation2"}
                 </li>
-                <li className="hover:text-accent cursor-pointer">
+                <li className="hover:text-accent cursor-pointer" onClick={() => scrollToSection("about")}>
                   {headerData?.data[0].header_nav_c
                     ? headerData?.data[0].header_nav_c
                     : "navigation3"}
                 </li>
-                <li className="hover:text-accent cursor-pointer">
+                <li className="hover:text-accent cursor-pointer" onClick={() => scrollToSection("testimonials")}>
                   {headerData?.data[0].header_nav_d
                     ? headerData?.data[0].header_nav_d
                     : "navigation4"}

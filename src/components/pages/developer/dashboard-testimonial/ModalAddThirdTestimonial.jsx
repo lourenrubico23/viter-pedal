@@ -45,7 +45,7 @@ const ModalAddThirdTestimonial = ({
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/testimonial/${itemEdit.testimonial_aid}`, // update
+        `/v1/testimonial/${testimonialData?.data[0].testimonial_aid}`, // update
         "put",
         values
       ),
@@ -59,7 +59,7 @@ const ModalAddThirdTestimonial = ({
         console.log("Success");
         setIsThird(false);
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "Updated" : "Added"}.`));
+        dispatch(setMessage(`Successfully Updated.`));
       }
     },
   });
@@ -69,11 +69,16 @@ const ModalAddThirdTestimonial = ({
   }, []);
 
   const initVal = {
-    testimonial_name_c: itemEdit ? itemEdit?.data[0].testimonial_name_c : "",
-    testimonial_description_c: itemEdit
-      ? itemEdit?.data[0].testimonial_description_c
+    isUpdateTestimonial: itemEdit,
+    testimonial_name_c: testimonialData
+      ? testimonialData?.data[0].testimonial_name_c
       : "",
-    testimonial_img_c: itemEdit ? itemEdit?.data[0].testimonial_img_c : "",
+    testimonial_description_c: testimonialData
+      ? testimonialData?.data[0].testimonial_description_c
+      : "",
+    testimonial_img_c: testimonialData
+      ? testimonialData?.data[0].testimonial_img_c
+      : "",
   };
 
   const yupSchema = Yup.object({});
@@ -84,7 +89,9 @@ const ModalAddThirdTestimonial = ({
       handleClose={handleClose}
     >
       <div className="modal-title">
-        <h2 className="text-sm">{itemEdit ? "Edit" : "Add"} Testimonial</h2>
+        <h2 className="text-sm">
+          {testimonialData ? "Edit" : "Add"} Testimonial
+        </h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />
         </button>
@@ -97,7 +104,8 @@ const ModalAddThirdTestimonial = ({
             // to get all of the data of image
             const data = {
               ...values,
-              testimonial_img_c: photo?.name || itemEdit.testimonial_img_c,
+              testimonial_img_c:
+                photo?.name || testimonialData?.data[0]?.testimonial_img_c,
             };
             uploadPhoto(); // to save the photo when submit
             mutation.mutate(data);
@@ -110,7 +118,7 @@ const ModalAddThirdTestimonial = ({
                   <div className="mt-5">
                     <span className="top-20 px-2 text-dark">Image</span>
                     <div className="relative w-fit m-auto group">
-                      {itemEdit === null && photo === null ? (
+                      {testimonialData === null && photo === null ? (
                         <div className="group-hover:opacity-20 bg-dashAccent mb-4 items-center gap-2 h-[180px] w-[350px] border rounded-md p-2 grid place-items-center">
                           <div className="">
                             <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
@@ -119,13 +127,13 @@ const ModalAddThirdTestimonial = ({
                             </h1>
                           </div>
                         </div>
-                      ) : (itemEdit?.testimonial_img_c === "" &&
+                      ) : (testimonialData?.data[0].testimonial_img_c === "" &&
                           photo === null) ||
                         photo === "" ? (
-                        <div className="group-hover:opacity-20 mb-4 bg-gray-700 grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
+                        <div className="group-hover:opacity-20 mb-4 bg-dashAccent grid place-items-center items-center gap-2 h-[180px] w-[350px] p-2">
                           <div>
-                            <IoImageOutline className="text-[30px] text-gray" />
-                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[30px] text-center">
+                            <IoImageOutline className="text-[30px] text-[gray] mx-auto" />
+                            <h1 className="mb-0 leading-tight grid place-items-center text-gray text-[gray] text-[15px] text-center">
                               Upload Image
                             </h1>
                           </div>
@@ -134,10 +142,10 @@ const ModalAddThirdTestimonial = ({
                         <img
                           src={
                             photo
-                              ? URL.createObjectURl(photo) // preview
+                              ? URL.createObjectURL(photo) // preview
                               : devBaseImgUrl +
                                 "/" +
-                                itemEdit?.testimonial_img_c // check db
+                                testimonialData?.data[0].testimonial_img_c // check db
                           }
                           alt="Logo"
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"
@@ -193,7 +201,7 @@ const ModalAddThirdTestimonial = ({
                     >
                       {mutation.isPending ? (
                         <ButtonSpinner />
-                      ) : itemEdit ? (
+                      ) : testimonialData ? (
                         "Save"
                       ) : (
                         "Add"

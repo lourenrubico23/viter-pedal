@@ -10,11 +10,57 @@ import { StoreContext } from "@/store/StoreContext";
 import ModalSuccess from "@/components/partials/modals/ModalSuccess";
 import ModalError from "@/components/partials/modals/ModalError";
 import React from "react";
+import { hexToRgb } from "@/components/helpers/functions-general";
+import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const Dashboard = () => {
   const { store, dispatch } = React.useContext(StoreContext);
+
+  const {
+    isFetching,
+    error,
+    data: colorsData,
+  } = useQueryData(
+    "/v1/colors", // endpoint
+    "get", // method
+    "colors" // key
+  );
+
+  // to change the color when submitted
+  document
+    .querySelector(":root")
+    .style.setProperty(
+      "--primary-color",
+      hexToRgb(colorsData?.data[0].colors_primary)
+    );
+  document
+    .querySelector(":root")
+    .style.setProperty(
+      "--secondary-color",
+      hexToRgb(colorsData?.data[0].colors_secondary)
+    );
+  document
+    .querySelector(":root")
+    .style.setProperty(
+      "--accent-color",
+      hexToRgb(colorsData?.data[0].colors_accent)
+    );
+  document
+    .querySelector(":root")
+    .style.setProperty(
+      "--dark-color",
+      hexToRgb(colorsData?.data[0].colors_text)
+    );
+  document
+    .querySelector(":root")
+    .style.setProperty(
+      "--buttonHover-color",
+      hexToRgb(colorsData?.data[0].colors_hover)
+    );
+
   return (
     <>
+     
       <Navigation />
       <div className="main-wrapper">
         <div className="fixed bg-dashPrimary py-3 w-[100%] h-[27px] z-50 "></div>

@@ -28,3 +28,11 @@ RewriteRule ^contactBanner/([0-9]+)$ controllers/developer/contact-banner/contac
 # TESTIMONIAL
 RewriteRule ^testimonial$ controllers/developer/testimonial/testimonial.php [L]
 RewriteRule ^testimonial/([0-9]+)$ controllers/developer/testimonial/testimonial.php?testimonialid=$1 [L]
+
+# FOOTER
+RewriteRule ^footer$ controllers/developer/footer/footer.php [L]
+RewriteRule ^footer/([0-9]+)$ controllers/developer/footer/footer.php?footerid=$1 [L]
+
+# COLORS
+RewriteRule ^colors$ controllers/developer/colors/colors.php [L]
+RewriteRule ^colors/([0-9]+)$ controllers/developer/colors/colors.php?colorsid=$1 [L]

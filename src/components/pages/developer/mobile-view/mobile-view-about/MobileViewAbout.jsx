@@ -17,7 +17,7 @@ const MobileViewAbout = () => {
 
   return (
     <>
-      <div>
+      <div className="bg-primary">
         <div className="discover_wrapper" id="about">
           <div className="">
             <div className="container">
