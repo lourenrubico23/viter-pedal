@@ -31,7 +31,7 @@ const ContactBanner = () => {
       >
         <div className="container">
           <div className="md:flex md:items-center lg:gap-[30rem]">
-            <h2 className="text-[clamp(1.2rem,4vw,33px)] leading-7 text-center justify-center mx-auto lg:mx-0 lg:text-left w-[15rem] md:w-[36rem] font-[montserrat-medium] pb-6 text-gray-800 md:leading-[50px]">
+            <h2 className="text-[clamp(1.2rem,4vw,33px)] leading-7 text-center justify-center mx-auto lg:mx-0 lg:text-left w-[15rem] md:w-[36rem] font-[montserrat-medium] pb-6 text-dark md:leading-[50px]">
               {contactBannerData?.data[0].contact_banner_title
                 ? contactBannerData?.data[0].contact_banner_title
                 : "Lorem ipsum dolor sit amet consectetur"}

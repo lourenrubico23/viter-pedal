@@ -12,7 +12,6 @@ const Header = () => {
   const handleShow = () => {
     dispatch(setIsShow(!store.isShow));
     document.body.classList.toggle("overflow-hidden");
-    console.log(store.isShow);
   };
 
   const [activeSection, setActiveSection] = React.useState("#header");
@@ -86,7 +85,7 @@ const Header = () => {
   );
 
   return (
-    <header className={store.isShow ? "" : "overflow-hidden bg-primary"} id="header">
+    <header className={store.isShow ? "bg-primary" : "overflow-hidden bg-primary"} id="header">
       <div className="container relative">
         <div className="flex justify-between items-center">
           <div className="py-1 w-[90px] md:w-[115px] md:h-[37px] relative">

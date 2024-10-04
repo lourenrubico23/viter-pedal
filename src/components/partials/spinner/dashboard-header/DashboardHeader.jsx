@@ -29,7 +29,7 @@ const DashboardHeader = ({ menu }) => {
 
   return (
     <>
-      <div className="shadow_wrapper fixed bg-dashSecondary z-50 py-3 px-7 rounded-t-md w-[calc(100%_-_215px)]">
+      <div className="shadow_wrapper fixed bg-dashSecondary z-50 py-3 px-7 rounded-t-md w-[calc(100%_-_240px)] mt-4 ">
         <div className=" flex items-center justify-between">
           <h1 className="font-[inter24-regular] text-black">Single Page Website</h1>
           <div>

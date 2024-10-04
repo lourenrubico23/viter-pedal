@@ -51,17 +51,17 @@ const DashboardAbout = ({
                 <div className="container_dashboard">
                   <div className="lg:grid lg:grid-cols-2">
                     <div></div>
-                    <div className="dicover flex flex-col gap-4 lg:my-20 lg:ml-12 mr-20 relative">
+                    <div className="dicover flex flex-col gap-4 lg:my-20 lg:ml-12 relative">
                       <h2 className="flex flex-row text-[clamp(1rem,6vw,24px)] font-[montserrat-extrabold] leading-7 text-center lg:text-left">
                         {aboutData?.data[0].about_title_a
                           ? aboutData?.data[0].about_title_a
                           : "Lorem ipsum dolor sit amet consectetur"}
                         <a
-                          className="relative z-30 cursor-pointer tooltip-header"
+                          className="relative cursor-pointer tooltip-header"
                           data-tooltip="Edit Content"
                           onClick={handleAddTitle1}
                         >
-                          <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                          <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                         </a>
                       </h2>
                       <p className="py-2 md:font-bold md:leading-6 text-[clamp(6vw,16px)]">
@@ -71,11 +71,11 @@ const DashboardAbout = ({
                       </p>
                       <div className="md:my-5 relative">
                         <a
-                          className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                          className="absolute m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                           data-tooltip="Edit Content"
                           onClick={handleAddContents}
                         >
-                          <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                          <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                         </a>
                         <div className="discover-content lg:mt-5">
                           <div className="flex flex-row gap-2 md:items-center">
@@ -145,27 +145,13 @@ const DashboardAbout = ({
                   </div>
                 </div>
                 {aboutData?.data[0].about_img_a === "" ? (
-                  // <div className="">
-                  //   <a
-                  //     className="absolute z-30 m-10 left-[600px] -top-2 cursor-pointer tooltip-header"
-                  //     data-tooltip="Upload Image"
-                  //     onClick={handleAddImage1}
-                  //   >
-                  //     <FaRegImages className="bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
-                  //   </a>
-                  //   <div className="lg:absolute lg:left-0 lg:top-0 h-full lg:w-[50%] block overflow-hidden">
-                  //     <div className="image_wrapper w-full h-full bg-gray-300 place-content-center">
-                  //       <IoImageOutline className="text-[200px] mx-auto text-gray-500" />
-                  //     </div>
-                  //   </div>
-                  // </div>
                   <div className="h-full w-full relative">
                     <a
-                      className="absolute z-30 m-10 right-[30px] cursor-pointer tooltip-header-nav"
+                      className="absolute m-10 right-[30px] cursor-pointer tooltip-header-nav"
                       data-tooltip="Upload Image"
                       onClick={handleAddImage1}
                     >
-                      <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
+                      <FaRegImages className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-1 border-[1px] text-black" />
                     </a>
                     <div className=" h-full block">
                       <div className="image_wrapper h-[635px] bg-gray-300 place-content-center">
@@ -183,11 +169,11 @@ const DashboardAbout = ({
                       />
                     </div>
                     <a
-                      className="absolute z-30 m-10 left-[600px] -top-2 cursor-pointer tooltip-header"
+                      className="absolute m-10 left-[600px] -top-2 cursor-pointer tooltip-header"
                       data-tooltip="Upload Image"
                       onClick={handleAddImage1}
                     >
-                      <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]"/>
+                      <FaRegImages className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-1 border-[1px] text-black" />
                     </a>
                   </div>
                 )}
@@ -197,11 +183,11 @@ const DashboardAbout = ({
               {aboutData?.data[0].about_img_b === "" ? (
                 <div className="h-full w-full relative">
                   <a
-                    className="absolute z-30 m-10 right-[30px] cursor-pointer tooltip-header-nav"
+                    className="absolute m-10 right-[30px] cursor-pointer tooltip-header-nav"
                     data-tooltip="Upload Image"
                     onClick={handleAddAboutImage2}
                   >
-                    <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
+                    <FaRegImages className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-1 border-[1px] text-black" />
                   </a>
                   <div className=" h-full block">
                     <div className="image_wrapper max-w-full min-h-[35rem] bg-gray-300 place-content-center">
@@ -210,13 +196,13 @@ const DashboardAbout = ({
                   </div>
                 </div>
               ) : (
-                <div className=" h-full lg:w-full relative">
+                <div className=" h-full w-[50%] relative lg:absolute lg:right-0 lg:top-0 lg:w-[50%] block">
                   <a
-                    className="absolute z-30 m-10 right-[30px] cursor-pointer tooltip-header-nav"
+                    className="absolute m-10 right-[30px] cursor-pointer tooltip-header-nav"
                     data-tooltip="Upload Image"
                     onClick={handleAddAboutImage2}
                   >
-                    <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
+                    <FaRegImages className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-1 border-[1px] text-black" />
                   </a>
                   <img
                     src={`${devBaseImgUrl}/${aboutData?.data[0].about_img_b}`}
@@ -226,20 +212,20 @@ const DashboardAbout = ({
                 </div>
               )}
 
-              <div className="container_dashboard w-full">
-                <div className="w-full mr-10 pl-20 ">
-                  <div className="dicover gap-4 py-7 lg:gap-0 md:my-6 relative">
+              <div className="container_dashboard">
+                <div className="w-full lg:grid lg:grid-cols-2 lg:mr-20 lg:pr-10">
+                  <div className="dicover flex flex-col gap-4 py-7 lg:gap-0 md:my-6">
                     <h2 className="text-[clamp(1rem,6vw,1.5rem)] font-[montserrat-extrabold] leading-7 text-center lg:text-left lg:flex lg:items-center lg:gap-3 lg:py-10">
                       {aboutData?.data[0].about_title_b
                         ? aboutData?.data[0].about_title_b
                         : "Lorem ipsum dolor sit amet"}
                       <FaAngleDoubleUp className="text-accent hidden lg:block" />
                       <a
-                        className="relative z-30 cursor-pointer tooltip-header"
+                        className="relative cursor-pointer tooltip-header"
                         data-tooltip="Edit Content"
                         onClick={handleAddAboutDescription}
                       >
-                        <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                        <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                       </a>
                     </h2>
 
@@ -249,7 +235,7 @@ const DashboardAbout = ({
                         : "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe iusto reprehenderit earum. Modi molestias vitae esse vero natus dolorem eius, at temporibus quia quas labore nemoearum? Labore nihil, illo veritatis excepturi odiosapiente dignissimos mollitia maiores, quia vero rerumnisi natus aperiam omnis repellat. Dolor laborummolestiae vero blanditiis."}
                     </p>
                   </div>
-
+                  <div></div>
                   <div className="border-t-[2px] border-gray-400 md:mb-8 mb-4">
                     <h3 className="text-[clamp(.5rem,4vw,18px)] py-1 lg:mt-10 lg:py-3 font-[montserrat-extrabold]">
                       {aboutData?.data[0].about_contact_text

@@ -1,15 +1,19 @@
 import React from "react";
 
+// Local development
 export const urlPathSinglePageWebsite =
   "http://localhost/react-vite/viter-pedal";
 export const imgUrlPathSinglePageWebsite =
   "http://localhost/react-vite/viter-pedal/public/img";
-export const mediaUrlPathSinglePageWebsite = "media";
+
+// // Online development
+// export const urlPathSinglePageWebsite = "https://demo.frontlinebusiness.com.ph/ue";
+// export const imgurlPathSinglePageWebsite =
+//   "https://demo.frontlinebusiness.com.ph/ue/img";
 
 export const devApiUrl = `${urlPathSinglePageWebsite}/rest`;
 export const devBaseUrl = `${urlPathSinglePageWebsite}`;
 export const devBaseImgUrl = `${imgUrlPathSinglePageWebsite}`;
-export const devBaseMediaUrl = `${mediaUrlPathSinglePageWebsite}`;
 export const devNavUrl = "";
 export const apiVersion = "/v1";
 
@@ -19,13 +23,13 @@ export const UrlDeveloper = "developer";
 export const devKey =
   "$2a$12$47wDvbLInZif/PVS8B6P3.7WxyJvUpBzZAWCsnWJUKq3nrn4qgmeO";
 
-// get focus on a button
-export const GetFocus = (id) => {
-  React.useEffect(() => {
-    const obj = document.getElementById(id);
-    obj.focus();
-  }, []);
-};
+// // get focus on a button
+// export const GetFocus = (id) => {
+//   React.useEffect(() => {
+//     const obj = document.getElementById(id);
+//     obj.focus();
+//   }, []);
+// };
 
 //rgb to hex
 export const hexToRgb = (hex) => {
@@ -54,4 +58,3 @@ export const fetchFormData = (url, fd = {}) => {
     });
   return data;
 };
-

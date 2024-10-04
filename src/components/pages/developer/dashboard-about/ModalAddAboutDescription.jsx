@@ -72,7 +72,7 @@ const ModalAddAboutDescription = ({
       className={`transition-all ease-linear transform duration-200 ${animate}`}
       handleClose={handleClose}
     >
-      <div className="modal-title">
+      <div className="modal-title ">
         <h2 className="text-sm">Edit About</h2>
         <button onClick={handleClose}>
           <GrFormClose className="text-[25px]" />

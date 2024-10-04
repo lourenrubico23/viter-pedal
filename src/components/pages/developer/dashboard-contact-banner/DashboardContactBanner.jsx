@@ -33,14 +33,14 @@ const DashboardContactBanner = ({
           >
             <div className="container_dashboard relative">
               <a
-                className="absolute z-30 -top-8 cursor-pointer tooltip-header"
+                className="absolute -top-8 cursor-pointer tooltip-header"
                 data-tooltip="Edit Content"
                 onClick={handleAddContactBanner}
               >
-                <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
               </a>
-              <div className="flex items-center gap-[5rem] w-full">
-                <h2 className=" text-[clamp(1.2rem,4vw,33px)] leading-7 text-center justify-center mx-auto lg:mx-0 lg:text-left w-[55rem] font-[montserrat-medium] pb-6 text-gray-800 md:leading-[50px]">
+              <div className="flex items-center gap-[5rem] w-full justify-between">
+                <h2 className=" text-[clamp(1.2rem,4vw,33px)] leading-7 text-center justify-center mx-auto lg:mx-0 lg:text-left w-[576px] font-[montserrat-medium] pb-6 text-dark md:leading-[50px]">
                   {contactBannerData?.data[0].contact_banner_title
                     ? contactBannerData?.data[0].contact_banner_title
                     : "Lorem ipsum dolor sit amet consectetur"}

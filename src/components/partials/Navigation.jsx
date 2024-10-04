@@ -6,7 +6,7 @@ const Navigation = () => {
 
   const [activeSection, setActiveSection] = React.useState("#header");
 
-  console.log(activeSection);
+  // console.log(activeSection);
   // const sections = useRef([]);
 
   React.useEffect(() => {
@@ -29,7 +29,7 @@ const Navigation = () => {
           }
         });
       },
-      { threshold: 0.3 } // Adjust this threshold as needed (50% of the section is in view)
+      { threshold: 0.5 } // Adjust this threshold as needed (50% of the section is in view)
     );
 
     // Observe each section on the page
@@ -81,7 +81,7 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="navigation md:flex md:flex-col md:justify-between hidden">
+      <div className="navigation md:flex md:flex-col md:justify-between">
         <div className="navigation-wrapper">
           <div className="navigation-content">
             <div className="mb-[133px]">

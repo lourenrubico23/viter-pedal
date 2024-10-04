@@ -68,9 +68,9 @@ const ModalChangeColor = ({ itemEdit, setIsAdd, colorsData }) => {
       handleClose={handleClose}
     >
       <div className="modal-title">
-        <h2 className="text-sm">Edit Theme Palette</h2>
+        <h2 className="text-sm text-black">Edit Theme Palette</h2>
         <button onClick={handleClose}>
-          <GrFormClose className="text-[25px]" />
+          <GrFormClose className="text-[25px] text-black" />
         </button>
       </div>
       <div className="modal-content">

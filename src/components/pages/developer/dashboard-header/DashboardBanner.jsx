@@ -87,7 +87,7 @@ const DashboardBanner = ({
 
   return (
     <>
-      <section className="bg-primary" id="header">
+      <section className="banner bg-primary" id="header">
         {isFetching ? (
           <>
             <HeaderLoader />
@@ -100,11 +100,11 @@ const DashboardBanner = ({
                   <div className="py-1 w-[115px] h-[37px] relative bg-gray-300">
                     <IoImageOutline className="text-[30px] mx-auto text-gray-500" />
                     <a
-                      className="absolute z-30 m-10 left-20 -top-9 cursor-pointer tooltip-header"
+                      className="absolute  m-10 left-20 -top-9 cursor-pointer tooltip-header"
                       data-tooltip="Upload Logo"
                       onClick={handleAddLogo}
                     >
-                      <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
+                      <FaRegImages className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-1 border-[1px] text-black" />
                     </a>
                   </div>
                 ) : (
@@ -115,11 +115,11 @@ const DashboardBanner = ({
                       className="object-cover w-[120px] h-[37px]"
                     />
                     <a
-                      className="absolute z-30 m-10 left-20 -top-9 cursor-pointer tooltip-header"
+                      className="absolute m-10 left-20 -top-9 cursor-pointer tooltip-header"
                       data-tooltip="Upload Logo"
                       onClick={handleAddLogo}
                     >
-                      <FaRegImages className=" bg-accent rounded-full w-[25px] h-[25px] p-1 border-[1px]" />
+                      <FaRegImages className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-1 border-[1px] text-black" />
                     </a>
                   </div>
                 )}
@@ -131,7 +131,7 @@ const DashboardBanner = ({
                       data-tooltip="Edit Text"
                       onClick={handleAddNav}
                     >
-                      <HiPencil className=" bg-accent rounded-full  w-[25px] h-[25px] p-[5px] border-[1px]" />
+                      <HiPencil className=" bg-[#C7AC27] rounded-full  w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                     </a>
                     <li
                       className="hover:text-accent cursor-pointer"
@@ -181,11 +181,11 @@ const DashboardBanner = ({
                             ? headerData?.data[0].header_banner_text
                             : "Lorem ipsum dolor sit amet consectetur adipisicing."}
                           <a
-                            className="relative z-3 place-items-end top-2 cursor-pointer tooltip-header"
+                            className="relative place-items-end top-2 cursor-pointer tooltip-header"
                             data-tooltip="Edit Content"
                             onClick={handleAddBanner}
                           >
-                            <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px]" />
+                            <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                           </a>
                         </h1>
                         <button className="btn-primary">
@@ -213,11 +213,11 @@ const DashboardBanner = ({
                       <h1 className="flex flex-row text-center md:text-left md:max-w-[calc(50% + 90px)] w-[50%] md:w-[50%] text-[clamp(1rem,5vw,3.5rem)] py-6 font-[montserrat-extralight]">
                         {headerData?.data[0].header_banner_text}
                         <a
-                          className="relative z-30 m-10 place-items-end top-2 cursor-pointer tooltip-header"
+                          className="relative m-10 place-items-end top-2 cursor-pointer tooltip-header"
                           data-tooltip="Edit Content"
                           onClick={handleAddBanner}
                         >
-                          <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px]" />
+                          <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                         </a>
                       </h1>
                       <button className="btn-primary">

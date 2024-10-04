@@ -44,11 +44,11 @@ const DashboardServices = ({
                     ? servicesData?.data[0].services_title
                     : "Lorem ipsum dolor sit amet."}
                   <a
-                    className="relative z-30  cursor-pointer tooltip-header"
+                    className="relative cursor-pointer tooltip-header"
                     data-tooltip="Edit Content"
                     onClick={handleAddTitle}
                   >
-                    <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                    <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                   </a>
                 </h2>
                 <h3 className="pt-2 text-[clamp(.5rem,4vw,1.3rem)] line-clamp-2 font-[montserrat-extralight]">
@@ -65,11 +65,11 @@ const DashboardServices = ({
                       {item.services_img_a === "" ? (
                         <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative ">
                           <a
-                            className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                            className="absolute m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                             data-tooltip="Edit Content"
                             onClick={handleAddServices1}
                           >
-                            <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                            <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                           </a>
                           <div className="image_wrapper w-[20rem] h-[10rem] bg-gray-300 place-content-center">
                             <IoImageOutline className="text-[40px] mx-auto text-gray-500 " />
@@ -95,11 +95,11 @@ const DashboardServices = ({
                       ) : (
                         <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative ">
                           <a
-                            className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                            className="absolute m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                             data-tooltip="Edit Content"
                             onClick={handleAddServices1}
                           >
-                            <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                            <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                           </a>
                           <div className="image_wrapper md:w-[20rem] md:h-[10rem]">
                             <img
@@ -137,11 +137,11 @@ const DashboardServices = ({
                         {item.services_img_b === "" ? (
                           <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
                             <a
-                              className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                              className="absolute m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                               data-tooltip="Edit Content"
                               onClick={handleAddServices2}
                             >
-                              <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                              <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                             </a>
                             <div className="image_wrapper w-[20rem] h-[10rem] bg-gray-300 place-content-center">
                               <IoImageOutline className="text-[40px] mx-auto text-gray-500" />
@@ -168,11 +168,11 @@ const DashboardServices = ({
                         ) : (
                           <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
                             <a
-                              className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                              className="absolute m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                               data-tooltip="Edit Content"
                               onClick={handleAddServices2}
                             >
-                              <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                              <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                             </a>
                             <div className="image_wrapper md:w-[20rem] md:h-[10rem] ">
                               <img
@@ -213,11 +213,11 @@ const DashboardServices = ({
                         {item.services_img_c === "" ? (
                           <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
                             <a
-                              className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                              className="absolute m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                               data-tooltip="Edit Content"
                               onClick={handleAddServices3}
                             >
-                              <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                              <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                             </a>
                             <div className="image_wrapper w-[20rem] h-[10rem] bg-gray-300 place-content-center">
                               <IoImageOutline className="text-[40px] mx-auto text-gray-500" />
@@ -243,11 +243,11 @@ const DashboardServices = ({
                         ) : (
                           <div className="cards-content flex flex-col gap-5 items-center justify-center lg:items-start md:w-[20rem] lg:w-[23rem] relative">
                             <a
-                              className="absolute z-30 m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
+                              className="absolute m-10 right-[4px] -top-14 cursor-pointer tooltip-header"
                               data-tooltip="Edit Content"
                               onClick={handleAddServices3}
                             >
-                              <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                              <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                             </a>
                             <div className="image_wrapper md:w-[20rem] md:h-[10rem]">
                               <img

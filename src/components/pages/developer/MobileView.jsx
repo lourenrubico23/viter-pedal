@@ -20,18 +20,21 @@ import DashboardHeader from "@/components/partials/spinner/dashboard-header/Dash
 const MobileView = () => {
   return (
     <>
-      <Navigation />
-      <div className="main-wrapper">
-        <div className="fixed bg-dashPrimary py-3 w-[100%] z-50 "></div>
-        <div className="wrapper shadow_wrapper">
-          <DashboardHeader menu="mobile-view"/>
-          <div className="max-w-[375px] mx-auto md:pt-12 3xl:pt-12 border-[2px]">
+
+<div className="relative transition-all duration-150 ease-linear bg-dashPrimary">
+        <Navigation />
+        <div className="main ml-[220px] w-[calc(100%_-_230px)] z-10">
+          <DashboardHeader menu="mobile-view" />
+          <div className=" w-[calc(100%_-_10px)] pt-[50px] relative">
+            <div className="headerCover fixed top-0 left-[200px] w-full h-[60px] bg-dashPrimary z-[9]"></div>
+            <div className="shadow_wrapper max-w-[375px] mx-auto pt-3">
             <MobileViewHeader/>
             <MobileViewServices/>
             <MobileViewAbout/>
             <MobileViewContactBanner/>
             <MobileViewTestimonials/>
             <MobileViewFooter/>
+            </div>
           </div>
         </div>
       </div>

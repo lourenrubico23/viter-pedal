@@ -35,19 +35,19 @@ const DashboardTestimonial = ({
         {isFetching ? (
           <TestimonialLoader />
         ) : (
-          <div className="feedback_wrapper py-12 md:py-32 md:pb-28">
+          <div className="feedback_wrapper py-12 md:h-[800px] md:py-[140px]">
             <div className="container_dashboard">
               <div className="feedback-title flex flex-col items-center pb-5 md:pb-20">
-                <h2 className=" flex text-[clamp(1rem,5vw,48px)] font-[montserrat-extralight] text-center leading-tight">
+                <h2 className=" flex text-[clamp(1rem,5vw,48px)] font-[montserrat-extralight] text-center leading-tight pt-10">
                   {testimonialData?.data[0].testimonial_title
                     ? testimonialData?.data[0].testimonial_title
                     : "Lorem ipsum dolor sit"}
                   <a
-                    className="relative z-30 m-5 cursor-pointer tooltip-header"
+                    className="relative m-5 cursor-pointer tooltip-header"
                     data-tooltip="Edit Content"
                     onClick={handleAddTitle}
                   >
-                    <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                    <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                   </a>
                 </h2>
                 <h3 className="text-center block md:hidden">
@@ -61,11 +61,11 @@ const DashboardTestimonial = ({
                 {testimonialData?.data[0].testimonial_img_a === "" ? (
                   <div className="flex flex-col items-center gap-4 py-5 md:w-[40%] lg:flex lg:flex-row md:gap-5 relative">
                     <a
-                      className="absolute z-30 m-10 right-0 -top-10 cursor-pointer tooltip-header"
+                      className="absolute m-10 right-0 -top-10 cursor-pointer tooltip-header"
                       data-tooltip="Edit Content"
                       onClick={handleAddFirst}
                     >
-                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                      <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                     </a>
                     <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-content-center">
                       <IoImageOutline className="text-[30px] mx-auto text-gray-500  " />
@@ -87,11 +87,11 @@ const DashboardTestimonial = ({
                 ) : (
                   <div className="flex flex-col items-center gap-4 py-5 md:w-[40%] lg:flex lg:flex-row md:gap-5 relative">
                     <a
-                      className="absolute z-30 m-10 right-0 -top-10 cursor-pointer tooltip-header"
+                      className="absolute m-10 right-0 -top-10 cursor-pointer tooltip-header"
                       data-tooltip="Edit Content"
                       onClick={handleAddFirst}
                     >
-                      <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                      <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                     </a>
                     <div className="w-[6rem] lg:w-[30%] place-self-start ">
                       <img
@@ -101,7 +101,7 @@ const DashboardTestimonial = ({
                       />
                     </div>
 
-                    <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%] relative">
+                    <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%] relative place-self-start">
                       <h3 className="text-[clamp(.6rem,4vw,16px)] font-[montserrat-extrabold] md:pb-4">
                         {testimonialData?.data[0].testimonial_name_a
                           ? testimonialData?.data[0].testimonial_name_a
@@ -118,11 +118,11 @@ const DashboardTestimonial = ({
 
                 <div className="flex flex-col items-center gap-4 py-5 md:w-[40%] lg:flex lg:flex-row md:gap-5 relative">
                   <a
-                    className="absolute z-30 m-10 right-0 -top-10 cursor-pointer tooltip-header"
+                    className="absolute m-10 right-0 -top-10 cursor-pointer tooltip-header"
                     data-tooltip="Edit Content"
                     onClick={handleAddSecond}
                   >
-                    <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                    <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                   </a>
                   {testimonialData?.data[0].testimonial_img_b === "" ? (
                     <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-content-center">
@@ -137,7 +137,7 @@ const DashboardTestimonial = ({
                       />
                     </div>
                   )}
-                  <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%]">
+                  <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%] place-self-start">
                     <h3 className="text-[clamp(.6rem,4vw,16px)] font-[montserrat-extrabold] md:pb-4">
                       {testimonialData?.data[0].testimonial_name_b
                         ? testimonialData?.data[0].testimonial_name_b
@@ -152,11 +152,11 @@ const DashboardTestimonial = ({
                 </div>
                 <div className="flex flex-col items-center gap-4 py-5 md:w-[40%] lg:flex lg:flex-row md:gap-5 relative">
                   <a
-                    className="absolute z-30 m-10 right-0 -top-10 cursor-pointer tooltip-header"
+                    className="absolute m-10 right-0 -top-10 cursor-pointer tooltip-header"
                     data-tooltip="Edit Content"
                     onClick={handleAddThird}
                   >
-                    <HiPencil className=" bg-accent rounded-full w-[25px] h-[25px] p-[5px] border-[1px] " />
+                    <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                   </a>
                   {testimonialData?.data[0].testimonial_img_c === "" ? (
                     <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-content-center">
@@ -172,7 +172,7 @@ const DashboardTestimonial = ({
                     </div>
                   )}
 
-                  <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%]">
+                  <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%] place-self-start">
                     <h3 className="text-[clamp(.6rem,4vw,16px)] font-[montserrat-extrabold] md:pb-4">
                       {testimonialData?.data[0].testimonial_name_c
                         ? testimonialData?.data[0].testimonial_name_c

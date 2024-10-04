@@ -91,11 +91,14 @@
     --accent-color: 199 172 39;
     --buttonHover-color: 187 160 26;
     --dark-color: 0 0 0;
-    
+
     --dashPrimary-color: 245 245 243;
     --dashSecondary-color: 236 236 236;
     --dashAccent-color: 204 204 204;
   }
+  /* * {
+    @apply outline outline-violet-400;
+  } */
   h1,
   h2,
   h3,
@@ -127,7 +130,7 @@
     @apply block border border-solid border-gray-300 p-2 rounded-lg w-full min-h-28 resize-y bg-transparent outline-none;
   }
   label {
-    @apply text-xs text-dark transform -translate-y-6 -translate-x-1 absolute left-3 top-4 px-1 z-10 isolate capitalize;
+    @apply text-xs text-black transform -translate-y-6 -translate-x-1 absolute left-3 top-4 px-1 z-10 isolate capitalize;
   }
   label:after {
     @apply content-[''] w-[97%] h-[2.5px] absolute left-px top-[7.2px] bg-white -z-10;
@@ -139,12 +142,12 @@
     @apply bg-gray-100 border-gray-200 cursor-not-allowed hover:bg-gray-100 hover:text-inherit hover:border-gray-200;
   }
   input::file-selector-button {
-    @apply mr-5 border-0 bg-primary disabled:bg-gray-200 rounded-md text-white cursor-pointer px-1 py-0;
+    @apply mr-5 border-0 bg-white disabled:bg-gray-200 rounded-md text-white cursor-pointer px-1 py-0;
   }
   input:focus,
   select:focus,
   textarea:focus {
-    @apply border border-solid border-primary outline-0;
+    @apply border border-solid border-white outline-0;
   }
 }
 
@@ -156,7 +159,7 @@
     @apply relative min-h-[100dvh] print:pt-0 lg:ml-6  transition-all duration-150 ease-linear bg-dashPrimary mt-[23px] 3xl:mx-auto;
   }
   .navigation {
-    @apply w-[190px] fixed left-0 top-0 h-full z-50 transition ease-linear duration-150 bg-dashPrimary p-5 pt-[40px];
+    @apply w-[211px] fixed left-0 top-0 h-full z-50 transition ease-linear duration-150 bg-dashPrimary p-5 pt-[40px];
   }
   .navDashboard {
     @apply font-[inter24-semiBold];
@@ -180,13 +183,13 @@
     @apply py-0 px-3 md:px-6 md:py-0 p-6 mx-auto max-w-[80rem];
   }
   .toggle-menu {
-    @apply lg:hidden duration-200 cursor-pointer hover:bg-dark/5 left-0.5 h-fit p-3 absolute top-0.5 text-xl z-50 !bg-white;
+    @apply lg:hidden duration-200 cursor-pointer hover:bg-dark/5 left-0.5 h-fit p-3 absolute top-0.5 text-xl z-50 !bg-primary;
   }
   .banner {
-    @apply relative md:h-[120vh] md:bg-no-repeat md:bg-cover md:bg-center 3xl:max-w-[100rem] 3xl:mx-auto 3xl:h-[900px] 3xl:top-4 x-sm:bg-none;
+    @apply relative md:h-[120vh] md:bg-no-repeat md:bg-cover md:bg-center 3xl:max-w-[120rem] 3xl:mx-auto 3xl:h-[900px] 3xl:top-0 x-sm:bg-none;
   }
   .btn-primary {
-    @apply bg-accent rounded-md text-white px-5 md:px-14 py-2 md:py-3 font-bold hover:bg-buttonHover font-[montserrat-light] transition-all text-[clamp(.8rem,3vw,18px)];
+    @apply bg-accent rounded-md text-dark px-5 md:px-14 py-2 md:py-3 font-bold hover:bg-buttonHover font-[montserrat-light] transition-all text-[clamp(.8rem,3vw,18px)];
   }
   .btn-light {
     @apply text-accent font-[montserrat-extrabold] text-[clamp(.8rem,3vw,1.1rem)] transition-all;
@@ -208,25 +211,25 @@
   }
 
   .btn-modal-submit {
-    @apply flex items-center justify-center text-white gap-2 px-3 py-1.5 bg-accent rounded-md border-primary border hover:bg-buttonHover hover:text-primary hover:border-gray-300 duration-300 ease-in w-full;
+    @apply flex items-center justify-center text-white gap-2 px-3 py-1.5 bg-[#C7AC27] rounded-md border-[#C7AC27] border hover:bg-[#bba01a] hover:text-black hover:border-gray-300 duration-300 ease-in w-full;
   }
   .btn-modal-submit:disabled {
-    @apply opacity-50 hover:bg-buttonHover hover:text-white hover:border-accent;
+    @apply opacity-50 hover:bg-[#bba01a] hover:text-white hover:border-[#C7AC27];
   }
   .btn-modal-cancel {
-    @apply flex items-center justify-center text-dark gap-2 px-3 py-1.5 bg-white rounded-md border-gray-300 border w-full;
+    @apply flex items-center justify-center text-black gap-2 px-3 py-1.5 bg-white rounded-md border-gray-300 border w-full;
   }
   .btn-modal-cancel:disabled {
-    @apply opacity-50 hover:bg-white hover:text-dark hover:border-gray-300;
+    @apply opacity-50 hover:bg-white hover:text-black hover:border-gray-300;
   }
   .modal {
-    @apply bg-dark/0 transition-all opacity-0;
+    @apply bg-black/0 transition-all opacity-0;
   }
   .modal > .animate-slideUp {
     @apply translate-y-3 transition-all;
   }
   .modal.show {
-    @apply bg-dark/50 opacity-100;
+    @apply bg-black/50 opacity-100;
   }
   .modal.show > .animate-slideUp {
     @apply translate-y-0;
@@ -235,7 +238,7 @@
     @apply bg-white h-full flex flex-col max-w-[400px] w-full p-5;
   }
   .modal-title {
-    @apply flex justify-between items-center text-sm;
+    @apply flex justify-between items-center text-sm text-black;
   }
   .modal-content {
     @apply overflow-y-auto flex flex-col justify-between h-full;
@@ -250,7 +253,7 @@
     @apply flex gap-2 pt-4;
   }
   .btnImgUpload button {
-    @apply text-2xl text-white bg-dark bg-opacity-50 transition-all opacity-0 group-hover:opacity-40 w-full grid place-items-center h-full absolute top-0 left-0;
+    @apply text-2xl text-white bg-black bg-opacity-50 transition-all opacity-0 group-hover:opacity-40 w-full grid place-items-center h-full absolute top-0 left-0;
   }
   .header-nav li a.active {
     @apply text-black;
@@ -302,7 +305,7 @@
     @apply p-1 mr-1.5 bg-transparent leading-none;
   }
   .tooltip-action-table::after {
-    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full top-[6px] bg-dark/80 text-white p-1 ml-2 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 left-14;
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full top-[6px] bg-black/80 text-white p-1 ml-2 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 left-14;
   }
   .tooltip-action-table:hover::after {
     @apply scale-100 opacity-100;
@@ -313,7 +316,7 @@
     @apply p-1 mr-1.5 bg-transparent leading-none;
   }
   .tooltip-header::after {
-    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full top-[7px] bg-dark/80 text-white p-1 ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 left-16;
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full top-[7px] bg-black/80 text-white p-1 ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 left-16;
   }
   .tooltip-header:hover::after {
     @apply scale-100 opacity-100;
@@ -324,7 +327,7 @@
     @apply p-1 mr-1.5 bg-transparent leading-none;
   }
   .tooltip-header-nav::after {
-    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full top-[9px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-4;
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4 bottom-full top-[9px] bg-black/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-4;
   }
   .tooltip-header-nav:hover::after {
     @apply scale-100 opacity-100;
@@ -335,18 +338,18 @@
     @apply bg-transparent leading-none;
   }
   .tooltip-desktop::after {
-    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-[80px];
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-black/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-[80px];
   }
   .tooltip-desktop:hover::after {
     @apply scale-100 opacity-100;
   }
-  
+
   /* mobile tool-tip */
   .tooltip-phone {
     @apply bg-transparent leading-none;
   }
   .tooltip-phone::after {
-    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-[55px];
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-black/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 right-[55px];
   }
   .tooltip-phone:hover::after {
     @apply scale-100 opacity-100;
@@ -356,7 +359,7 @@
     @apply bg-transparent leading-none;
   }
   .tooltip-colors::after {
-    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 -right-[10px];
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-black/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 -right-[10px];
   }
   .tooltip-colors:hover::after {
     @apply scale-100 opacity-100;
@@ -366,7 +369,7 @@
     @apply bg-transparent leading-none;
   }
   .tooltip-website::after {
-    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-dark/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 -right-[50px];
+    @apply content-[attr(data-tooltip)] capitalize absolute -translate-x-2/4  bottom-[35px] bg-black/80 text-white p-1 -ml-3 rounded-sm h-fit leading-none z-20 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none transition ease-linear scale-0 duration-75 -right-[50px];
   }
   .tooltip-website:hover::after {
     @apply scale-100 opacity-100;

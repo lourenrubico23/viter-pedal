@@ -44,7 +44,7 @@ const Testimonial = () => {
                 />
               </div>
 
-              <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%]">
+              <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%] place-self-start">
                 <h3 className="text-[clamp(.6rem,4vw,16px)] font-[montserrat-extrabold] md:pb-4">
                   {testimonialData?.data[0].testimonial_name_a
                     ? testimonialData?.data[0].testimonial_name_a
@@ -65,7 +65,7 @@ const Testimonial = () => {
                   className="object-contain object-top lg:h-full lg:w-full rounded-lg"
                 />
               </div>
-              <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%]">
+              <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%] place-self-start">
                 <h3 className="text-[clamp(.6rem,4vw,16px)] font-[montserrat-extrabold] md:pb-4">
                   {testimonialData?.data[0].testimonial_name_b
                     ? testimonialData?.data[0].testimonial_name_b
@@ -85,8 +85,8 @@ const Testimonial = () => {
                   alt=""
                   className="object-contain object-top lg:h-full lg:w-full rounded-lg"
                 />
-              </div>
-              <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%]">
+              </div> 
+              <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%] place-self-start">
                 <h3 className="text-[clamp(.6rem,4vw,16px)] font-[montserrat-extrabold] md:pb-4">
                   {testimonialData?.data[0].testimonial_name_c
                     ? testimonialData?.data[0].testimonial_name_c

@@ -60,19 +60,20 @@ const Dashboard = () => {
 
   return (
     <>
-     
-      <Navigation />
-      <div className="main-wrapper">
-        <div className="fixed bg-dashPrimary py-3 w-[100%] h-[27px] z-50 "></div>
-        <div className="wrapper w-[calc(100%_-_40px)] shadow_wrapper">
+      <div className="relative transition-all duration-150 ease-linear bg-dashPrimary">
+        <Navigation />
+        <div className="main ml-[220px] w-[calc(100%_-_230px)] z-10">
           <DashboardHeader menu="dashboard" />
-          <div className="md:pt-[2.5rem]">
-            <Header />
-            <Services />
-            <About />
-            <ContactBanner />
-            <Testimonials />
-            <Footer />
+          <div className=" w-[calc(100%_-_10px)] pt-[60px] relative">
+            <div className="headerCover fixed top-0 left-[200px] w-full h-[60px] bg-dashPrimary z-[9]"></div>
+            <div className="shadow_wrapper">
+              <Header />
+              <Services />
+              <About />
+              <ContactBanner />
+              <Testimonials />
+              <Footer />
+            </div>
           </div>
         </div>
       </div>

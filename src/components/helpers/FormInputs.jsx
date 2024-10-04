@@ -4,7 +4,7 @@ import { useField } from "formik";
 export const InputText = ({
   label = "",
   required = true,
-  className = "text-[12px] outline-none  focus:border-accent ",
+  className = "text-[12px] outline-none  focus:border-[#C7AC27] text-black ",
   onChange = null,
   refVal = null,
   ...props
@@ -74,7 +74,7 @@ export const InputSelect = ({ label, onChange = null, ...props }) => {
 export const InputTextArea = ({
   label,
   required = true,
-  className = "focus:border-accent ",
+  className = "focus:border-[#C7AC27] text-black",
   ...props
 }) => {
   const [field, meta] = useField(props);

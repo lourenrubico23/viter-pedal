@@ -68,8 +68,8 @@ const ModalAddAboutContent = ({itemEdit, setIsContent, aboutData}) => {
     className={`transition-all ease-linear transform duration-200 ${animate}`}
     handleClose={handleClose}
   >
-    <div className="modal-title">
-      <h2 className="text-sm">
+    <div className="modal-title ">
+      <h2 className="text-sm ">
         Edit About Contents
       </h2>
       <button onClick={handleClose}>

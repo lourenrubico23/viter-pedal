@@ -80,7 +80,7 @@ const DashboardFooter = ({ setItemEdit, setIsAdd, footerData }) => {
     <>
       {/* footer */}
       <section id="footer">
-        <div className="bg-secondary py-12 md:py-16">
+        <div className="bg-secondary py-12 md:py-[100px] mb-[150px]">
           <div className="container_dashboard">
             <div className="lg:flex lg:justify-between lg:items-center">
               <div className="footer-nav text-center">
@@ -130,11 +130,11 @@ const DashboardFooter = ({ setItemEdit, setIsAdd, footerData }) => {
               </div>
               <h3 className="text-center text-[clamp(.5rem,4vw,15px)] text-gray-700 relative">
                 <a
-                  className="absolute z-30 m-10 -right-10 -top-12 cursor-pointer tooltip-header"
+                  className="absolute m-10 -right-5 -top-20 cursor-pointer tooltip-header"
                   data-tooltip="Edit Content"
                   onClick={handleAddCopyright}
                 >
-                  <HiPencil className=" bg-accent text-black rounded-full w-[25px] h-[25px] p-[5px] border-[1px]" />
+                  <HiPencil className=" bg-[#C7AC27] text-black rounded-full w-[25px] h-[25px] p-[5px] border-[1px]" />
                 </a>
                 &copy;{" "}
                 {footerData?.data[0].footer_copyright
