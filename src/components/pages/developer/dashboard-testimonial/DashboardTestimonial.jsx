@@ -67,8 +67,8 @@ const DashboardTestimonial = ({
                     >
                       <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                     </a>
-                    <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-content-center">
-                      <IoImageOutline className="text-[30px] mx-auto text-gray-500  " />
+                    <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-self-start flex items-center">
+                      <IoImageOutline className="text-[30px] mx-auto text-gray-500 " />
                     </div>
 
                     <div className="content flex flex-col items-center gap-2 lg:items-start lg:w-[90%] relative">
@@ -125,8 +125,8 @@ const DashboardTestimonial = ({
                     <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                   </a>
                   {testimonialData?.data[0].testimonial_img_b === "" ? (
-                    <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-content-center">
-                      <IoImageOutline className="text-[30px] mx-auto text-gray-500  " />
+                    <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-self-start flex items-center">
+                      <IoImageOutline className="text-[30px] mx-auto text-gray-500 " />
                     </div>
                   ) : (
                     <div className="w-[6rem] lg:w-[30%] place-self-start">
@@ -159,8 +159,8 @@ const DashboardTestimonial = ({
                     <HiPencil className=" bg-[#C7AC27] rounded-full w-[25px] h-[25px] p-[5px] border-[1px] text-black" />
                   </a>
                   {testimonialData?.data[0].testimonial_img_c === "" ? (
-                    <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-content-center">
-                      <IoImageOutline className="text-[30px] mx-auto text-gray-500  " />
+                    <div className="w-[6rem] h-[5rem] mb-[110px] bg-gray-300 rounded-md place-self-start flex items-center">
+                      <IoImageOutline className="text-[30px] mx-auto text-gray-500 " />
                     </div>
                   ) : (
                     <div className="w-[6rem] lg:w-[30%] place-self-start">
