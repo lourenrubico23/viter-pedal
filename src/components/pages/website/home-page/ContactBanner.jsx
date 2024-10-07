@@ -1,7 +1,5 @@
 import useQueryData from "@/components/custom-hooks/useQueryData";
 import { devBaseImgUrl } from "@/components/helpers/functions-general";
-import React from "react";
-import { FaFacebookSquare } from "react-icons/fa";
 
 const ContactBanner = () => {
   const {

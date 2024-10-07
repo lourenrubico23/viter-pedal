@@ -186,10 +186,10 @@
     @apply lg:hidden duration-200 cursor-pointer hover:bg-dark/5 left-0.5 h-fit p-3 absolute top-0.5 text-xl z-50 !bg-primary;
   }
   .banner {
-    @apply relative md:h-[120vh] md:bg-no-repeat md:bg-cover md:bg-center 3xl:max-w-[120rem] 3xl:mx-auto 3xl:h-[900px] 3xl:top-0 x-sm:bg-none;
+    @apply relative md:bg-no-repeat md:bg-cover md:bg-center 3xl:max-w-[120rem] 3xl:mx-auto 3xl:h-[900px] 3xl:top-0 x-sm:bg-none;
   }
   .btn-primary {
-    @apply bg-accent rounded-md text-dark px-5 md:px-14 py-2 md:py-3 font-bold hover:bg-buttonHover font-[montserrat-light] transition-all text-[clamp(.8rem,3vw,18px)];
+    @apply bg-accent rounded-md text-white px-5 md:px-14 py-2 md:py-3 font-bold hover:bg-buttonHover font-[montserrat-light] transition-all text-[clamp(.8rem,3vw,18px)];
   }
   .btn-light {
     @apply text-accent font-[montserrat-extrabold] text-[clamp(.8rem,3vw,1.1rem)] transition-all;

@@ -35,7 +35,7 @@ const DashboardTestimonial = ({
         {isFetching ? (
           <TestimonialLoader />
         ) : (
-          <div className="feedback_wrapper py-12 md:h-[800px] md:py-[140px]">
+          <div className="feedback_wrapper py-12 md:min-h-[800px] md:py-[140px]">
             <div className="container_dashboard">
               <div className="feedback-title flex flex-col items-center pb-5 md:pb-20">
                 <h2 className=" flex text-[clamp(1rem,5vw,48px)] font-[montserrat-extralight] text-center leading-tight pt-10">

@@ -30,9 +30,9 @@ const useUploadPhoto = (url, dispatch) => {
     // console.log(img);
 
     // console.log("img.size", img.size);
-    if (img.size > 150000) {
+    if (img.size > 90000) {
       dispatch(setError(true));
-      dispatch(setMessage("Photo is too big. It should be less than 10Kb."));
+      dispatch(setMessage("Photo is too big. It should be less than 90Kb."));
     } else {
       dispatch(setError(false));
       // consoleLog("Set photo");

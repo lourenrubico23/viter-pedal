@@ -125,7 +125,7 @@ const DashboardBanner = ({
                 )}
 
                 <nav className="">
-                  <ul className="nav ">
+                  <ul className="nav">
                     <a
                       className="cursor-pointer relative tooltip-header-nav"
                       data-tooltip="Edit Text"
@@ -176,7 +176,7 @@ const DashboardBanner = ({
                   <div className=" container_dashboard flex h-full ">
                     <div className="py-1 grid grid-cols-[_2fr,_1fr] gap-3 w-[100%] h-[100%] relative">
                       <div className="flex flex-col items-start justify-center md:gap-7 h-[815px] w-full">
-                        <h1 className="relative flex text-center md:text-left md:max-w-[calc(50% + 90px)] w-[50%] md:w-[50%] text-[clamp(1rem,5vw,3.5rem)] py-6 font-[montserrat-extralight]">
+                        <h1 className="flex flex-row text-center md:text-left md:max-w-[calc(50% + 90px)] w-[50%] md:w-[50%] text-[clamp(1rem,5vw,3.5rem)] py-6 font-[montserrat-extralight]">
                           {headerData?.data[0].header_banner_text
                             ? headerData?.data[0].header_banner_text
                             : "Lorem ipsum dolor sit amet consectetur adipisicing."}
@@ -213,7 +213,7 @@ const DashboardBanner = ({
                       <h1 className="flex flex-row text-center md:text-left md:max-w-[calc(50% + 90px)] w-[50%] md:w-[50%] text-[clamp(1rem,5vw,3.5rem)] py-6 font-[montserrat-extralight]">
                         {headerData?.data[0].header_banner_text}
                         <a
-                          className="relative m-10 place-items-end top-2 cursor-pointer tooltip-header"
+                          className="relative  place-items-end top-[20px] cursor-pointer tooltip-header"
                           data-tooltip="Edit Content"
                           onClick={handleAddBanner}
                         >
